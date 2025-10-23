@@ -38,10 +38,11 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("latest");
   const router = useRouter();
-
+  
+  //  eslint-disable @typescript-eslint/no-unsafe-function-type
   const debounce = (func: Function, wait: number) => {
     let timeout: NodeJS.Timeout;
-    return (...args: any[]) => {
+    return (...args: any[]) => { /* eslint-disable @typescript-eslint/no-explicit-any */
       clearTimeout(timeout);
       timeout = setTimeout(() => func(...args), wait);
     };

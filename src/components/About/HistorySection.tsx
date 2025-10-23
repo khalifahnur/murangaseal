@@ -97,7 +97,7 @@ export default function HistorySection() {
           <div className="p-8 md:p-12 border-l-4 border-amber-500">
             <div className="max-w-4xl">
               <p className="text-xl md:text-2xl font-serif leading-relaxed text-slate-800 first-letter:text-7xl first-letter:font-bold first-letter:text-amber-600 first-letter:float-left first-letter:mr-3 first-letter:leading-none first-letter:mt-1">
-                From humble beginnings in Muranga County to becoming one of Kenya's most respected football institutions, 
+                From humble beginnings in Muranga County to becoming one of Kenya&apos;s most respected football institutions, 
                 Muranga Seal FC (Mseal) has written a remarkable story of perseverance, excellence, and community spirit. 
                 What started as a dream in 2014 has blossomed into a movement that inspires thousands across the nation.
               </p>

@@ -39,10 +39,11 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState("latest");
   const router = useRouter();
   
-  //  eslint-disable @typescript-eslint/no-unsafe-function-type
+    /*eslint-disable @typescript-eslint/no-unsafe-function-type */
   const debounce = (func: Function, wait: number) => {
     let timeout: NodeJS.Timeout;
-    return (...args: any[]) => { /* eslint-disable @typescript-eslint/no-explicit-any */
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    return (...args: any[]) => { 
       clearTimeout(timeout);
       timeout = setTimeout(() => func(...args), wait);
     };

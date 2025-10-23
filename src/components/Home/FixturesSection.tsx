@@ -5,39 +5,42 @@ import FixtureCard from './FixtureCard';
 const fixtures: Fixture[] = [
   {
     id: '1',
-    date: 'Sun 20 Oct',
-    time: '7:30 PM',
+    date: '26 Oct 2025',
+    time: '15:00',
     category: 'MEN',
-    homeTeam: 'Tottenham Hotspur',
-    venue: 'Hill Dickinson Stadium',
-    ticketUrl: '#',
-    premiumTicketUrl: '#'
+    homeTeam: 'Muranga Seal',
+    awayTeam: 'Tusker FC',
+    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910313/Tusker-FC_eaeucx.png',
+    venue: 'SportPesa Arena',
+    ticketUrl: 'https://tickets.murangaseal.co.ke/',
   },
   {
     id: '2',
-    date: 'Sun 2 Nov',
-    time: '3:00 PM',
-    category: 'WOMEN',
-    homeTeam: 'Aston Villa',
-    venue: 'Villa Park',
-    ticketUrl: '#'
+    date: 'TBD',
+    time: '15:00',
+    category: 'MEN',
+    homeTeam: 'Posta Ranger',
+    awayTeam: 'Muranga Seal',
+    venue: 'Kasarani Annex',
+    ticketUrl: 'https://tickets.murangaseal.co.ke/',
+    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910318/Posta-Rangers_bc9rvb.png',
   },
   {
     id: '3',
-    date: 'Tue 21 Oct',
-    time: '9:45 PM',
+    date: 'TBD',
+    time: '15:00',
     category: 'MEN',
-    homeTeam: 'Newcastle United',
-    awayTeam: 'Brackley Town',
-    venue: 'St. James Park',
-    ticketUrl: '#'
+    homeTeam: 'Muranga Seal',
+    awayTeam: 'KCB',
+    venue: 'SportPesa Arena',
+    ticketUrl: 'https://tickets.murangaseal.co.ke/',
+    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910292/KCB_pi1pfg.png',
   }
 ];
 
 export default function FixturesSection() {
   return (
     <section className=" mozillaheadline min-h-80vh bg-linear-to-b from-[#0a0c1b] to-black text-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id='watch'>
-      {/* Subtle Background Pattern */}
       <div 
         className="absolute inset-0 opacity-5"
         style={{
@@ -46,7 +49,6 @@ export default function FixturesSection() {
       />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4">
             UPCOMING FIXTURES
@@ -54,7 +56,6 @@ export default function FixturesSection() {
           <div className="w-24 h-1 bg-primary mx-auto"></div>
         </div>
 
-        {/* Fixtures Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {fixtures.map((fixture) => (
             <FixtureCard key={fixture.id} fixture={fixture} />

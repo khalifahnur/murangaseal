@@ -124,3 +124,7 @@
 .mozillaheadline {
   font-family: var(--font-mozilla_headline);
 }
+
+.mobile-menu-open {
+          z-index: 100;
+        }

@@ -1,13 +1,14 @@
 export interface Fixture {
   id: string;
-  date: string; // "Sun 20 Oct"
-  time: string; // "7:30 PM"
-  category: 'MEN' | 'WOMEN' | 'U21';
+  date: string;
+  time: string; 
+  category: 'MEN' | 'U21';
   homeTeam: string;
-  awayTeam?: string;
+  awayTeam: string;
   venue: string;
   ticketUrl: string;
   premiumTicketUrl?: string;
+  opponentLogo:string;
 }
 
 export interface FixturesSectionProps {

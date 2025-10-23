@@ -41,12 +41,12 @@ export default function StoreSection() {
 
   const getButtonClass = (kitType: "HOME" | "AWAY" | "THIRD KIT") => {
     const baseClass =
-      "text-1.5xl xl:text-4xl px-5 xl:px-8.5 py-5 xl:py-7 whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 relative grid place-content-center uppercase font-national leading-none duration-300 ease-in-out inline-block text-center w-full";
+      "px-3 sm:px-4 md:px-5 xl:px-8.5 py-3 sm:py-4 md:py-5 xl:py-7 whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 relative grid place-content-center uppercase font-national leading-none duration-300 ease-in-out inline-block text-center w-full";
 
     if (activeKit === kitType) {
-      return `${baseClass} bg-gray-900 text-primary`;
+      return `${baseClass} bg-gray-900 text-primary text-sm sm:text-base md:text-lg xl:text-4xl`;
     } else {
-      return `${baseClass} bg-tertiary hover:bg-secondary hover:text-tertiary text-black-900`;
+      return `${baseClass} bg-tertiary hover:bg-secondary hover:text-tertiary text-black-900 text-sm sm:text-base md:text-lg xl:text-4xl`;
     }
   };
 
@@ -54,27 +54,28 @@ export default function StoreSection() {
     <div className="overflow-hidden mozillaheadline" id="shop">
       <section className="bg-mono-300 uppercase">
         <div className="relative overflow-hidden">
+          {/* Desktop Background Text */}
           <div className="hidden md:flex justify-center z-0 absolute w-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
-            <p className="text-[45vw] 3xl:text-[32vw] text-primary opacity-10">
+            <p className="text-[45vw] 3xl:text-[32vw] text-primary opacity-10 leading-none">
               {backgroundTexts[activeKit]}
             </p>
           </div>
 
-          <div className="z-10 flex flex-col md:flex-row">
+          {/* Mobile Background Text */}
+          <div className="flex md:hidden justify-center z-0 absolute w-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+            <p className="text-[70vw] sm:text-[60vw] text-primary leading-none opacity-10">
+              {backgroundTexts[activeKit]}
+            </p>
+          </div>
+
+          <div className="z-10 flex flex-col md:flex-row relative">
             <div className="w-full md:w-1/3 flex flex-col justify-center items-center">
               <div className="text-center md:text-left">
                 <p className="text-tertiary text-xl"></p>
               </div>
             </div>
 
-            {/* Jersey Image Section */}
-            <div className="z-10 relative w-full md:w-1/3 px-10 py-2 md:p-0">
-              <div className="flex md:hidden justify-center absolute z-0 w-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
-                <p className="text-[90vw] text-primary leading-none opacity-10">
-                  {backgroundTexts[activeKit]}
-                </p>
-              </div>
-
+            <div className="z-10 relative w-full md:w-1/3 px-4 sm:px-6 md:px-10 py-2 md:p-0">
               <div className="relative z-10">
                 <figure
                   className="with-ratio relative overflow-hidden group"
@@ -89,13 +90,13 @@ export default function StoreSection() {
 
                   <button
                     onClick={toggleView}
-                    className="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-gray-900 rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 group-hover:opacity-100 opacity-90"
+                    className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white/90 hover:bg-white text-gray-900 rounded-full p-2 sm:p-3 shadow-lg transition-all duration-300 hover:scale-110 group-hover:opacity-100 opacity-90"
                     title={`View ${
                       currentView === "front" ? "back" : "front"
                     } of jersey`}
                   >
                     <svg
-                      className="w-6 h-6"
+                      className="w-5 h-5 sm:w-6 sm:h-6"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -121,9 +122,9 @@ export default function StoreSection() {
               </div>
             </div>
 
-            <div className="md:w-1/3 self-center">
-              <div className="flex flex-row md:flex-col items-center justify-center gap-1 md:gap-2">
-                <div className="md:max-w-[116px]">
+            <div className="md:w-1/3 self-center z-10">
+              <div className="flex flex-row md:flex-col items-center justify-center gap-1 sm:gap-2 md:gap-2 w-full px-4 sm:px-6 md:px-0">
+                <div className="w-full md:max-w-[116px]">
                   <button
                     type="button"
                     className={getButtonClass("HOME")}
@@ -132,7 +133,7 @@ export default function StoreSection() {
                     HOME
                   </button>
                 </div>
-                <div className="md:max-w-[116px]">
+                <div className="w-full md:max-w-[116px]">
                   <button
                     type="button"
                     className={getButtonClass("AWAY")}
@@ -141,7 +142,7 @@ export default function StoreSection() {
                     AWAY
                   </button>
                 </div>
-                <div className="md:max-w-[116px]">
+                <div className="w-full md:max-w-[116px]">
                   <button
                     type="button"
                     className={getButtonClass("THIRD KIT")}
@@ -156,9 +157,9 @@ export default function StoreSection() {
                 href="https://murangaseal.co.ke/shop"
                 rel="noopener noreferrer"
                 target="_blank"
-                className="uppercase font-national leading-[75%] before:duration-500  gap-4 bg-secondary text-tertiary false button relative overflow-hidden whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 inline-grid grid-flow-col items-center place-content-center cursor-pointer hover:bg-gray-500 hover:text-primary md:hidden w-full z-10 h4-national mt-2 px-6 py-2"
+                className="uppercase font-national leading-[75%] before:duration-500 gap-2 sm:gap-4 bg-secondary text-tertiary false button relative overflow-hidden whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 inline-grid grid-flow-col items-center place-content-center cursor-pointer hover:bg-gray-500 hover:text-primary md:hidden w-full z-10 h4-national mt-3 sm:mt-4 px-4 sm:px-6 py-2 sm:py-3 mx-4 sm:mx-6 md:mx-0"
               >
-                <span className="text-1.5xl text-center font-bold bg-linear-to-r from-primary/50 via-gray-900 to-primary/50 bg-clip-text text-transparent">
+                <span className="text-sm sm:text-base md:text-1.5xl text-center font-bold bg-linear-to-r from-primary/50 via-gray-900 to-primary/50 bg-clip-text text-transparent">
                   VISIT MSEAL STORE
                 </span>
               </a>
@@ -166,15 +167,14 @@ export default function StoreSection() {
           </div>
         </div>
 
-        {/* Desktop Personalize Button */}
-        <div className="hidden md:flex mt-1 md:mt-4 w-full justify-center ">
+        <div className="hidden md:flex mt-1 md:mt-4 w-full justify-center">
           <a
             href="https://murangaseal.co.ke/shop"
             rel="noopener noreferrer"
             target="_blank"
-            className="uppercase font-national leading-[75%] text-5xl before:duration-500 px-8 py-4 gap-4 bg-primary/10 text-tertiary false button relative overflow-hidden z-0 whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 inline-grid grid-flow-col items-center place-content-center cursor-pointer hover:before:!scale-[3.5] hover:before:!-translate-x-1/2 z-10 h4-national md:px-12 md:py-7"
+            className="uppercase font-national leading-[75%] text-5xl before:duration-500 px-6 md:px-8 py-3 md:py-4 gap-4 bg-primary/10 text-tertiary false button relative overflow-hidden z-0 whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 inline-grid grid-flow-col items-center place-content-center cursor-pointer hover:before:!scale-[3.5] hover:before:!-translate-x-1/2 z-10 h4-national md:px-12 md:py-7"
           >
-            <span className="text-1.5xl text-center font-bold bg-linear-to-r from-primary via-gray-900 to-primary bg-clip-text text-transparent">
+            <span className="text-xl md:text-1.5xl text-center font-bold bg-linear-to-r from-primary via-gray-900 to-primary bg-clip-text text-transparent">
               VISIT MSEAL STORE
             </span>
           </a>

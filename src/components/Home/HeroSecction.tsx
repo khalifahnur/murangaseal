@@ -12,17 +12,17 @@ interface CarouselItem {
 const carouselItems: CarouselItem[] = [
   {
     category: "INTERVIEWS",
-    title: "Still more to come from Reece James",
+    title: "Still more to come from Joseph Irungu",
     image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1200&h=800&fit=crop",
   },
   {
     category: "MATCH REACTION",
-    title: "Pedro Neto reveals why he – not Reece James – took surprise free-kick",
+    title: "Victor Haki reveals why he – not Joseph Irungu – took surprise free-kick",
     image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&h=800&fit=crop",
   },
   {
     category: "ANALYSIS",
-    title: "Why Reece James was your POTM against Nottingham Forest",
+    title: "Why Joseph Irungu was your POTM against APS Bomet",
     image: "https://images.unsplash.com/photo-1522778526097-a358bd6f0c69?w=1200&h=800&fit=crop",
   },
 ]
@@ -30,12 +30,12 @@ const carouselItems: CarouselItem[] = [
 const sidebarItems = [
   {
     image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400&h=300&fit=crop",
-    title: "WATCH: Pickford's New Contract Interview",
+    title: "WATCH: Erick Ongiri New Contract Interview",
     category: "VIDEO",
   },
   {
     image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=300&fit=crop",
-    title: "Moyes On Everton Plus Points From Slender City Loss",
+    title: "Dennis Odhiambo On Mseal wins",
     category: "Men",
     time: "1 day ago",
   },
@@ -45,32 +45,27 @@ export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   return (
-    <section className="relative w-full  py-8 px-4" id="latest">
+    <section className="relative w-full  py-8 px-4 mozillaheadline" id="latest">
         <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/13783-JRpQNy72h2O7zIyDfppWYF7OjuxNpS.jpg')`,
+          backgroundImage: `url('/assets/bg.jpg')`,
           backgroundSize: "200px 200px",
           backgroundRepeat: "repeat",
         }}
       />
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Featured Story */}
           <div className="lg:col-span-2 relative group cursor-pointer overflow-hidden rounded-lg">
             <div className="relative h-[500px] lg:h-[600px]">
-              {/* Background Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                 style={{
                   backgroundImage: `url('${carouselItems[currentIndex]?.image || "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1200&h=800&fit=crop"}')`,
                 }}
               />
-
-              {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
 
-              {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <div className="space-y-4">
                   <span className="inline-block px-3 py-1 text-xs font-bold tracking-wider text-white bg-blue-600 rounded uppercase">
@@ -81,7 +76,6 @@ export default function HeroSection() {
                   </h1>
                 </div>
 
-                {/* Navigation Dots */}
                 <div className="flex gap-2 mt-6">
                   {carouselItems.map((_, index) => (
                     <button
@@ -96,7 +90,6 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Navigation Arrows */}
               <div className="absolute top-1/2 left-4 right-4 -translate-y-1/2 flex justify-between pointer-events-none">
                 <button
                   onClick={(e) => {
@@ -121,15 +114,12 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-
-          {/* Sidebar Featured Items */}
           <div className="space-y-6">
             {sidebarItems.map((item, index) => (
               <div
                 key={index}
                 className="relative group cursor-pointer overflow-hidden rounded-lg h-[237px] lg:h-[290px]"
               >
-                {/* Background Image */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                   style={{
@@ -137,10 +127,8 @@ export default function HeroSection() {
                   }}
                 />
 
-                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-transparent" />
 
-                {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="space-y-2">
                     {item.time && (

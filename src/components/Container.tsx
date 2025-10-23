@@ -11,9 +11,9 @@ export default function Container() {
 
 
   return (
-    <div>
+    <>
         <Header />
-        <main>
+        <main className="relative">
           <HeroSection />
           <FixturesSection />
           <StoreSection />
@@ -22,6 +22,6 @@ export default function Container() {
           
         </main>
         <Footer />
-    </div>
+    </>
   )
 }

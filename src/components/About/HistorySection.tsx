@@ -48,30 +48,30 @@ export default function HistorySection() {
   ];
 
   return (
-    <div className="w-full bg-amber-50">
-      <div className="bg-linear-to-r from-slate-900 via-slate-800 to-slate-900 text-white py-3 border-b-4 border-amber-500">
+    <div className="w-full">
+      <div className="bg-gray-900 text-white py-3 border-b-4">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Calendar className="w-5 h-5" />
             <span className="text-sm font-serif">Est. 2014</span>
           </div>
           <div className="text-center">
-            <div className="font-serif text-xs uppercase tracking-widest text-amber-400">Special Edition</div>
+            <div className="font-serif text-xs uppercase tracking-widest text-primary">Special Edition</div>
           </div>
           <div className="text-sm font-serif">Mseal</div>
         </div>
       </div>
 
-      <div className="bg-white border-b-4 border-slate-900 py-8">
+      <div className="bg-white border-b-4 border-gray-900 py-8">
         
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="font-serif text-sm uppercase tracking-widest text-amber-600 mb-2">
+          <div className="font-serif text-sm uppercase tracking-widest mb-2">
             The Official Chronicle
           </div>
-          <h1 className="font-serif text-6xl md:text-8xl font-black text-slate-900 mb-2" style={{ fontFamily: 'Georgia, serif' }}>
+          <h1 className="font-serif text-6xl md:text-8xl font-black text-gray-900 mb-2" >
             MURANGA SEAL FC
           </h1>
-          <div className="flex items-center justify-center gap-8 text-sm text-slate-600 font-serif">
+          <div className="flex items-center justify-center gap-8 text-sm text-gray-600 font-serif">
             <span>Volume X</span>
             <span className="w-2 h-2 bg-slate-400 rounded-full"></span>
             <span>A Decade of Excellence</span>
@@ -81,10 +81,10 @@ export default function HistorySection() {
         </div>
       </div>
 
-      <div className="bg-slate-900 text-white py-4 border-y-2 border-amber-500">
+      <div className="bg-gray-900 text-white py-4 border-y-2">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3">
-            <Award className="w-6 h-6 text-amber-400" />
+            <Award className="w-6 h-6 text-primary" />
             <h2 className="font-serif text-2xl md:text-3xl font-bold uppercase tracking-wide">
               Our Journey Through Time
             </h2>
@@ -94,53 +94,53 @@ export default function HistorySection() {
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="bg-white shadow-2xl">
-          <div className="p-8 md:p-12 border-l-4 border-amber-500">
+          <div className="p-8 md:p-12 border-l-4">
             <div className="max-w-4xl">
-              <p className="text-xl md:text-2xl font-serif leading-relaxed text-slate-800 first-letter:text-7xl first-letter:font-bold first-letter:text-amber-600 first-letter:float-left first-letter:mr-3 first-letter:leading-none first-letter:mt-1">
+              <p className="text-xl md:text-2xl font-serif leading-relaxed text-gray-900 first-letter:text-7xl first-letter:font-bold first-letter:text-primary first-letter:float-left first-letter:mr-3 first-letter:leading-none first-letter:mt-1">
                 From humble beginnings in Muranga County to becoming one of Kenya&apos;s most respected football institutions, 
                 Muranga Seal FC (Mseal) has written a remarkable story of perseverance, excellence, and community spirit. 
                 What started as a dream in 2014 has blossomed into a movement that inspires thousands across the nation.
               </p>
-              <div className="mt-6 pt-6 border-t-2 border-amber-200 flex items-center gap-4 text-sm text-slate-600 font-serif italic">
+              <div className="mt-6 pt-6 border-t-2 border-amber-200 flex items-center gap-4 text-sm text-gray-600 font-serif italic">
                 <Users className="w-5 h-5" />
                 <span>A story of dedication, unity, and unwavering commitment to excellence</span>
               </div>
             </div>
           </div>
 
-          <div className="p-8 md:p-12 bg-linear-to-br from-amber-50 to-white">
+          <div className="p-8 md:p-12 to-white">
             <div className="grid gap-12">
               {milestones.map((milestone, index) => (
                 <article 
                   key={index}
                   className={`relative ${index % 2 === 0 ? '' : 'md:ml-auto'} max-w-4xl`}
                 >
-                  <div className="bg-white rounded-lg shadow-xl overflow-hidden border-l-8 border-amber-500 hover:shadow-2xl transition-all duration-300">
+                  <div className="bg-white rounded-lg shadow-xl overflow-hidden border-l-8 border-primary hover:shadow-2xl transition-all duration-300">
                     <div className="md:flex">
-                      <div className="md:w-48 bg-linear-to-br from-slate-900 to-slate-800 text-white p-8 flex flex-col items-center justify-center text-center relative">
-                        <div className="absolute top-4 right-4 bg-amber-500 text-slate-900 px-3 py-1 rounded-full text-xs font-bold uppercase">
+                      <div className="md:w-48 bg-gray-900 text-white p-8 flex flex-col items-center justify-center text-center relative">
+                        <div className="absolute top-4 right-4 bg-primary text-gray-900 px-3 py-1 rounded-full text-xs font-bold uppercase">
                           {milestone.category}
                         </div>
                         <div className="text-7xl mb-3">{milestone.image}</div>
                         <div className="text-5xl font-serif font-bold mb-2">{milestone.year}</div>
-                        <div className="w-16 h-1 bg-amber-500 rounded"></div>
+                        <div className="w-16 h-1 bg-primary rounded"></div>
                       </div>
                       <div className="flex-1 p-8">
                         <div className="mb-4">
-                          <h3 className="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-2 leading-tight">
+                          <h3 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-2 leading-tight">
                             {milestone.title}
                           </h3>
-                          <div className="w-20 h-1 bg-amber-500"></div>
+                          <div className="w-20 h-1 bg-primary"></div>
                         </div>
                         
-                        <p className="font-serif text-lg text-slate-700 leading-relaxed mb-4">
+                        <p className="font-serif text-lg text-gray-700 leading-relaxed mb-4">
                           {milestone.description}
                         </p>
 
-                        <div className="flex items-center gap-2 text-amber-600">
-                          <div className="w-8 h-0.5 bg-amber-600"></div>
+                        <div className="flex items-center gap-2 text-primary">
+                          <div className="w-8 h-0.5 bg-primary"></div>
                           <TrendingUp className="w-4 h-4" />
-                          <div className="w-8 h-0.5 bg-amber-600"></div>
+                          <div className="w-8 h-0.5 bg-primary"></div>
                         </div>
                       </div>
                     </div>
@@ -148,8 +148,8 @@ export default function HistorySection() {
 
                   {index < milestones.length - 1 && (
                     <div className="hidden md:block absolute left-1/2 -bottom-12 transform -translate-x-1/2 z-10">
-                      <div className="w-1 h-12 bg-linear-to-b from-amber-500 to-transparent"></div>
-                      <div className="w-3 h-3 bg-amber-500 rounded-full absolute -bottom-1 left-1/2 transform -translate-x-1/2 animate-pulse"></div>
+                      <div className="w-1 h-12 bg-linear-to-b from-primary to-transparent"></div>
+                      <div className="w-3 h-3 bg-primary rounded-full absolute -bottom-1 left-1/2 transform -translate-x-1/2 animate-pulse"></div>
                     </div>
                   )}
                 </article>
@@ -157,13 +157,13 @@ export default function HistorySection() {
             </div>
           </div>
 
-          <div className="p-8 md:p-12 bg-slate-900 text-white">
+          <div className="p-8 md:p-12 bg-gray-900 text-white">
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-block mb-6">
-                <div className="flex items-center gap-4 text-amber-400">
-                  <div className="w-12 h-0.5 bg-amber-400"></div>
+                <div className="flex items-center gap-4 text-primary">
+                  <div className="w-12 h-0.5 bg-primary"></div>
                   <Award className="w-8 h-8" />
-                  <div className="w-12 h-0.5 bg-amber-400"></div>
+                  <div className="w-12 h-0.5 bg-primary"></div>
                 </div>
               </div>
               
@@ -182,7 +182,7 @@ export default function HistorySection() {
         </div>
       </div>
 
-      <div className="bg-slate-900 text-white py-8 border-t-4 border-amber-500">
+      <div className="bg-gray-900 text-white py-8 border-t-4 border-primary">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="font-serif text-sm text-slate-400 mb-2">
             © 2014 Muranga Seal Football Club

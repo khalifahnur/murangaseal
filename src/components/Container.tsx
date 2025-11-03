@@ -6,6 +6,7 @@ import { Footer } from './Home/Footer';
 import PartnershipSection from './Home/PartnershipSection';
 import MembershipBanner from './Home/MembershipBanner';
 import StoreSection from './Home/StoreSection';
+import LatestNews from './News/LatestNews';
 
 export default function Container() {
 
@@ -15,9 +16,10 @@ export default function Container() {
         <Header />
         <main className="relative">
           <HeroSection />
+          <LatestNews />
           <FixturesSection />
-          <StoreSection />
           <MembershipBanner />
+          <StoreSection /> 
           <PartnershipSection />
           
         </main>

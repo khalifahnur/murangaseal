@@ -1,5 +1,5 @@
 import Container from "@/components/About/Container";
-import { Footer } from "@/components/Home/Footer";
+// import { Footer } from "@/components/Home/Footer";
 import Header from "@/components/Home/HeaderSection";
 import React from "react";
 
@@ -10,7 +10,7 @@ export default function page() {
       <main>
         <Container />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

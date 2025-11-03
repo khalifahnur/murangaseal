@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 
 export default function StoreSection() {
@@ -81,10 +83,11 @@ export default function StoreSection() {
                   className="with-ratio relative overflow-hidden group"
                   style={{ paddingBottom: "100%" }}
                 >
-                  <img
+                  <Image
                     className="absolute top-0 left-0 object-contain w-full h-full lazyautosizes lazyloaded transition-opacity duration-300"
                     alt={`${activeKit}-${currentView}-Shirt`}
                     height="520"
+                    width={1000}
                     src={images[activeKit][currentView]}
                   />
 
@@ -160,7 +163,7 @@ export default function StoreSection() {
                 className="uppercase font-national leading-[75%] before:duration-500 gap-2 sm:gap-4 bg-secondary text-tertiary false button relative overflow-hidden whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 inline-grid grid-flow-col items-center place-content-center cursor-pointer hover:bg-gray-500 hover:text-primary md:hidden w-full z-10 h4-national mt-3 sm:mt-4 px-4 sm:px-6 py-2 sm:py-3 mx-4 sm:mx-6 md:mx-0"
               >
                 <span className="text-sm sm:text-base md:text-1.5xl text-center font-bold bg-linear-to-r from-primary/50 via-gray-900 to-primary/50 bg-clip-text text-transparent">
-                  VISIT MSEAL STORE
+                  VISIT STORE
                 </span>
               </a>
             </div>
@@ -168,16 +171,15 @@ export default function StoreSection() {
         </div>
 
         <div className="hidden md:flex mt-1 md:mt-4 w-full justify-center">
-          <a
-            href="https://murangaseal.co.ke/shop"
+          <Link
+            href="/shop"
             rel="noopener noreferrer"
-            target="_blank"
             className="uppercase font-national leading-[75%] text-5xl before:duration-500 px-6 md:px-8 py-3 md:py-4 gap-4 bg-primary/10 text-tertiary false button relative overflow-hidden z-0 whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 inline-grid grid-flow-col items-center place-content-center cursor-pointer hover:before:!scale-[3.5] hover:before:!-translate-x-1/2 z-10 h4-national md:px-12 md:py-7"
           >
             <span className="text-xl md:text-1.5xl text-center font-bold bg-linear-to-r from-primary via-gray-900 to-primary bg-clip-text text-transparent">
-              VISIT MSEAL STORE
+              VISIT SHOP
             </span>
-          </a>
+          </Link>
         </div>
       </section>
     </div>

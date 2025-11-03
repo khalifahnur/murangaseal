@@ -76,6 +76,9 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --video-controls-primary: oklch(0.6654 0.164 48.98);
+  --video-controls-background: rgba(0,0,0,0.8);
+  --video-controls-text: #ffffff;
 }
 .dark {
   --background: oklch(0.129 0.042 264.695);
@@ -128,3 +131,25 @@
 .mobile-menu-open {
           z-index: 100;
         }
+
+
+.video-custom {
+  accent-color: var(--video-controls-primary);
+}
+
+.video-custom::-webkit-media-controls-panel {
+  background: var(--video-controls-background);
+}
+
+.video-custom::-webkit-media-controls-play-button {
+  background-color: var(--video-controls-primary);
+}
+
+.video-custom::-webkit-media-controls-progress-bar {
+  background-color: var(--video-controls-primary);
+}
+
+.video-custom::-webkit-media-controls-current-time-display,
+.video-custom::-webkit-media-controls-time-remaining-display {
+  color: var(--video-controls-text);
+}

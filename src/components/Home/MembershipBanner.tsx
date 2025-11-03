@@ -8,7 +8,7 @@ export default function MembershipBanner() {
       <div className="relative w-full max-w-4xl lg:max-w-6xl bg-white/90 border-b-4 border-primary shadow-2xl overflow-hidden ">
         <div className="relative overflow-hidden bg-linear-to-r from-blue-600 via-purple-600 to-pink-500 min-h-[120px] sm:min-h-[160px] md:min-h-[192px] flex items-center justify-center px-4 sm:px-8">
           <Image 
-            src="/assets/Team/mseal-team.jpeg" 
+            src="/assets/Team/mseal-team-photo.jpg" 
             fill 
             className="w-full h-full object-cover opacity-40" 
             alt="Muranga Seals Team" 

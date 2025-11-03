@@ -5,42 +5,43 @@ import FixtureCard from './FixtureCard';
 const fixtures: Fixture[] = [
   {
     id: '1',
-    date: '26 Oct 2025',
-    time: '15:00',
+    date: '08 NOV 2025',
+    time: '16:00',
     category: 'MEN',
-    homeTeam: 'Muranga Seal',
-    awayTeam: 'Tusker FC',
-    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910313/Tusker-FC_eaeucx.png',
-    venue: 'SportPesa Arena',
+    homeTeam: 'AFC Leopards SC', 
+    awayTeam: 'Muranga Seal',
+    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910308/AFC-Leopards_t6rhsj.png',
+    venue: 'Nyayo National Stadium',
     ticketUrl: 'https://tickets.murangaseal.co.ke/',
   },
   {
     id: '2',
-    date: 'TBD',
+    date: '18 NOV 2025',
     time: '15:00',
     category: 'MEN',
-    homeTeam: 'Posta Ranger',
+    homeTeam: 'Kakamega Homeboyz F.C.',
     awayTeam: 'Muranga Seal',
-    venue: 'Kasarani Annex',
+    venue: 'Bukhungu Stadium', 
     ticketUrl: 'https://tickets.murangaseal.co.ke/',
-    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910318/Posta-Rangers_bc9rvb.png',
+    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910293/Kakamega-Homeboyz-1_m0wtw0.png',
   },
   {
     id: '3',
-    date: 'TBD',
+    date: '23 NOV 2025',
     time: '15:00',
     category: 'MEN',
     homeTeam: 'Muranga Seal',
-    awayTeam: 'KCB',
+    awayTeam: 'Shabana ',
     venue: 'SportPesa Arena',
     ticketUrl: 'https://tickets.murangaseal.co.ke/',
-    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910292/KCB_pi1pfg.png',
-  }
+    opponentLogo:'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910316/shabanafc_mrzcxy.jpg',
+  },
+  
 ];
 
 export default function FixturesSection() {
   return (
-    <section className=" mozillaheadline min-h-80vh bg-linear-to-b from-[#0a0c1b] to-black text-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id='watch'>
+    <section className=" mozillaheadline min-h-80vh bg-white text-gray-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id='watch'>
       <div 
         className="absolute inset-0 opacity-5"
         style={{
@@ -49,11 +50,10 @@ export default function FixturesSection() {
       />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">
-            UPCOMING FIXTURES
-          </h1>
-          <div className="w-24 h-1 bg-primary mx-auto"></div>
+        
+        <div className="mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">UPCOMING FIXTURES</h2>
+          <div className="w-16 h-1.5 bg-primary rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

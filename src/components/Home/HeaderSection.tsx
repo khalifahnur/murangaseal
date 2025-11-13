@@ -68,21 +68,21 @@ const mensTeamMegaMenu = {
       ],
     },
   ],
-  featuredPlayers: [
-    {
-      name: "Wachira",
-      position: "MF",
-      image: "/assets/players/soucek.jpg",
-      link: "/#",
-    },
-    {
-      name: "Michael",
-      position: "FW",
-      captain: true,
-      image: "/assets/players/bowen.jpg",
-      link: "/#",
-    },
-  ],
+  // featuredPlayers: [
+  //   {
+  //     name: "Wachira",
+  //     position: "MF",
+  //     image: "/assets/players/soucek.jpg",
+  //     link: "/#",
+  //   },
+  //   {
+  //     name: "Michael",
+  //     position: "FW",
+  //     captain: true,
+  //     image: "/assets/players/bowen.jpg",
+  //     link: "/#",
+  //   },
+  // ],
 };
 
 export default function Header() {
@@ -406,7 +406,7 @@ export default function Header() {
                 ))}
               </div>
 
-              <div className="col-span-4 border-l border-gray-200 pl-8">
+              {/* <div className="col-span-4 border-l border-gray-200 pl-8">
                 <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-4">
                   Featured Players
                 </h3>
@@ -442,7 +442,7 @@ export default function Header() {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

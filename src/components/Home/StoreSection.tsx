@@ -157,9 +157,8 @@ export default function StoreSection() {
               </div>
 
               <a
-                href="https://murangaseal.co.ke/shop"
+                href="/shop"
                 rel="noopener noreferrer"
-                target="_blank"
                 className="uppercase font-national leading-[75%] before:duration-500 gap-2 sm:gap-4 bg-secondary text-tertiary false button relative overflow-hidden whitespace-nowrap border-transparent focus:border-transparent focus:ring-0 inline-grid grid-flow-col items-center place-content-center cursor-pointer hover:bg-gray-500 hover:text-primary md:hidden w-full z-10 h4-national mt-3 sm:mt-4 px-4 sm:px-6 py-2 sm:py-3 mx-4 sm:mx-6 md:mx-0"
               >
                 <span className="text-sm sm:text-base md:text-1.5xl text-center font-bold bg-linear-to-r from-primary/50 via-gray-900 to-primary/50 bg-clip-text text-transparent">

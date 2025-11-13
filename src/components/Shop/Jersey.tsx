@@ -241,7 +241,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "third-jersey-24-25": {
     id: "third-jersey-24-25",
     name: "Mseal 24/25 Third Kit ",
-    price: 1500,
+    price: 2000,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg",
     // additionalImages: ["https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg"],

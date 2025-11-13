@@ -151,7 +151,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "home-jersey": {
     id: "home-jersey",
     name: "Mseal 25/26 Home Shirt ",
-    price: 2000,
+    price: 1950,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",
     additionalImages: ["https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/home-kit-back_fbhftk.png"],
@@ -181,7 +181,7 @@ export const JERSEYS_DATA: Record<string, any> = {
     "away-jersey": {
     id: "away-jersey",
     name: "Mseal 25/26 Away Shirt",
-    price: 2000,
+    price: 1950,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Away-Front-Kit-for-Web_et0sf4.png",
     additionalImages: [ "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364824/Awaykit-Back_jvabwc.png"],
@@ -211,7 +211,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "home-jersey-24-25": {
     id: "home-jersey-24-25",
     name: "Mseal 24/25 Home Shirt ",
-    price: 2000,
+    price: 1500,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1762879969/WhatsApp_Image_2025-11-11_at_2.23.14_PM_kaeht9.jpg",
     //additionalImages: ["https://res.cloudinary.com/dfuh1q6ic/image/upload/v1762879969/WhatsApp_Image_2025-11-11_at_2.23.14_PM_kaeht9.jpg"],
@@ -241,7 +241,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "third-jersey-24-25": {
     id: "third-jersey-24-25",
     name: "Mseal 24/25 Third Kit ",
-    price: 2000,
+    price: 1500,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg",
     // additionalImages: ["https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg"],
@@ -271,7 +271,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "blue-tracksuit": {
     id: "blue-tracksuit",
     name: "Mseal 25/26 Blue Tracksuit",
-    price: 159,
+    price: 0,
     originalPrice: 8000,
      image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Truck-Suit-blue_aj4ucj.png",
     rating: 4.8,
@@ -291,7 +291,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "blue-tracksuit-kids": {
     id: "blue-tracksuit-kids",
     name: "Mseal 25/26 Blue Tracksuit",
-    price: 7000,
+    price: 0,
     originalPrice: 199,
      image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Truck-Suit-blue_aj4ucj.png",
     rating: 4.8,
@@ -311,7 +311,7 @@ export const JERSEYS_DATA: Record<string, any> = {
     "yellow-tracksuit": {
     id: "yellow-tracksuit",
      name: "Mseal 25/26 Yellow Tracksuit",
-    price: 7000,
+    price: 0,
     originalPrice: 199,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364828/Yellow-Truck-Suit_ubtycc.png",
     rating: 4.8,
@@ -376,7 +376,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "pants": {
     id: "pants",
     name: "3/4 Pants",
-    price: 1200,
+    price: 0,
     originalPrice: 169,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045280/img220_jhn4hn.jpg",
     rating: 4.6,

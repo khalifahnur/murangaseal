@@ -110,7 +110,7 @@ export const JERSEYS = [
   {
     id: "pants",
     name: "3/4 Pants",
-    price: 800,
+    price: 0,
     originalPrice: 159,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045280/img220_jhn4hn.jpg",
     rating: 4.8,

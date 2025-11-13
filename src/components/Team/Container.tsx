@@ -128,7 +128,7 @@ export default function Container() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 mozillaheadline" id='mens-team'>
+    <div className="min-h-screen mozillaheadline" id='mens-team'>
       {/* Optional: Team Selection Tabs */}
       {/* <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="container mx-auto px-4 lg:px-8">

@@ -28,7 +28,7 @@ const bottomLinks = [
   { id: 2, txt: "MATCHES", link: "/", sectionId: "watch" },
   {
     id: 3,
-    txt: "MEN'S TEAM",
+    txt: "SQUAD",
     link: "/team",
     sectionId: null,
     hasMegaMenu: true,
@@ -40,31 +40,31 @@ const bottomLinks = [
 const mensTeamMegaMenu = {
   columns: [
     {
-      title: "Playing Squads",
+      title: "Mens",
       items: [
         { name: "Men's First Team", link: "/team" },
-        { name: "Men's U21s", link: "/team/mens-u21s" },
-        { name: "Men's U18s", link: "/team/mens-u18s" },
+        { name: "Youth", link: "/#" },
       ],
     },
-    {
-      title: "Coaching Staff",
-      items: [
-        { name: "Men's Coaching Staff", link: "/team/mens-coaching-staff" },
-        {
-          name: "Academy Coaching Staff",
-          link: "/team/academy-coaching-staff",
-        },
-      ],
-    },
+
     {
       title: "Women's Football",
       items: [
-        { name: "Women's First Team", link: "/team/womens-first-team" },
+        { name: "Women's First Team", link: "/#" },
+        // {
+        //   name: "Women's Team Coaching Staff",
+        //   link: "/team/womens-coaching-staff",
+        // },
+      ],
+    },
         {
-          name: "Women's Team Coaching Staff",
-          link: "/team/womens-coaching-staff",
-        },
+      title: "Coaching Staff",
+      items: [
+        { name: "Men's Coaching Staff", link: "/team/technical-team" },
+        // {
+        //   name: "Academy Coaching Staff",
+        //   link: "/#",
+        // },
       ],
     },
   ],
@@ -73,14 +73,14 @@ const mensTeamMegaMenu = {
       name: "Wachira",
       position: "MF",
       image: "/assets/players/soucek.jpg",
-      link: "/team/player",
+      link: "/#",
     },
     {
       name: "Michael",
       position: "FW",
       captain: true,
       image: "/assets/players/bowen.jpg",
-      link: "/team/player",
+      link: "/#",
     },
   ],
 };
@@ -259,12 +259,8 @@ export default function Header() {
     <>
       <header className="w-full sticky top-0 z-50 mozillaheadline">
         <div
-          className={`bg-linear-to-b from-[#0a0c1b] to-black text-white border-t-8 border-primary transition-all duration-500 ease-in-out transform ${
-            isUpperNavVisible
-              ? "max-h-12 opacity-100 translate-y-0"
-              : "max-h-0 opacity-0 -translate-y-full"
-          }`}
-          style={{ willChange: "transform, opacity, max-height" }}
+          className="bg-linear-to-b from-[#0a0c1b] to-black text-white border-t-8 border-primary transition-all duration-500 ease-in-out transform ${
+ opacity-100 translate-y-0"
         >
           <div className="px-4 py-1 flex items-center justify-end">
             <div className="flex items-center gap-2">
@@ -289,20 +285,16 @@ export default function Header() {
           </div>
         </div>
 
-        <div
-          className={`bg-white shadow-md transition-all duration-500 ease-in-out ${
-            isScrolled ? "shadow-lg bg-white/95 backdrop-blur-sm" : "shadow-md"
-          }`}
-        >
-          <div className="px-4 py-2 flex items-center justify-between">
+        <div className="bg-white shadow-md transition-all duration-500 ease-in-out">
+          <div className="px-2 md:px-4 py-2 flex items-center justify-between">
             <Link href="/" className="shrink-0">
-              <div className="h-10 md:h-16 w-32 transition-transform duration-300 hover:scale-105 flex items-center justify-center">
+              <div className="h-10 w-15 md:h-16 md:w-32 transition-transform duration-300 hover:scale-105 flex items-center justify-center">
                 <Image
                   src="/assets/mseal-logo.png"
                   alt="Muranga Seals"
                   width={1000}
                   height={800}
-                  className="h-13 md:h-24 w-auto transition-transform duration-300 hover:scale-105"
+                  className="h-14 md:h-24 md:w-auto transition-transform duration-300 hover:scale-105"
                 />
               </div>
             </Link>
@@ -315,7 +307,6 @@ export default function Header() {
                   onMouseEnter={
                     item.hasMegaMenu ? handleMegaMenuEnter : undefined
                   }
-                  
                 >
                   <button
                     onClick={(e) => handleDesktopLinkClick(e, item)}
@@ -352,7 +343,7 @@ export default function Header() {
                     width={80}
                     height={80}
                     alt="sp Logo"
-                    className="h-8 w-auto transition-transform duration-300 hover:scale-105"
+                    className="w-auto transition-transform duration-300 hover:scale-105"
                   />
                 </div>
               </div>
@@ -549,12 +540,12 @@ export default function Header() {
             <div className="flex items-center gap-2">
               <div>
                 <Image
-                    src="/assets/sp-logo.jpg"
-                    width={80}
-                    height={80}
-                    alt="sp Logo"
-                    className="h-8 w-auto transition-transform duration-300 hover:scale-105"
-                  />
+                  src="/assets/sp-logo.jpg"
+                  width={80}
+                  height={80}
+                  alt="sp Logo"
+                  className="h-8 w-auto transition-transform duration-300 hover:scale-105"
+                />
               </div>
               <div>
                 <p className="text-xs font-semibold text-black">

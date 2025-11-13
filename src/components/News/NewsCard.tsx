@@ -15,7 +15,7 @@ interface NewsCardProps {
   isHovered?: boolean;
 }
 
-export default function NewsCard({ item, isHovered }: NewsCardProps) {
+export default function NewsCard({ item }: NewsCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);

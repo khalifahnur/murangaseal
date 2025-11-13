@@ -88,7 +88,7 @@ export default function JerseyShop() {
 
                     <div className="flex items-end gap-2 mt-auto pt-2 border-t border-border">
                       <div className="text-xl font-bold text-foreground">
-                        Ksh.{jersey.price}
+                        {jersey.price > 0 ? `Ksh.${jersey.price}` : 'Coming Soon !'}
                       </div>
                     </div>
                   </div>

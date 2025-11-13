@@ -1,39 +1,43 @@
-"use client"
+"use client";
 
-import { X } from "lucide-react"
+import { X } from "lucide-react";
 
 interface Product {
-  id: number
-  name: string
-  price: string
-  rating: number
-  image: string
-  description: string
-  features: string[]
-  specs: Array<{ label: string; value: string }>
+  id: number;
+  name: string;
+  price: string;
+  rating: number;
+  image: string;
+  description: string;
+  features: string[];
+  specs: Array<{ label: string; value: string }>;
 }
 
 interface ProductDetailsModalProps {
-  isOpen: boolean
-  onClose: () => void
-  product: Product | null
+  isOpen: boolean;
+  onClose: () => void;
+  product: Product | null;
 }
 
-export default function ProductDetailsModal({ isOpen, onClose, product }: ProductDetailsModalProps) {
-  if (!isOpen || !product) return null
+export default function ProductDetailsModal({
+  isOpen,
+  onClose,
+  product,
+}: ProductDetailsModalProps) {
+  if (!isOpen || !product) return null;
 
   return (
     <>
-      {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} aria-hidden="true" />
-
-      {/* Modal */}
+      <div
+        className="fixed inset-0 bg-black/50 z-40"
+        onClick={onClose}
+        aria-hidden="true"
+      />
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
           className="bg-background rounded-lg shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header */}
           <div className="sticky top-0 bg-background border-b border-border px-6 py-4 flex items-center justify-between">
             <h2 className="text-2xl font-bold">{product.name}</h2>
             <button
@@ -45,9 +49,7 @@ export default function ProductDetailsModal({ isOpen, onClose, product }: Produc
             </button>
           </div>
 
-          {/* Content */}
           <div className="p-6 space-y-8">
-            {/* Price & Rating */}
             <section className="flex items-center justify-between pb-6 border-b border-border">
               <div>
                 <div className="text-3xl font-bold mb-2">{product.price}</div>
@@ -58,13 +60,13 @@ export default function ProductDetailsModal({ isOpen, onClose, product }: Produc
               </div>
             </section>
 
-            {/* Description */}
             <section className="space-y-3">
               <h3 className="text-lg font-bold">Description</h3>
-              <p className="text-muted-foreground leading-relaxed">{product.description}</p>
+              <p className="text-muted-foreground leading-relaxed">
+                {product.description}
+              </p>
             </section>
 
-            {/* Features */}
             <section className="space-y-3">
               <h3 className="text-lg font-bold">Key Features</h3>
               <ul className="space-y-2">
@@ -77,13 +79,14 @@ export default function ProductDetailsModal({ isOpen, onClose, product }: Produc
               </ul>
             </section>
 
-            {/* Specifications */}
             <section className="space-y-3">
               <h3 className="text-lg font-bold">Specifications</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {product.specs.map((spec, index) => (
                   <div key={index} className="bg-secondary p-4 rounded-lg">
-                    <p className="text-sm text-muted-foreground mb-1">{spec.label}</p>
+                    <p className="text-sm text-muted-foreground mb-1">
+                      {spec.label}
+                    </p>
                     <p className="font-semibold">{spec.value}</p>
                   </div>
                 ))}
@@ -93,5 +96,5 @@ export default function ProductDetailsModal({ isOpen, onClose, product }: Produc
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -28,7 +28,6 @@ export default function FeaturedNews({ item }: FeaturedNewsProps) {
     <>
       <div className=" mozillaheadline group cursor-pointer">
         <div className="relative overflow-hidden rounded-xl shadow-2xl">
-          {/* Thumbnail */}
           <Image
             src={item.thumbnail || "/placeholder.svg"}
             alt={item.title}

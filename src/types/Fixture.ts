@@ -1,6 +1,6 @@
 export interface Fixture {
   id: string;
-  date: string;
+  matchDate: string;
   time: string; 
   category: 'MEN' | 'U21';
   homeTeam: string;

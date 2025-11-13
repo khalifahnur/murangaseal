@@ -38,7 +38,7 @@ export const JERSEYS = [
   {
     id: "third-jersey-24-25",
     name: "Mseal 24/25 Third Shirt ",
-    price: 1500,
+    price: 2000,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg",
     rating: 4.9,

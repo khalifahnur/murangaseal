@@ -7,17 +7,31 @@ interface FixtureCardProps {
 }
 
 const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return {
-      date: date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).toUpperCase(),
-      time: date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false })
-    }
-  }
+  const date = new Date(dateString);
+
+  return {
+    date: date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      timeZone: "Africa/Nairobi",
+    }).toUpperCase(),
+
+    time: date.toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "Africa/Nairobi",
+    }),
+  };
+};
+
 
 export default function FixtureCard({ fixture }: FixtureCardProps) {
   const { date, time } = formatDate(fixture.matchDate)
+  
   return (
-    <div className="bg-white shadow-md overflow-hidden  duration-300">
+    <div className="bg-white shadow-md overflow-hidden duration-300">
       <div className="bg-gray-950 px-4 py-3">
         <div className="flex justify-between items-center">
           <span className="text-white font-semibold text-sm">

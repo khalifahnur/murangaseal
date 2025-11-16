@@ -5,3 +5,5 @@ export default function Home() {
     <Container />
   );
 }
+
+export const dynamic = 'force-dynamic';

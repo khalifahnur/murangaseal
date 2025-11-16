@@ -30,3 +30,5 @@ export default function Container() {
     </>
   )
 }
+
+export const dynamic = 'force-dynamic';

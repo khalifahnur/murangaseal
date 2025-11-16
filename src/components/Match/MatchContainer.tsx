@@ -12,7 +12,7 @@ export default async function MatchContainer() {
   });
 
   if (!fixtures || fixtures.length === 0) {
-    return <div className="py-20 text-center">No Fixtures yet. Stay tuned!</div>;
+    return null;
   }
 
   return <FixturesSection fixtures={fixtures}/>;

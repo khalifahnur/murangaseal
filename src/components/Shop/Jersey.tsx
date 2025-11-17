@@ -2,7 +2,7 @@ export const JERSEYS = [
   {
     id: "home-jersey",
     name: "Mseal 25/26 Home Shirt ",
-    price: 1950,
+    price: 2000,
     originalPrice: 2000,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",
     rating: 4.9,
@@ -14,7 +14,7 @@ export const JERSEYS = [
   {
     id: "away-jersey",
     name: "Mseal 25/26 Away Shirt",
-    price: 1950,
+    price: 2000,
     originalPrice: 199,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Away-Front-Kit-for-Web_et0sf4.png",
     rating: 4.8,
@@ -151,7 +151,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "home-jersey": {
     id: "home-jersey",
     name: "Mseal 25/26 Home Shirt ",
-    price: 1950,
+    price: 2000,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",
     additionalImages: ["https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/home-kit-back_fbhftk.png"],
@@ -181,7 +181,7 @@ export const JERSEYS_DATA: Record<string, any> = {
     "away-jersey": {
     id: "away-jersey",
     name: "Mseal 25/26 Away Shirt",
-    price: 1950,
+    price: 2000,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Away-Front-Kit-for-Web_et0sf4.png",
     additionalImages: [ "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364824/Awaykit-Back_jvabwc.png"],

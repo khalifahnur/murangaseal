@@ -9,8 +9,6 @@ export default async function page() {
     collection: "news",
     // where: { status: { equals: "published" } },
     sort: "-publishDate",
-    limit: 3,
-    depth: 1,
   });
 
   // If no news, fallback

@@ -22,6 +22,7 @@ export default async function MatchContainer() {
       },
     ],
   },
+    sort: "matchDate",
     limit: 3,
     depth: 1,
   });

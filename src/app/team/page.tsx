@@ -30,6 +30,7 @@ export default async function page() {
 
   const { docs: players } = await payload.find({
     collection: "players",
+    limit:100
   });
 
   if (!players || players.length === 0) {
@@ -51,7 +52,7 @@ export async function generateStaticParams() {
   const payload = await getPayload({ config });
 
   const { docs } = await payload.find({
-    collection: "news",
+    collection: "players",
     limit: 100,
   });
   return docs;

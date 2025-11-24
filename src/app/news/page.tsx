@@ -28,6 +28,7 @@ export default async function page() {
     collection: "news",
     // where: { status: { equals: "published" } },
     sort: "-publishDate",
+    limit:100
   });
 
   if (!news || news.length === 0) {

@@ -12,7 +12,6 @@ export default async function HeroSection() {
   });
 
   if (!news || news.length === 0) {
-    // return <div className="py-20 text-center">No news yet. Stay tuned!</div>;
     return null;
   }
 

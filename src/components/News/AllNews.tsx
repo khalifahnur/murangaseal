@@ -52,7 +52,6 @@ export default function AllNews({ news }:any) {
             {news.map((item: NewsItem) => (
               <Link href={`/news/${item.slug}`} key={item.id}>
                 <div className="relative group cursor-pointer overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 h-[350px] flex flex-col">
-                  {/* Image Section - 3/4 */}
                   <div className="relative h-3/4 overflow-hidden">
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"

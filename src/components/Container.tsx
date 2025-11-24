@@ -5,8 +5,9 @@ import { Footer } from './Home/Footer';
 import PartnershipSection from './Home/PartnershipSection';
 import MembershipBanner from './Home/MembershipBanner';
 import StoreSection from './Home/StoreSection';
-import LatestNews from './News/LatestNews';
+//import LatestNews from './News/LatestNews';
 import MatchContainer from './Match/MatchContainer';
+import HightlightsContainer from './Highlights/HighlightsContainer';
 // import { HeroBanner } from './Banner';
 
 export default function Container() {
@@ -19,7 +20,8 @@ export default function Container() {
         <main className="relative">
           {/* <HeroBanner /> */}
           <HeroSection />
-          <LatestNews />
+          {/* <LatestNews /> */}
+          <HightlightsContainer />
           <MatchContainer />
           <MembershipBanner />
           <StoreSection /> 

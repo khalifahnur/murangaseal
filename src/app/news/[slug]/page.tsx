@@ -1,6 +1,5 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import Header from "@/components/Home/HeaderSection";
 import { Footer } from "@/components/Home/Footer";
@@ -27,7 +26,7 @@ export default async function NewsPage({ params }: Props) {
   });
 
   const article = docs[0];
-  if (!article) notFound();
+  if (!article) return <div className="py-20 text-center">No news yet. Stay tuned!</div>;;
 
   return (
     <>

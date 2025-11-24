@@ -3,12 +3,13 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { buildConfig } from "payload";
 import { Matches } from "@/lib/Collections/Match";
+import { Players } from "@/lib/Collections/players";
+import { Highlights } from "@/lib/Collections/Highlights";
 
 export default buildConfig({
   editor: lexicalEditor(),
 
   collections: [
-    // Collection for News
     {
       slug: "news",
       fields: [
@@ -83,7 +84,9 @@ export default buildConfig({
       ],
     },
  
-    Matches
+    Matches,
+    Players,
+    Highlights
   ],
 
   // Your Payload secret - should be a complex and secure string, unguessable

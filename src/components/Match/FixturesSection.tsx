@@ -5,7 +5,7 @@ import FixtureCard from './FixtureCard';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default function FixturesSection({fixtures}:any) {
   return (
-    <section className=" mozillaheadline min-h-80vh bg-white text-gray-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id='watch'>
+    <section className=" mozillaheadline min-h-80vh bg-white text-gray-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id='match'>
       <div 
         className="absolute inset-0 opacity-5"
         style={{

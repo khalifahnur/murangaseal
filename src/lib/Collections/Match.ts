@@ -1,4 +1,3 @@
-// payload/collections/Matches.ts
 import { CollectionConfig } from 'payload'
 
 const teamLogoUrl = [

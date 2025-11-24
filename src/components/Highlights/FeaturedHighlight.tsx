@@ -1,40 +1,51 @@
 "use client";
 
 import { Play, X } from "lucide-react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { useState } from "react";
 
 interface FeaturedNewsProps {
   item: {
-    id: number;
-    title: string;
-    thumbnail: string;
-    duration: string;
-    timestamp: string;
-    type?: string;
-    score?: string;
-    teams?: string;
-    videoUrl?: string;
+    id: string;
+  title: string;
+  thumbnail: string;
+  duration?: string;
+  timestamp: string;
+  type?: string;
+  score?: string;
+  teams?: string;
+  youtubeUrl: string;
   };
 }
 
-export default function FeaturedNews({ item }: FeaturedNewsProps) {
+export default function FeaturedHighlights({ item }: FeaturedNewsProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const videoId = item.youtubeUrl.match(/(?:v=|\/embed\/|youtu\.be\/)([^&\n?#]+)/)?.[1];
+
   return (
     <>
       <div className=" mozillaheadline group cursor-pointer">
         <div className="relative overflow-hidden rounded-xl shadow-2xl">
-          <Image
+          {/* <Image
             src={item.thumbnail || "/placeholder.svg"}
             alt={item.title}
             className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             width={1000}
             height={800}
-          />
+          /> */}
+          <CldImage
+                src={item.thumbnail}
+                alt={item.title}
+                fill
+                className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                sizes="(max-width: 768px) 100vw, 600px"
+                quality="auto"
+                format="auto"
+              />
 
           <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
@@ -86,17 +97,24 @@ export default function FeaturedNews({ item }: FeaturedNewsProps) {
             </button>
 
             <div className="relative aspect-video bg-black">
-              {item.videoUrl ? (
-                <video
-                  controls
-                  controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar"
-                  autoPlay
-                  className="w-full h-full object-contain custom-video-controls"
-                  poster={item.thumbnail}
-                >
-                  <source src={item.videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+              {item.youtubeUrl ? (
+                // <video
+                //   controls
+                //   controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar"
+                //   autoPlay
+                //   className="w-full h-full object-contain custom-video-controls"
+                //   poster={item.thumbnail}
+                // >
+                //   <source src={item.youtubeUrl} type="video/mp4" />
+                //   Your browser does not support the video tag.
+                // </video>
+                <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+          title={item.title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="w-full h-full"
+        />
               ) : (
                 <div className="flex items-center justify-center h-full text-white">
                   <div className="text-center">

@@ -25,7 +25,7 @@ const upperLinks = [
 
 const bottomLinks = [
   { id: 1, txt: "NEWS", link: "/", sectionId: "latest" },
-  { id: 2, txt: "MATCHES", link: "/", sectionId: "watch" },
+  { id: 2, txt: "FIXTURES & RESULTS", link: "/", sectionId: "match" },
   {
     id: 3,
     txt: "SQUAD",

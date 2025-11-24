@@ -69,6 +69,8 @@ export interface Config {
   collections: {
     news: News;
     matches: Match;
+    players: Player;
+    highlights: Highlight;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -79,6 +81,8 @@ export interface Config {
   collectionsSelect: {
     news: NewsSelect<false> | NewsSelect<true>;
     matches: MatchesSelect<false> | MatchesSelect<true>;
+    players: PlayersSelect<false> | PlayersSelect<true>;
+    highlights: HighlightsSelect<false> | HighlightsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -240,6 +244,77 @@ export interface Match {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "players".
+ */
+export interface Player {
+  id: string;
+  slug: string;
+  jerseyNumber: string;
+  name: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  /**
+   * Used to group players on the team page
+   */
+  positionGroup: 'goalkeepers' | 'defenders' | 'midfielders' | 'forwards';
+  position: string;
+  /**
+   * Paste Cloudinary image URL
+   */
+  mugshot: string;
+  nickname?: string | null;
+  height?: number | null;
+  previousClub?: string | null;
+  roleModel?: string | null;
+  /**
+   * Add fun trivia about the player
+   */
+  funFacts?:
+    | {
+        fact: string;
+        id?: string | null;
+      }[]
+    | null;
+  captain?: boolean | null;
+  loaned?: boolean | null;
+  loanFrom?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "highlights".
+ */
+export interface Highlight {
+  id: string;
+  title: string;
+  /**
+   * Categorize the highlight type
+   */
+  type: 'FULL_MATCH' | 'GOALS' | 'BEST_MOMENTS' | 'PRESS_CONFERENCE' | 'TRAINING';
+  /**
+   * Leave empty if not applicable
+   */
+  score?: string | null;
+  teams: string;
+  youtubeUrl: string;
+  /**
+   * Paste your Cloudinary image URL here (e.g., https://res.cloudinary.com/your-cloud/image/upload/v1234567890/your-image.jpg)
+   */
+  thumbnail: string;
+  /**
+   * Format: minutes:seconds
+   */
+  duration?: string | null;
+  /**
+   * Show this on homepage or featured section
+   */
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -293,6 +368,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'matches';
         value: string | Match;
+      } | null)
+    | ({
+        relationTo: 'players';
+        value: string | Player;
+      } | null)
+    | ({
+        relationTo: 'highlights';
+        value: string | Highlight;
       } | null)
     | ({
         relationTo: 'users';
@@ -375,6 +458,51 @@ export interface MatchesSelect<T extends boolean = true> {
         awayScore?: T;
       };
   competition?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "players_select".
+ */
+export interface PlayersSelect<T extends boolean = true> {
+  slug?: T;
+  jerseyNumber?: T;
+  name?: T;
+  firstName?: T;
+  lastName?: T;
+  positionGroup?: T;
+  position?: T;
+  mugshot?: T;
+  nickname?: T;
+  height?: T;
+  previousClub?: T;
+  roleModel?: T;
+  funFacts?:
+    | T
+    | {
+        fact?: T;
+        id?: T;
+      };
+  captain?: T;
+  loaned?: T;
+  loanFrom?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "highlights_select".
+ */
+export interface HighlightsSelect<T extends boolean = true> {
+  title?: T;
+  type?: T;
+  score?: T;
+  teams?: T;
+  youtubeUrl?: T;
+  thumbnail?: T;
+  duration?: T;
+  featured?: T;
   updatedAt?: T;
   createdAt?: T;
 }

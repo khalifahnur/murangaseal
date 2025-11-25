@@ -157,3 +157,5 @@ export default function Container({ data }: ContainerProps) {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';

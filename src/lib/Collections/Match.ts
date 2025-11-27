@@ -171,5 +171,48 @@ export const Matches: CollectionConfig = {
       required: true,
       defaultValue: 'premier-league',
     },
+    {
+      name: 'players',
+      type: 'relationship',
+      relationTo: 'players',
+      hasMany: true,
+      required: true,
+    },
+    {
+      name: 'votingOpen',
+      type: 'checkbox',
+      defaultValue: true,
+    },
+    {
+      name: 'winner',
+      type: 'relationship',
+      relationTo: 'players',
+      admin: { position: 'sidebar' },
+    },
+            {
+          name: "slug",
+          type: "text",
+          unique: true,
+          required: true,
+          admin: {
+            position: "sidebar",
+          },
+          hooks: {
+            beforeChange: [
+              ({ data, originalDoc }) => {
+                if (data?.matchTitle && !data.slug) {
+                  const baseSlug = data.matchTitle
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/(^-|-$)/g, "");
+                  return originalDoc?.id
+                    ? `${baseSlug}-${originalDoc.id.slice(-6)}`
+                    : baseSlug;
+                }
+                return data?.slug;
+              },
+            ],
+          },
+        },
   ],
 }

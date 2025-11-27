@@ -37,7 +37,7 @@ function BuyGoods() {
 
         <div className="text-center">
           <p className="text-gray-600 text-xs">
-            FOR MORE INFO. CALL +254 7126 3313 0
+            FOR MORE INFO. CALL +254 103 2993 62
           </p>
         </div>
       </div>

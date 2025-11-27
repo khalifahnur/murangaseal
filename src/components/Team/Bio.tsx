@@ -71,11 +71,11 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
               </div>
 
               <div className="absolute -right-8 lg:left-50 top-1/2 -translate-y-1/2 -rotate-90 origin-left hidden md:block">
-                <h1 className="text-5xl lg:text-6xl font-black tracking-tight drop-shadow-2xl whitespace-nowrap ">
+                <h1 className="text-3xl lg:text-5xl font-black tracking-tight drop-shadow-2xl whitespace-nowrap ">
                   {playerBio.name}
                 </h1>
               </div>
-              <h1 className="absolute -top-15 left-20 text-4xl sm:text-5xl font-black text-white tracking-tight drop-shadow-2xl md:hidden">
+              <h1 className="absolute -top-15 left-20 text-xl sm:text-5xl font-black text-white tracking-tight drop-shadow-2xl md:hidden">
                 {playerBio.name}
               </h1>
             </div>

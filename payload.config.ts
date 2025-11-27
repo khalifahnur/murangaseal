@@ -5,6 +5,7 @@ import { buildConfig } from "payload";
 import { Matches } from "@/lib/Collections/Match";
 import { Players } from "@/lib/Collections/players";
 import { Highlights } from "@/lib/Collections/Highlights";
+import { MOTMVotes } from "@/lib/Collections/MotmVotes";
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -86,19 +87,30 @@ export default buildConfig({
  
     Matches,
     Players,
-    Highlights
+    Highlights,
+    MOTMVotes
   ],
+  // endpoints: [
+  // {
+  //   path: '/api/vote-motm',
+  //   method: 'post',
+  //   handler: voteMOTM,
+  // },
+//],
 
-  // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || "",
-  // Whichever Database Adapter you're using should go here
-  // Mongoose is shown as an example, but you can also use Postgres
-  db: mongooseAdapter({
-    url: process.env.MONGODB_URI || "mongodb://localhost:27017/loca_db",
-  }),
-  // If you want to resize images, crop, set focal point, etc.
-  // make sure to install it and pass it to the config.
-  // This is optional - if you don't need to do these things,
-  // you don't need it!
+ db: mongooseAdapter({
+  url: process.env.MONGODB_URI || "mongodb://localhost:27017/loca_db",
+  connectOptions: {
+    maxPoolSize: 10,
+    connectTimeoutMS: 60000, 
+    socketTimeoutMS: 90000,  
+    serverSelectionTimeoutMS: 60000, 
+    heartbeatFrequencyMS: 10000,
+    maxIdleTimeMS: 30000,
+    retryWrites: true,
+    retryReads: true,
+  },
+}),
   sharp,
 });

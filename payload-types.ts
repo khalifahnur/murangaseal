@@ -71,7 +71,8 @@ export interface Config {
     matches: Match;
     players: Player;
     highlights: Highlight;
-    'motm-votes': MotmVote;
+    'potm-votes': PotmVote;
+    'player-of-the-month': PlayerOfTheMonth;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -84,7 +85,8 @@ export interface Config {
     matches: MatchesSelect<false> | MatchesSelect<true>;
     players: PlayersSelect<false> | PlayersSelect<true>;
     highlights: HighlightsSelect<false> | HighlightsSelect<true>;
-    'motm-votes': MotmVotesSelect<false> | MotmVotesSelect<true>;
+    'potm-votes': PotmVotesSelect<false> | PotmVotesSelect<true>;
+    'player-of-the-month': PlayerOfTheMonthSelect<false> | PlayerOfTheMonthSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -321,15 +323,34 @@ export interface Highlight {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "motm-votes".
+ * via the `definition` "potm-votes".
  */
-export interface MotmVote {
+export interface PotmVote {
   id: string;
-  match: string | Match;
+  month: string | PlayerOfTheMonth;
   player: string | Player;
   votedBy?: (string | null) | User;
   ipAddress?: string | null;
   userAgent?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "player-of-the-month".
+ */
+export interface PlayerOfTheMonth {
+  id: string;
+  /**
+   * Format: 2025-03
+   */
+  monthYear: string;
+  /**
+   * Only one month can be active at a time
+   */
+  isActive?: boolean | null;
+  candidates: (string | Player)[];
+  winner?: (string | null) | Player;
   updatedAt: string;
   createdAt: string;
 }
@@ -398,8 +419,12 @@ export interface PayloadLockedDocument {
         value: string | Highlight;
       } | null)
     | ({
-        relationTo: 'motm-votes';
-        value: string | MotmVote;
+        relationTo: 'potm-votes';
+        value: string | PotmVote;
+      } | null)
+    | ({
+        relationTo: 'player-of-the-month';
+        value: string | PlayerOfTheMonth;
       } | null)
     | ({
         relationTo: 'users';
@@ -536,14 +561,26 @@ export interface HighlightsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "motm-votes_select".
+ * via the `definition` "potm-votes_select".
  */
-export interface MotmVotesSelect<T extends boolean = true> {
-  match?: T;
+export interface PotmVotesSelect<T extends boolean = true> {
+  month?: T;
   player?: T;
   votedBy?: T;
   ipAddress?: T;
   userAgent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "player-of-the-month_select".
+ */
+export interface PlayerOfTheMonthSelect<T extends boolean = true> {
+  monthYear?: T;
+  isActive?: T;
+  candidates?: T;
+  winner?: T;
   updatedAt?: T;
   createdAt?: T;
 }

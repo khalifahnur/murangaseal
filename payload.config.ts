@@ -5,7 +5,8 @@ import { buildConfig } from "payload";
 import { Matches } from "@/lib/Collections/Match";
 import { Players } from "@/lib/Collections/players";
 import { Highlights } from "@/lib/Collections/Highlights";
-import { MOTMVotes } from "@/lib/Collections/MotmVotes";
+import { POTMVotes } from "@/lib/Collections/PotmVotes";
+import { PlayerOfTheMonth } from "@/lib/Collections/Potm";
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -88,15 +89,9 @@ export default buildConfig({
     Matches,
     Players,
     Highlights,
-    MOTMVotes
+    POTMVotes,
+    PlayerOfTheMonth
   ],
-  // endpoints: [
-  // {
-  //   path: '/api/vote-motm',
-  //   method: 'post',
-  //   handler: voteMOTM,
-  // },
-//],
 
   secret: process.env.PAYLOAD_SECRET || "",
  db: mongooseAdapter({

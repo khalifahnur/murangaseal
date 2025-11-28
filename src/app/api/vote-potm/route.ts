@@ -4,11 +4,11 @@ import config from "@payload-config";
 import { headers } from "next/headers";
 
 export const POST = async (req: NextRequest) => {
-  const { matchId, playerId } = await req.json();
+  const { monthId, playerId } = await req.json();
 
-  if (!matchId || !playerId) {
+  if (!monthId || !playerId) {
     return NextResponse.json(
-      { error: "Missing matchId or playerId" },
+      { error: "Missing monthId or playerId" },
       { status: 400 }
     );
   }
@@ -16,6 +16,7 @@ export const POST = async (req: NextRequest) => {
   const payload = await getPayload({ config });
 
   const { user } = await payload.auth({ headers: req.headers });
+
   const headerList = await headers();
   const ip =
     headerList.get("x-forwarded-for")?.split(",")[0]?.trim() ??
@@ -23,28 +24,33 @@ export const POST = async (req: NextRequest) => {
     "unknown";
 
   try {
-    const match = await payload.findByID({
-      collection: "matches",
-      id: matchId,
+    const potmMonth = await payload.findByID({
+      collection: "player-of-the-month",
+      id: monthId,
       depth: 2,
     });
 
-    if (!match || !match.votingOpen) {
-      return NextResponse.json({ error: "Voting is closed" }, { status: 400 });
-    }
-/* eslint-disable @typescript-eslint/no-explicit-any */
-    const playerIds = (match.players || []).map((p: any) =>
-      typeof p === "string" ? p : p.id || p._id
-    );
-    if (!playerIds.includes(playerId)) {
-      return NextResponse.json({ error: "Invalid player" }, { status: 400 });
+    if (!potmMonth) {
+      return NextResponse.json({ error: "Month not found" }, { status: 404 });
     }
 
-    const existing = await payload.find({
-      collection: "motm-votes",
+    if (!potmMonth.isActive) {
+      return NextResponse.json({ error: "Voting is closed for this month" }, { status: 400 });
+    }
+/* eslint-disable @typescript-eslint/no-explicit-any  */
+    const candidateIds = (potmMonth.candidates || [])
+      .map((p: any) => (typeof p === "string" ? p : p.id || p._id))
+      .filter(Boolean);
+
+    if (!candidateIds.includes(playerId)) {
+      return NextResponse.json({ error: "This player is not a candidate" }, { status: 400 });
+    }
+
+    const existingVote = await payload.find({
+      collection: "potm-votes",
       where: {
         and: [
-          { match: { equals: matchId } },
+          { month: { equals: monthId } },
           user
             ? { votedBy: { equals: user.id } }
             : { ipAddress: { equals: ip } },
@@ -53,17 +59,17 @@ export const POST = async (req: NextRequest) => {
       limit: 1,
     });
 
-    if (existing.docs.length > 0) {
+    if (existingVote.docs.length > 0) {
       return NextResponse.json(
-        { error: "You have already voted" },
+        { error: "You have already voted this month" },
         { status: 403 }
       );
     }
 
     await payload.create({
-      collection: "motm-votes",
+      collection: "potm-votes",
       data: {
-        match: matchId,
+        month: monthId,
         player: playerId,
         votedBy: user?.id || undefined,
         ipAddress: user ? undefined : ip,
@@ -73,15 +79,16 @@ export const POST = async (req: NextRequest) => {
 
     return NextResponse.json({ success: true });
   } 
-  /* eslint-disable @typescript-eslint/no-explicit-any */
+  /* eslint-disable @typescript-eslint/no-explicit-any  */
   catch (err: any) {
     if (err.code === 11000) {
       return NextResponse.json(
-        { error: "You have already voted" },
+        { error: "You have already voted this month" },
         { status: 403 }
       );
     }
-    console.error("Vote error:", err);
+
+    console.error("POTM Vote error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 };

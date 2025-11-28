@@ -19,6 +19,7 @@ export async function getActivePOTM() {
     where: { month: { equals: month.id } },
   });
 
+  /* eslint-disable @typescript-eslint/no-explicit-any  */
   const counts: Record<string, number> = {};
   votes.docs.forEach((vote: any) => {
     const pid = typeof vote.player === 'string' ? vote.player : vote.player.id;

@@ -37,7 +37,7 @@ export const POST = async (req: NextRequest) => {
     if (!potmMonth.isActive) {
       return NextResponse.json({ error: "Voting is closed for this month" }, { status: 400 });
     }
-
+/* eslint-disable @typescript-eslint/no-explicit-any  */
     const candidateIds = (potmMonth.candidates || [])
       .map((p: any) => (typeof p === "string" ? p : p.id || p._id))
       .filter(Boolean);
@@ -78,7 +78,9 @@ export const POST = async (req: NextRequest) => {
     });
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
+  } 
+  /* eslint-disable @typescript-eslint/no-explicit-any  */
+  catch (err: any) {
     if (err.code === 11000) {
       return NextResponse.json(
         { error: "You have already voted this month" },

@@ -6,7 +6,6 @@ export const PlayerOfTheMonth: CollectionConfig = {
     useAsTitle: 'monthYear',
     defaultColumns: ['monthYear', 'isActive', 'winner'],
   },
-  access: { read: () => true },
   fields: [
     {
       name: 'monthYear',
@@ -35,20 +34,4 @@ export const PlayerOfTheMonth: CollectionConfig = {
       admin: { position: 'sidebar' },
     },
   ],
-  hooks: {
-    beforeChange: [
-      async ({ data, req, operation }) => {
-        if (data.isActive && operation === 'create' || operation === 'update') {
-          // Auto-deactivate all others when one is activated
-          const payload = req.payload;
-          await payload.update({
-            collection: 'player-of-the-month',
-            where: { id: { not_equals: data.id } },
-            data: { isActive: false },
-          });
-        }
-        return data;
-      },
-    ],
-  },
 };

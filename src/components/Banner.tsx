@@ -27,19 +27,19 @@ export function HeroBanner() {
         </button>
 
         <Image
-          src="/assets/preorder-banner.jpeg"
-          alt="Preorder Banner"
+          src="/assets/potm/potm.jpg"
+          alt="Potm"
           fill
-          className="object-cover"
+          className="object-cover "
           priority
         />
 
         {/* <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" /> */}
 
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-center z-10">
-          <Link href="/shop">
+          <Link href="/vote/player-of-the-month">
             <button className="px-6 py-2.5 bg-primary hover:bg-primary/80 text-black font-semibold text-sm uppercase tracking-wider rounded-full transition-all transform hover:scale-105 shadow-md">
-              Buy Now
+              Vote Now
             </button>
           </Link>
         </div>

@@ -50,7 +50,7 @@ export const JERSEYS = [
   {
     id: "blue-tracksuit",
     name: "Mseal 25/26 Blue Tracksuit",
-    price: 8000,
+    price: 8500,
     originalPrice: 129,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Truck-Suit-blue_aj4ucj.png",
     rating: 4.7,
@@ -62,7 +62,7 @@ export const JERSEYS = [
   {
     id: "blue-tracksuit-kids",
     name: "Mseal 25/26 Blue Tracksuit (Kids)",
-    price: 0,
+    price: 7000,
     originalPrice: 129,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Truck-Suit-blue_aj4ucj.png",
     rating: 4.7,
@@ -74,7 +74,7 @@ export const JERSEYS = [
   {
     id: "yellow-tracksuit",
     name: "Mseal 25/26 Yellow Tracksuit",
-    price: 0,
+    price: 7000,
     originalPrice: 189,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364828/Yellow-Truck-Suit_ubtycc.png",
     rating: 4.9,
@@ -122,7 +122,7 @@ export const JERSEYS = [
   {
     id: "cap",
     name: "Cap",
-    price: 500,
+    price: 750,
     originalPrice: 299,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045223/img101_p6s982.jpg",
     rating: 5,
@@ -271,7 +271,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "blue-tracksuit": {
     id: "blue-tracksuit",
     name: "Mseal 25/26 Blue Tracksuit",
-    price: 0,
+    price: 8500,
     originalPrice: 8000,
      image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Truck-Suit-blue_aj4ucj.png",
     rating: 4.8,
@@ -291,7 +291,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "blue-tracksuit-kids": {
     id: "blue-tracksuit-kids",
     name: "Mseal 25/26 Blue Tracksuit",
-    price: 0,
+    price: 7000,
     originalPrice: 199,
      image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Truck-Suit-blue_aj4ucj.png",
     rating: 4.8,
@@ -311,7 +311,7 @@ export const JERSEYS_DATA: Record<string, any> = {
     "yellow-tracksuit": {
     id: "yellow-tracksuit",
      name: "Mseal 25/26 Yellow Tracksuit",
-    price: 0,
+    price: 7000,
     originalPrice: 199,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364828/Yellow-Truck-Suit_ubtycc.png",
     rating: 4.8,
@@ -361,7 +361,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "cap": {
     id: "cap",
     name: "Cap",
-    price: 500,
+    price: 750,
     originalPrice: 279,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045223/img101_p6s982.jpg",
     rating: 4.9,

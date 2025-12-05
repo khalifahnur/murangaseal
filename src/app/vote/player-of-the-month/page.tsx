@@ -36,9 +36,51 @@ export default async function Page() {
 
   if (!active) {
     return (
-      <div className="text-center py-20 text-2xl">
-        No active Player of the Month voting right now.
-      </div>
+      <>
+        <Header />
+        <div className="text-center py-20 text-2xl mozillaheadline">
+          No active Player of the Month voting right now.
+        </div>
+        <PartnershipSection />
+        <Footer />
+      </>
+    );
+  }
+
+  if (!active.isActive && active.winner) {
+    return (
+      <>
+        <Header />
+        <div className="max-w-4xl mx-auto p-6 mozillaheadline">
+          <div className="mb-8 p-8 rounded-2xl text-center border-2 ">
+            <h2 className="text-xl font-bold text-green-800">
+              Winner Announced!
+            </h2>
+            <p className="text-xl mt-4 font-black">
+              {/* eslint-disable @typescript-eslint/no-explicit-any */}
+              {(active.winner as any)?.name} is Player of the Month!
+            </p>
+            <p>
+             for {active.monthYear}
+            </p>
+          </div>
+        </div>
+        <PartnershipSection />
+        <Footer />
+      </>
+    );
+  }
+
+  if (!active.isActive && !active.winner) {
+    return (
+      <>
+        <Header />
+        <div className="text-center py-20 text-2xl mozillaheadline">
+          No voting available right now. Check back later!
+        </div>
+        <PartnershipSection />
+        <Footer />
+      </>
     );
   }
 
@@ -46,21 +88,10 @@ export default async function Page() {
     <>
       <Header />
       <div className="max-w-4xl mx-auto p-6 mozillaheadline">
-        {!active.isActive && active.winner && (
-          <div className="mb-8 p-8 bg-green-100 rounded-2xl text-center border-4 border-green-300">
-            <h2 className="text-3xl font-bold text-green-800">
-              Winner Announced!
-            </h2>
-            {/* eslint-disable @typescript-eslint/no-explicit-any  */}
-            <p className="text-4xl mt-4 font-black">
-              {(active.winner as any)?.name} is Player of the Month!
-            </p>
-          </div>
-        )}
-        {/* eslint-disable @typescript-eslint/no-explicit-any  */}
+        
+        {/* eslint-disable @typescript-eslint/no-explicit-any */}
         <POTMPage monthData={active as any} isAdmin={isAdmin} />
       </div>
-
       <PartnershipSection />
       <Footer />
     </>

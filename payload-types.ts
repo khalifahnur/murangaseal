@@ -73,6 +73,7 @@ export interface Config {
     highlights: Highlight;
     'potm-votes': PotmVote;
     'player-of-the-month': PlayerOfTheMonth;
+    technical: Technical;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -87,6 +88,7 @@ export interface Config {
     highlights: HighlightsSelect<false> | HighlightsSelect<true>;
     'potm-votes': PotmVotesSelect<false> | PotmVotesSelect<true>;
     'player-of-the-month': PlayerOfTheMonthSelect<false> | PlayerOfTheMonthSelect<true>;
+    technical: TechnicalSelect<false> | TechnicalSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -96,6 +98,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
+  fallbackLocale: null;
   globals: {};
   globalsSelect: {};
   locale: null;
@@ -243,10 +246,6 @@ export interface Match {
     awayScore?: number | null;
   };
   competition: 'premier-league' | 'fkf-cup' | 'super-cup' | 'friendly';
-  players: (string | Player)[];
-  votingOpen?: boolean | null;
-  winner?: (string | null) | Player;
-  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -380,6 +379,46 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "technical".
+ */
+export interface Technical {
+  id: string;
+  slug: string;
+  name: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  role:
+    | 'Head Coach'
+    | 'Assistant Coach'
+    | 'Goalkeeping Coach'
+    | 'Fitness Coach'
+    | 'Physiotherapist'
+    | 'Team Manager'
+    | 'Analyst'
+    | 'Kit Manager'
+    | 'Other';
+  /**
+   * Paste Cloudinary image URL
+   */
+  mugshot: string;
+  nickname?: string | null;
+  height?: number | null;
+  previousClub?: string | null;
+  roleModel?: string | null;
+  /**
+   * Add fun trivia about the technical
+   */
+  funFacts?:
+    | {
+        fact: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -425,6 +464,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'player-of-the-month';
         value: string | PlayerOfTheMonth;
+      } | null)
+    | ({
+        relationTo: 'technical';
+        value: string | Technical;
       } | null)
     | ({
         relationTo: 'users';
@@ -507,10 +550,6 @@ export interface MatchesSelect<T extends boolean = true> {
         awayScore?: T;
       };
   competition?: T;
-  players?: T;
-  votingOpen?: T;
-  winner?: T;
-  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -581,6 +620,30 @@ export interface PlayerOfTheMonthSelect<T extends boolean = true> {
   isActive?: T;
   candidates?: T;
   winner?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "technical_select".
+ */
+export interface TechnicalSelect<T extends boolean = true> {
+  slug?: T;
+  name?: T;
+  firstName?: T;
+  lastName?: T;
+  role?: T;
+  mugshot?: T;
+  nickname?: T;
+  height?: T;
+  previousClub?: T;
+  roleModel?: T;
+  funFacts?:
+    | T
+    | {
+        fact?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

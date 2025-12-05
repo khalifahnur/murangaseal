@@ -7,6 +7,7 @@ import { Players } from "@/lib/Collections/players";
 import { Highlights } from "@/lib/Collections/Highlights";
 import { POTMVotes } from "@/lib/Collections/PotmVotes";
 import { PlayerOfTheMonth } from "@/lib/Collections/Potm";
+import { TechnicalCoach } from "@/lib/Collections/Technical";
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -90,7 +91,8 @@ export default buildConfig({
     Players,
     Highlights,
     POTMVotes,
-    PlayerOfTheMonth
+    PlayerOfTheMonth,
+    TechnicalCoach
   ],
 
   secret: process.env.PAYLOAD_SECRET || "",

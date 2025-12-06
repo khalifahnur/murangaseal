@@ -17,6 +17,8 @@ export async function getActivePOTM() {
     const votes = await payload.find({
       collection: 'potm-votes',
       where: { month: { equals: activeMonth.id } },
+      limit: 0,
+      pagination: false,
     });
 
     /* eslint-disable @typescript-eslint/no-explicit-any  */

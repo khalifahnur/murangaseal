@@ -8,7 +8,8 @@ import StoreSection from './Home/StoreSection';
 //import LatestNews from './News/LatestNews';
 import MatchContainer from './Match/MatchContainer';
 import HightlightsContainer from './Highlights/HighlightsContainer';
-import { HeroBanner } from './Banner';
+import MerchandiseBanner from './Shop/Banner';
+// import { HeroBanner } from './Banner';
 
 export default function Container() {
 
@@ -16,9 +17,10 @@ export default function Container() {
   return (
     <>
         <Header />
+        <MerchandiseBanner />
         
         <main className="relative">
-          <HeroBanner />
+          {/* <HeroBanner /> */}
           <HeroSection />
           {/* <LatestNews /> */}
           <HightlightsContainer />

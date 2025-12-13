@@ -15,16 +15,37 @@ export default function FixturesSection({fixtures}:any) {
       
       <div className="max-w-7xl mx-auto relative z-10">
         
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">UPCOMING FIXTURES</h2>
+        <div className="mb-12 items-center">
+          <h2 className="text-xl md:text-5xl font-bold text-gray-900 mb-2">UPCOMING FIXTURES</h2>
           <div className="w-16 h-1.5 bg-primary rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {fixtures.map((fixture:Fixture) => (
             <FixtureCard key={fixture.id} fixture={fixture} />
           ))}
-        </div>
+        </div> */}
+
+        <div className="
+  flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4
+  
+  scrollbar-hide
+
+  md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 md:px-0 md:mx-0
+">
+  {fixtures.map((fixture: Fixture) => (
+    <div 
+      key={fixture.id} 
+      className="
+        min-w-[85vw] sm:min-w-[350px] snap-center
+        
+        md:min-w-0
+      "
+    >
+      <FixtureCard fixture={fixture} />
+    </div>
+  ))}
+</div>
 
         {/* Additional Info */}
         {/* <div className="text-center mt-12">

@@ -85,7 +85,7 @@ export default function News({ news }: any) {
               </div> */}
             </div>
 
-            <div className="space-y-6">
+            {/* <div className="space-y-6">
               {sidebar.map((item: NewsItem) => (
                 <Link href={`/news/${item.slug}`} key={item.id}>
                   <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[237px] lg:h-[290px] mt-2">
@@ -107,7 +107,47 @@ export default function News({ news }: any) {
                   </div>
                 </Link>
               ))}
-            </div>
+            </div> */}
+            <div className="
+  /* Mobile: Horizontal Carousel */
+  flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-4 scrollbar-hide
+  
+  /* Desktop: Vertical Sidebar List */
+  lg:block lg:space-y-6 lg:overflow-visible lg:px-0 lg:mx-0 lg:pb-0
+">
+  {sidebar.map((item: NewsItem) => (
+    <Link 
+      href={`/news/${item.slug}`} 
+      key={item.id}
+      className="
+        /* Mobile: Fixed Width for scrolling */
+        block min-w-[280px] w-[85vw] snap-center
+        
+        /* Desktop: Reset width */
+        lg:w-auto lg:min-w-0
+      "
+    >
+      {/* Removed 'mt-2' because parent gap/space-y handles spacing now */}
+      <div className="relative group cursor-pointer overflow-hidden rounded-lg h-[237px] lg:h-[290px]">
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+          style={{
+            backgroundImage: `url('${item.cloudinaryUrl}')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <h3 className="text-sm font-bold text-white leading-snug mt-2 line-clamp-2">
+            {item.title}
+          </h3>
+          <span className="inline-block mt-2 text-xs font-bold tracking-wider text-gray-300 uppercase">
+            {formatDate(item.publishDate)}
+          </span>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
           </div>
         </div>
       </section>

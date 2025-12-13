@@ -6,11 +6,13 @@ import Header from "../Home/HeaderSection";
 import { Footer } from "../Home/Footer";
 import Image from "next/image";
 import { JERSEYS } from "./Jersey";
+import MerchandiseBanner from "./Banner";
 
 export default function JerseyShop() {
   return (
     <>
       <Header />
+      <MerchandiseBanner />
       <main className="bg-background text-foreground mozillaheadline">
         <div className="max-w-7xl mx-auto px-4 py-12">
           {/* <div className="flex flex-col-3 md:flex-row md:items-center md:justify-between gap-4 mb-8 pb-6 border-b border-border">

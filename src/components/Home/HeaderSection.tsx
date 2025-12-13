@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import React, { useState, useEffect, useCallback } from "react";
+import MembershipBanner from "./MembershipBannerHeader";
 
 const upperLinks = [
   {
@@ -257,6 +258,7 @@ export default function Header() {
 
   return (
     <>
+    
       <header className="w-full sticky top-0 z-50 mozillaheadline">
         <div
           className="bg-linear-to-b from-[#0a0c1b] to-black text-white border-t-8 border-primary transition-all duration-500 ease-in-out transform ${
@@ -294,7 +296,7 @@ export default function Header() {
                   alt="Muranga Seals"
                   width={1000}
                   height={800}
-                  className="h-14 md:h-24 md:w-auto transition-transform duration-300 hover:scale-105"
+                  className="md:h-24 md:w-auto transition-transform duration-300 hover:scale-105"
                 />
               </div>
             </Link>
@@ -557,6 +559,7 @@ export default function Header() {
           </div>
         </div>
       </div>
+      {/* <MembershipBanner /> */}
     </>
   );
 }

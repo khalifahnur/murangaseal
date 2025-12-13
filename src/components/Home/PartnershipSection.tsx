@@ -43,10 +43,10 @@ export default function PartnershipSection() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-black mb-6 tracking-tight">
+          <h1 className="text-xl md:text-5xl font-bold text-black mb-6 tracking-tight">
             PARTNERSHIPS
           </h1>
-          <div className="w-32 h-1 bg-primary mx-auto mb-8"></div>
+          <div className="w-16 md:w-32 h-1 bg-primary mx-auto mb-8"></div>
           {/* <p className="text-gray-900 text-lg max-w-2xl mx-auto">
             We're proud to partner with industry leaders who share our passion
             for excellence and innovation.

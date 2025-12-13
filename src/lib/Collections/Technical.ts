@@ -92,6 +92,8 @@ export const TechnicalCoach: CollectionConfig = {
         "Team Manager",
         "Analyst",
         "Kit Manager",
+        "Trainer",
+        "Welfare Officer",
         "Other",
       ],
       required: true,

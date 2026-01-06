@@ -396,6 +396,8 @@ export interface Technical {
     | 'Team Manager'
     | 'Analyst'
     | 'Kit Manager'
+    | 'Trainer'
+    | 'Welfare Officer'
     | 'Other';
   /**
    * Paste Cloudinary image URL

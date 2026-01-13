@@ -3,6 +3,8 @@ import FixturesSection from "./FixturesSection";
 
 import { startOfDay } from "date-fns";
 
+export const revalidate = 60;
+
 export default async function MatchContainer() {
   const payload = await getPayloadClient();
 
@@ -34,4 +36,3 @@ export default async function MatchContainer() {
   return <FixturesSection fixtures={fixtures}/>;
 }
 
-export const dynamic = 'force-dynamic';

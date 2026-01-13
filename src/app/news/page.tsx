@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   },
 }
 
+export const revalidate = 60;
+
 export default async function page() {
   const payload = await getPayloadClient();
 
@@ -28,22 +30,13 @@ export default async function page() {
     collection: "news",
     // where: { status: { equals: "published" } },
     sort: "-publishDate",
-    limit:100
+    limit:100,
+    depth:2
   });
 
   if (!news || news.length === 0) {
     return <div className="py-20 text-center">No news yet. Stay tuned!</div>;
   }
   return <AllNews news={news} />;
-}
-
-export async function generateStaticParams() {
-  const payload = await getPayload({ config });
-
-  const { docs } = await payload.find({
-    collection: "news",
-    limit: 100,
-  });
-  return docs;
 }
 

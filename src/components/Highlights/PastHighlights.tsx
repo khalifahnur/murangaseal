@@ -23,7 +23,17 @@ interface NewsCardProps {
 
 export default function PastHighlights({ item, isHovered }: NewsCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const videoId = item.youtubeUrl.match(/(?:v=|\/embed\/|youtu\.be\/)([^&\n?#]+)/)?.[1];
+  const getYouTubeId = (url: string) => {
+    if (!url) return null;
+
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+
+  const videoId = getYouTubeId(item.youtubeUrl);
 
   return (
     <>
@@ -41,6 +51,8 @@ export default function PastHighlights({ item, isHovered }: NewsCardProps) {
                 sizes="(max-width: 768px) 100vw, 600px"
                 quality="auto"
                 format="auto"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA..."
               />
 
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -65,7 +77,9 @@ export default function PastHighlights({ item, isHovered }: NewsCardProps) {
 
           <div className="flex-1 space-y-3 min-w-0">
             <h4 className="text-lg font-bold text-white leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-3">
-              {item.score && <span className="text-yellow-400 mr-2">{item.score}</span>}
+              {item.score && (
+                <span className="text-yellow-400 mr-2">{item.score}</span>
+              )}
               {item.title}
             </h4>
             <p className="text-gray-400 text-sm font-medium uppercase tracking-wider">
@@ -103,7 +117,9 @@ export default function PastHighlights({ item, isHovered }: NewsCardProps) {
             </div>
 
             <div className="p-6 bg-linear-to-b from-gray-900 to-black">
-              <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+              <h3 className="text-xl font-bold text-white mb-2">
+                {item.title}
+              </h3>
               <div className="flex items-center justify-between text-sm text-gray-400">
                 <span>{item.duration || "Unknown"}</span>
                 <span>{item.timestamp}</span>

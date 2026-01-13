@@ -7,14 +7,14 @@ import { useState } from "react";
 interface FeaturedNewsProps {
   item: {
     id: string;
-  title: string;
-  thumbnail: string;
-  duration?: string;
-  timestamp: string;
-  type?: string;
-  score?: string;
-  teams?: string;
-  youtubeUrl: string;
+    title: string;
+    thumbnail: string;
+    duration?: string;
+    timestamp: string;
+    type?: string;
+    score?: string;
+    teams?: string;
+    youtubeUrl: string;
   };
 }
 
@@ -24,37 +24,38 @@ export default function FeaturedHighlights({ item }: FeaturedNewsProps) {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const videoId = item.youtubeUrl.match(/(?:v=|\/embed\/|youtu\.be\/)([^&\n?#]+)/)?.[1];
+  const getYouTubeId = (url: string) => {
+    if (!url) return null;
+
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+
+  const videoId = getYouTubeId(item.youtubeUrl);
 
   return (
     <>
       <div className=" mozillaheadline group cursor-pointer">
         <div className="relative overflow-hidden rounded-xl shadow-2xl">
-          {/* <Image
-            src={item.thumbnail || "/placeholder.svg"}
+          <CldImage
+            width={800}
+            height={600}
+            src={item.thumbnail}
             alt={item.title}
             className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-            width={1000}
-            height={800}
-          /> */}
-          <CldImage
-                src={item.thumbnail}
-                alt={item.title}
-                fill
-                className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                sizes="(max-width: 768px) 100vw, 600px"
-                quality="auto"
-                format="auto"
-              />
+            sizes="(max-width: 768px) 100vw, 600px"
+            quality="auto:good"
+            format="auto"
+            //crop="fill"
+            //gravity="face"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA..."
+          />
 
           <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-          {/* {item.score && (
-          <div className="absolute top-4 left-4 bg-primary rounded-lg px-4 py-3 backdrop-blur-sm">
-            <div className="text-white font-bold text-lg">{item.type}</div>
-            <div className="text-white font-black text-2xl">{item.score}</div>
-          </div>
-        )} */}
 
           <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded px-2.5 py-1.5 text-white text-xs font-semibold">
             {item.duration}
@@ -98,23 +99,13 @@ export default function FeaturedHighlights({ item }: FeaturedNewsProps) {
 
             <div className="relative aspect-video bg-black">
               {item.youtubeUrl ? (
-                // <video
-                //   controls
-                //   controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar"
-                //   autoPlay
-                //   className="w-full h-full object-contain custom-video-controls"
-                //   poster={item.thumbnail}
-                // >
-                //   <source src={item.youtubeUrl} type="video/mp4" />
-                //   Your browser does not support the video tag.
-                // </video>
                 <iframe
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-          title={item.title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="w-full h-full"
-        />
+                  src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+                  title={item.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
               ) : (
                 <div className="flex items-center justify-center h-full text-white">
                   <div className="text-center">

@@ -9,8 +9,8 @@ import StoreSection from './Home/StoreSection';
 import MatchContainer from './Match/MatchContainer';
 import HightlightsContainer from './Highlights/HighlightsContainer';
 //import MerchandiseBanner from './Shop/Banner';
-import VoteMatchBanner from './Potm/Banner';
-import { HeroBanner } from './Banner';
+// import VoteMatchBanner from './Potm/Banner';
+// import { HeroBanner } from './Banner';
 
 export default function Container() {
 
@@ -19,16 +19,17 @@ export default function Container() {
     <>
         <Header />
         {/* <MerchandiseBanner /> */}
-        <VoteMatchBanner />
+        {/* <VoteMatchBanner /> */}
         
         <main className="relative">
-          <HeroBanner />
+          {/* <HeroBanner /> */}
           <HeroSection />
           {/* <LatestNews /> */}
           <HightlightsContainer />
           <MatchContainer />
-          <MembershipBanner />
+          
           <StoreSection /> 
+          <MembershipBanner />
           <PartnershipSection />
           
         </main>

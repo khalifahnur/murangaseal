@@ -1,75 +1,74 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { ChevronRight } from "lucide-react";
 
 export default function MembershipBanner() {
   return (
-    <div className="bg-linear-to-b from-[#0a0c1b] to-black flex items-center justify-center py-6 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
-      <div className="relative w-full max-w-4xl lg:max-w-6xl bg-white/90 border-b-4 border-primary shadow-2xl overflow-hidden ">
-        <div className="relative overflow-hidden bg-linear-to-r from-blue-600 via-purple-600 to-pink-500 min-h-[120px] sm:min-h-[160px] md:min-h-[192px] flex items-center justify-center px-4 sm:px-8">
-          <Image 
-            src="/assets/Team/mseal-team-photo.jpg" 
-            fill 
-            className="w-full h-full object-cover opacity-40" 
-            alt="Muranga Seals Team" 
+    <section className="w-full py-4 px-4 md:px-6 mozillaheadline">
+      <div className="relative w-full max-w-7xl mx-auto overflow-hidden group">
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/assets/Team/mseal-team-photo.jpg"
+            alt="Muranga Seals Team"
+            fill
+            className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
             priority
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 1200px"
+            sizes="100vw"
           />
-          
-          {/* Background Overlay */}
-          <div className="absolute inset-0 bg-linear-to-r from-black/40 to-black/20"></div>
-          
-          {/* Mobile Layout - Stacked */}
-          <div className="lg:hidden relative z-10 w-full flex flex-col items-center justify-center gap-3 py-4">
-            <span className="text-lg sm:text-xl font-extrabold bg-black/70 px-3 py-1 rounded text-white">
-              FOREVER MSEAL
-            </span>
-            
-            <span className="text-xl sm:text-2xl font-extrabold bg-linear-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent text-center leading-tight">
-              2025/26 MEMBERSHIP
-            </span>
-            
-            <span className="text-base sm:text-lg font-bold text-yellow-300 animate-pulse">
-              ON SALE NOW
-            </span>
-            
-            <Link 
-              href={'https://www.murangaseal.co.ke'} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="mt-2 bg-linear-to-r from-primary to-gray-900 text-white font-bold py-2 px-6 rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
-            >
-              BUY NOW
-            </Link>
-          </div>
-
-          {/* Desktop Layout - Side by Side */}
-          <div className="hidden lg:flex relative z-10 w-full items-center justify-between">
-            <div className="flex flex-col items-start space-y-3">
-              <span className="text-2xl xl:text-3xl font-extrabold bg-black/60 px-4 py-2 rounded-lg text-white">
-                FOREVER MSEAL
-              </span>
-              
-              <span className="text-3xl xl:text-4xl font-extrabold bg-linear-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg">
-                2025/26 MEMBERSHIP
-              </span>
-              
-              <span className="text-xl xl:text-2xl font-bold text-yellow-300 animate-pulse">
-                ON SALE NOW
+          <div className="absolute inset-0 bg-linear-to-r from-black via-black/80 to-black/40 md:to-transparent" />
+        </div>
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-6 md:px-10 md:py-8">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-1">
+              <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-0.5 backdrop-blur-md">
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" />
+                <span className="text-[10px] md:text-xs font-bold text-primary tracking-widest uppercase">
+                  Forever MSeal
+                </span>
+              </div>
+              <span className="hidden md:block text-gray-400 text-xs">|</span>
+              <span className="text-gray-300 text-xs md:text-sm font-medium">
+                Join the family today.
               </span>
             </div>
 
-            <Link 
-              href={'https://www.murangaseal.co.ke'} 
-              target="_blank" 
+            <h2 className="text-2xl md:text-4xl font-black text-white italic tracking-tighter leading-tight drop-shadow-md">
+              2025/26{" "}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-orange-500">
+                MEMBERSHIP
+              </span>
+            </h2>
+          </div>
+
+          <div className="shrink-0 mt-2 md:mt-0">
+            <Link
+              href="https://www.murangaseal.co.ke"
+              target="_blank"
               rel="noopener noreferrer"
-              className="bg-linear-to-r from-primary to-gray-900 text-white font-bold py-3 px-8 rounded-tl-2xl rounded-br-2xl hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="group/btn relative inline-block"
             >
-              BUY NOW
+              <button
+                className="
+                relative overflow-hidden bg-primary text-white 
+                font-black uppercase tracking-wider italic 
+                py-2.5 px-8 md:py-3 md:px-10
+                rounded-none -skew-x-12 
+                hover:bg-white hover:text-black 
+                transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.3)]
+              "
+              >
+                <div className="skew-x-12 flex items-center gap-2 text-sm md:text-base">
+                  Buy Now{" "}
+                  <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                </div>
+              </button>
             </Link>
           </div>
         </div>
+
+        <div className="absolute bottom-0 left-0 h-1.5 w-full bg-linear-to-r from-primary via-yellow-400 to-primary" />
       </div>
-    </div>
+    </section>
   );
 }

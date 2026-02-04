@@ -9,6 +9,7 @@ export interface Fixture {
   ticketUrl: string;
   premiumTicketUrl?: string;
   opponentLogo:string;
+  competition:string;
 }
 
 export interface FixturesSectionProps {

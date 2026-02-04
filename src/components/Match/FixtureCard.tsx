@@ -35,7 +35,7 @@ export default function FixtureCard({ fixture }: FixtureCardProps) {
       <div className="bg-gray-950 px-4 py-3">
         <div className="flex justify-between items-center">
           <span className="text-white font-semibold text-sm">
-            SportPesa League
+            {fixture.competition}
           </span>
           <span className="text-white font-bold text-sm">
             {date} {time}

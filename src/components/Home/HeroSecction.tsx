@@ -7,7 +7,7 @@ export default async function HeroSection() {
   const { docs: news } = await payload.find({
     collection: "news",
     sort: "-publishDate",
-    limit: 3,
+    limit: 5,
     depth: 1,
   });
 

@@ -245,7 +245,7 @@ export interface Match {
     homeScore?: number | null;
     awayScore?: number | null;
   };
-  competition: 'premier-league' | 'fkf-cup' | 'super-cup' | 'friendly';
+  competition: 'premier-league' | 'fkf-cup' | 'super-cup' | 'mozzart-cup' | 'friendly';
   updatedAt: string;
   createdAt: string;
 }

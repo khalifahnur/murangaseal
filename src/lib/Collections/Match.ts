@@ -166,6 +166,7 @@ export const Matches: CollectionConfig = {
         { label: 'Premier League', value: 'premier-league' },
         { label: 'FKF Cup', value: 'fkf-cup' },
         { label: 'Super Cup', value: 'super-cup' },
+        { label: 'Mozzart Bet Cup', value: 'mozzart-cup' },
         { label: 'Friendly Match', value: 'friendly' },
       ],
       required: true,

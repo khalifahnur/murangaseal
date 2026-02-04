@@ -18,7 +18,8 @@ const teamLogoUrl = [
   { team: "Mara Sugar", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910292/marasugar_jivabw.jpg" },
   { team: "KCB Fc", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910292/KCB_pi1pfg.png" },
   { team: "Muranga Seal", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910321/muranga-seal_trzy7m.png" },
-  { team: "APS Bomet", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910299/OIP-1_qngv38.jpg" }
+  { team: "APS Bomet", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910299/OIP-1_qngv38.jpg" },
+  { team: "Kahawa Pride", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1770226169/kahawa_pride_shjgdl.png" },
 ]
 
 export const Matches: CollectionConfig = {

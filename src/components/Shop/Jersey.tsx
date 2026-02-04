@@ -1,7 +1,7 @@
 export const JERSEYS = [
   {
     id: "home-jersey",
-    name: "Mseal 25/26 Home Shirt ",
+    name: "25/26 Home Shirt ",
     price: 2000,
     originalPrice: 2000,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",
@@ -13,7 +13,7 @@ export const JERSEYS = [
   },
   {
     id: "away-jersey",
-    name: "Mseal 25/26 Away Shirt",
+    name: "25/26 Away Shirt",
     price: 2000,
     originalPrice: 199,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Away-Front-Kit-for-Web_et0sf4.png",
@@ -24,8 +24,21 @@ export const JERSEYS = [
     discount: 20,
   },
   {
+    id: "kids-home-jersey",
+    name: "Kids 25/26 Home Shirt",
+    price: 1500,
+    originalPrice: 1500,
+    image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",
+    rating: 4.9,
+    reviews: 248,
+    category: "Jersey",
+    colors: ["Black", "White", "Navy"],
+    discount: 24,
+  },
+  
+  {
     id: "home-jersey-24-25",
-    name: "Mseal 24/25 Home Shirt ",
+    name: "24/25 Home Shirt ",
     price: 1500,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1762879969/WhatsApp_Image_2025-11-11_at_2.23.14_PM_kaeht9.jpg",
@@ -37,7 +50,7 @@ export const JERSEYS = [
   },
   {
     id: "third-jersey-24-25",
-    name: "Mseal 24/25 Third Shirt ",
+    name: "24/25 Third Shirt ",
     price: 2000,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg",
@@ -61,7 +74,7 @@ export const JERSEYS = [
   },
   {
     id: "blue-tracksuit-kids",
-    name: "Mseal 25/26 Blue Tracksuit (Kids)",
+    name: "25/26 Blue Tracksuit (Kids)",
     price: 7000,
     originalPrice: 129,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Truck-Suit-blue_aj4ucj.png",
@@ -73,7 +86,7 @@ export const JERSEYS = [
   },
   {
     id: "yellow-tracksuit",
-    name: "Mseal 25/26 Yellow Tracksuit",
+    name: "25/26 Yellow Tracksuit",
     price: 7000,
     originalPrice: 189,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364828/Yellow-Truck-Suit_ubtycc.png",
@@ -189,6 +202,36 @@ export const JERSEYS_DATA: Record<string, any> = {
     reviews: 248,
     category: "JERSEY",
     colors: ["Blue"],
+    description:
+      "Experience peak athletic performance with our Elite Performance Jersey. Engineered with advanced moisture-wicking technology and premium fabric, this jersey delivers comfort and style for both professional and casual wear.",
+    features: [
+      "Advanced moisture-wicking technology keeps you dry",
+      "Premium breathable fabric for maximum comfort",
+      "Reinforced seams for durability and longevity",
+      "Ergonomic fit designed for all body types",
+      "UV protection to shield skin from harmful rays",
+      "Machine washable for easy care",
+    ],
+    specifications: {
+      material: "100% Performance Polyester",
+      fit: "Ergonomic Athletic Cut",
+      care: "Machine wash cold, tumble dry low",
+      origin: "Premium Manufacturing",
+      weight: "Lightweight (180gsm)",
+    },
+    discount: 24,
+  },
+  "kids-home-jersey": {
+    id: "kids-home-jersey",
+    name: "25/26 Home Shirt ",
+    price: 1500,
+    originalPrice: 249,
+    image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",
+    additionalImages: ["https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/home-kit-back_fbhftk.png"],
+    rating: 4.9,
+    reviews: 248,
+    category: "JERSEY",
+    colors: ["Black"],
     description:
       "Experience peak athletic performance with our Elite Performance Jersey. Engineered with advanced moisture-wicking technology and premium fabric, this jersey delivers comfort and style for both professional and casual wear.",
     features: [

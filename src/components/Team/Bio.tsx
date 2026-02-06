@@ -2,6 +2,7 @@
 
 import { Star } from "lucide-react";
 import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 import React from "react";
 
 interface FunFact {
@@ -55,8 +56,9 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
                     height={1600}
                     src={playerBio.mugshot}
                     alt={`${playerBio.firstName || ""} ${playerBio.lastName || playerBio.name}`}
-                    className="w-full h-full object-cover"
-                    //sizes="(max-width: 768px) 90vw, (max-width: 1024px) 70vw, 800px"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     quality="auto:best"
                     format="auto"
                     crop="fill"
@@ -81,7 +83,7 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
             </div>
           </div>
 
-          <div className="md:mt-12 lg:mt-0 w-1/2  lg:absolute lg:bottom-0 lg:left-0 lg:right-0 bg-black/60 backdrop-blur-md border-t border-white/10">
+          <div className=" md:mt-12 lg:mt-0 w-1/2  lg:absolute lg:bottom-0 lg:left-0 lg:right-0 bg-black/40 backdrop-blur-sm border-t border-white/10">
             <div className="container mx-auto px-4 py-8">
               <div className="flex flex-wrap justify-center lg:justify-start gap-12 text-center lg:text-left">
                 {playerBio.age && (
@@ -103,17 +105,23 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
               </div>
             </div>
           </div>
+          <div className="flex items-center gap-2 mb-2 min-h-[100px]">
 
           {playerBio.captain && (
-            <div className="absolute top-8 left-8 bg-yellow-400 text-black px-6 py-3 rounded-full font-black text-lg shadow-lg z-10">
-              Captain
-            </div>
+            <Image 
+                  src="/assets/captain-band.png" 
+                  alt="Captain" 
+                  width={200}   
+                  height={100}  
+                  className="h-20 w-auto object-contain" 
+                />
           )}
           {playerBio.loaned && (
             <div className="absolute top-8 right-8 bg-blue-600 text-white px-5 py-3 rounded-full font-bold text-sm shadow-lg z-10">
               On Loan from {playerBio.loanFrom}
             </div>
           )}
+        </div>
         </div>
       </div>
 

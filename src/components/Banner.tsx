@@ -56,7 +56,11 @@ import { useState, useEffect } from "react";
 
 export function HeroBanner() {
   const [isVisible, setIsVisible] = useState(true);
-  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -71,7 +75,7 @@ export function HeroBanner() {
       if (now > target) {
         target.setDate(target.getDate() + 1);
       } else {
-        target.setDate(target.getDate() + 1); 
+        target.setDate(target.getDate() + 1);
       }
 
       const difference = target.getTime() - now.getTime();
@@ -100,7 +104,7 @@ export function HeroBanner() {
   if (!isVisible || !hasMounted) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 mozillaheadline">
       <div
         className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
         onClick={() => setIsVisible(false)}
@@ -115,51 +119,53 @@ export function HeroBanner() {
           <X className="w-5 h-5 group-hover:rotate-90 transition-transform" />
         </button>
 
-        <div className="relative w-full flex-1  sm:min-h-[500px]">
+        <div className="relative w-full flex-1 min-h-[300px] sm:min-h-[500px]">
           <Image
             src="/assets/flash-sale.jpeg"
             alt="Murang'a Seal Flash Sale"
             fill
-            className="object-contain"
+            className="object-contain sm:object-cover"
             priority
           />
         </div>
-
-        <div className="absolute top-0 left-0 right-0 pt-6 pb-6 px-6 z-20 flex flex-col items-center">
-            
+        <div className="absolute -top-2 md:top-0 left-0 right-0 pb-6 px-6 z-20 flex flex-col items-center">
           <div className="mb-2 flex items-center gap-2 text-white font-bold uppercase tracking-widest text-sm">
             <span>Offer Ends In</span>
           </div>
 
           <div className="flex items-center gap-4 text-white">
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 bg-white/10 backdrop-blur-md  flex items-center justify-center text-lg font-bold shadow-lg">
-                {String(timeLeft.hours).padStart(2, '0')}
+              <div className="w-8 h-8 bg-white/10 backdrop-blur-md  flex items-center justify-center text-sm md:text-lg font-bold shadow-lg">
+                {String(timeLeft.hours).padStart(2, "0")}
               </div>
-              <span className="text-xs text-gray-400 mt-1 font-medium">HRS</span>
-            </div>
-            
-            <span className="text-lg font-bold text-primary pb-4">:</span>
-
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 bg-white/10 backdrop-blur-md  flex items-center justify-center text-lg font-bold shadow-lg">
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </div>
-              <span className="text-xs text-gray-400 mt-1 font-medium">MIN</span>
+              <span className="text-xs text-gray-400 mt-1 font-medium">
+                HRS
+              </span>
             </div>
 
             <span className="text-lg font-bold text-primary pb-4">:</span>
 
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 bg-red-600/90 border border-red-500 flex items-center justify-center text-lg font-bold shadow-lg shadow-red-900/50">
-                {String(timeLeft.seconds).padStart(2, '0')}
+              <div className="w-8 h-8 bg-white/10 backdrop-blur-md  flex items-center justify-center text-sm md:text-lg font-bold shadow-lg">
+                {String(timeLeft.minutes).padStart(2, "0")}
+              </div>
+              <span className="text-xs text-gray-400 mt-1 font-medium">
+                MIN
+              </span>
+            </div>
+
+            <span className="text-lg font-bold text-primary pb-4">:</span>
+
+            <div className="flex flex-col items-center">
+              <div className="w-8 h-8 bg-red-600/90 border border-red-500 flex items-center justify-center text-sm md:text-lg font-bold shadow-lg shadow-red-900/50">
+                {String(timeLeft.seconds).padStart(2, "0")}
               </div>
               <span className="text-xs text-red-400 mt-1 font-medium">SEC</span>
             </div>
           </div>
-          
+
           {/* Optional CTA if you want it back later */}
-           {/* <Link href="/shop" className="mt-6 w-full">
+          {/* <Link href="/shop" className="mt-6 w-full">
             <button className="w-full py-3 bg-yellow-500 hover:bg-yellow-400 text-black font-bold uppercase tracking-wider rounded-lg shadow-lg transition-transform active:scale-95">
               Shop Now
             </button>

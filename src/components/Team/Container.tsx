@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Player {
   id: string;
@@ -59,7 +59,6 @@ function normalizePlayer(p: RawPlayer): Player {
 
 export default function Container({ data }: ContainerProps) {
   const playersArray = data || [];
-
   const transformed: Player[] = playersArray.map(normalizePlayer);
 
   const grouped = {
@@ -72,53 +71,61 @@ export default function Container({ data }: ContainerProps) {
   const PlayerCard = ({ player }: { player: Player }) => (
     <Link
       href={`/team/${player.firstName.toLowerCase()}-${player.lastName.toLowerCase()}`}
-      className="flex flex-col overflow-hidden bg-white border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:-translate-y-1 cursor-pointer group relative rounded-xl shadow-md hover:shadow-xl"
-      style={{ minHeight: "420px" }}
+      className="group relative flex flex-col bg-white rounded-xl shadow-md hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100"
     >
-      <div className="absolute top-4 right-4 z-20">
-        <div className="bg-white/95 backdrop-blur-sm rounded-full w-14 h-14 flex items-center justify-center shadow-xl border border-gray-200">
-          <span className="text-2xl font-black text-gray-900">{player.number}</span>
+      <div className="absolute top-3 right-3 z-20">
+        <div className="bg-white/90 backdrop-blur-sm rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-lg border border-gray-200">
+          <span className="text-lg md:text-xl font-black text-gray-900">{player.number}</span>
         </div>
       </div>
-
-      <div className="relative flex-1 overflow-hidden bg-linear-to-b from-gray-100 to-gray-200">
+      <div className="relative w-full aspect-[4/5] overflow-hidden bg-linear-to-b from-gray-100 to-gray-300">
         <CldImage
           width={800}
-          height={600}
+          height={1000}
           src={player.image}
           alt={`${player.firstName} ${player.lastName}`}
-          className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          quality="auto:good"
-          format="auto"
           crop="fill"
           gravity="face"
+          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality="auto:good"
+          format="auto"
           placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA..."
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-60" />
+        
+        <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
-      {/* Info */}
-      <div className="p-6 bg-transparent">
-        {player.captain && (
-          <div className="flex items-center gap-2 mb-2">
-            <svg className="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-            </svg>
-            <span className="text-xs font-bold text-yellow-600 uppercase tracking-wider">Captain</span>
-          </div>
-        )}
+      <div className="p-4 md:p-5 flex flex-col justify-end flex-1 bg-white relative z-10">
+        
+        <div className="flex flex-wrap items-center gap-2 mb-2 min-h-[24px]">
+  {player.captain && (
+    <Image 
+      src="/assets/captain-band.png" 
+      alt="Captain" 
+      width={80}   
+      height={40}  
+      className="h-6 w-auto object-contain" 
+    />
+  )}
+  
+  {player.loaned && player.loanFrom && (
+    <span className="text-[10px] md:text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full border border-gray-200 font-medium">
+      Loan
+    </span>
+  )}
+</div>
 
-        {player.loaned && player.loanFrom && (
-          <p className="text-xs text-gray-600 mb-2">On loan from {player.loanFrom}</p>
-        )}
-
-        <h3 className="text-2xl font-black text-gray-900 leading-tight">
+        <h3 className="text-xl md:text-2xl font-black text-gray-900 leading-none mb-1">
           {player.lastName}
         </h3>
-        <p className="text-lg text-gray-600">{player.firstName}</p>
-        <p className="mt-2 text-sm font-semibold text-gray-700 uppercase tracking-wider">
+        <p className="text-sm md:text-base text-gray-500 font-medium">{player.firstName}</p>
+      
+        <div className="w-8 h-1 bg-primary mt-3 mb-2 rounded-full" />
+        
+        <p className="text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest">
           {player.position}
         </p>
       </div>
@@ -129,14 +136,16 @@ export default function Container({ data }: ContainerProps) {
     if (players.length === 0) return null;
 
     return (
-      <section className="py-12">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 uppercase tracking-tight mb-4">
-            {title}
-          </h2>
-          <div className="w-24 h-1.5 bg-linear-to-r from-primary to-gray-900 mb-10" />
+      <section className="py-8 md:py-12 border-b border-gray-100 last:border-0">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="mb-6 md:mb-10">
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-tight mb-2">
+              {title}
+            </h2>
+            <div className="h-1.5 w-full max-w-[100px] bg-linear-to-r from-yellow-500 to-black rounded-full" />
+          </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {players.map((player) => (
               <PlayerCard key={player.id} player={player} />
             ))}
@@ -147,8 +156,8 @@ export default function Container({ data }: ContainerProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white mozillaheadline" id="mens-team">
-      <div className="bg-white -mt-10 pt-20">
+    <div className="min-h-screen bg-gray-50/50 mozillaheadline" id="mens-team">
+      <div className="pt-10 md:pt-20 pb-20">
         <PositionSection title="Goalkeepers" players={grouped.goalkeepers} />
         <PositionSection title="Defenders" players={grouped.defenders} />
         <PositionSection title="Midfielders" players={grouped.midfielders} />

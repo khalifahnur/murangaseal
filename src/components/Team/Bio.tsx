@@ -81,24 +81,24 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
             </div>
           </div>
 
-          <div className="md:mt-12 lg:mt-0 w-1/2 lg:absolute lg:bottom-0 lg:left-0 lg:right-0 bg-black/60 backdrop-blur-md border-t border-white/10">
+          <div className="md:mt-12 lg:mt-0 w-1/2  lg:absolute lg:bottom-0 lg:left-0 lg:right-0 bg-black/60 backdrop-blur-md border-t border-white/10">
             <div className="container mx-auto px-4 py-8">
               <div className="flex flex-wrap justify-center lg:justify-start gap-12 text-center lg:text-left">
                 {playerBio.age && (
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">Age</p>
-                    <p className="text-4xl font-black mt-1">{playerBio.age}</p>
+                    <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">Age</p>
+                    <p className="text-xs md:text-3xl font-black mt-1">{playerBio.age}</p>
                   </div>
                 )}
                 {playerBio.height && (
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">Height</p>
-                    <p className="text-4xl font-black mt-1">{playerBio.height} cm</p>
+                    <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">Height</p>
+                    <p className="text-xs md:text-3xl font-black mt-1">{playerBio.height} cm</p>
                   </div>
                 )}
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">Position</p>
-                  <p className="text-4xl font-black mt-1">{playerBio.position}</p>
+                  <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">Position</p>
+                  <p className="text-xs md:text-3xl font-black mt-1">{playerBio.position}</p>
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
 
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto bg-white text-gray-900 rounded-2xl shadow-2xl p-8 lg:p-12">
-          <h2 className="text-4xl font-bold mb-8 border-b-4 border-gray-600 pb-4 inline-block">
+          <h2 className="text-xl font-bold mb-8 border-b-4 border-gray-600 pb-4 inline-block">
             Player Profile
           </h2>
 
@@ -140,7 +140,7 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
 
             {playerBio.funFacts && playerBio.funFacts.length > 0 && (
               <div className="mt-12">
-                <h3 className="text-3xl font-bold mb-6 text-gray-700">Fun Facts</h3>
+                <h3 className="text-xl font-bold mb-6 text-gray-700">Fun Facts</h3>
                 <ul className="space-y-4">
                   {playerBio.funFacts.map((fact, i) => (
                     <li key={i} className="flex items-start gap-4">

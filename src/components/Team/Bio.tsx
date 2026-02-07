@@ -57,8 +57,7 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
                     src={playerBio.mugshot}
                     alt={`${playerBio.firstName || ""} ${playerBio.lastName || playerBio.name}`}
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-          
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     quality="auto:best"
                     format="auto"
                     crop="fill"
@@ -88,40 +87,51 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
               <div className="flex flex-wrap justify-center lg:justify-start gap-12 text-center lg:text-left">
                 {playerBio.age && (
                   <div>
-                    <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">Age</p>
-                    <p className="text-xs md:text-3xl font-black mt-1">{playerBio.age}</p>
+                    <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">
+                      Age
+                    </p>
+                    <p className="text-xs md:text-3xl font-black mt-1">
+                      {playerBio.age}
+                    </p>
                   </div>
                 )}
                 {playerBio.height && (
                   <div>
-                    <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">Height</p>
-                    <p className="text-xs md:text-3xl font-black mt-1">{playerBio.height} cm</p>
+                    <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">
+                      Height
+                    </p>
+                    <p className="text-xs md:text-3xl font-black mt-1">
+                      {playerBio.height} cm
+                    </p>
                   </div>
                 )}
                 <div>
-                  <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">Position</p>
-                  <p className="text-xs md:text-3xl font-black mt-1">{playerBio.position}</p>
+                  <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">
+                    Position
+                  </p>
+                  <p className="text-xs md:text-3xl font-black mt-1">
+                    {playerBio.position}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
           <div className="flex items-center gap-2 mb-2 min-h-[100px]">
-
-          {playerBio.captain && (
-            <Image 
-                  src="/assets/captain-band.png" 
-                  alt="Captain" 
-                  width={200}   
-                  height={100}  
-                  className="h-20 w-auto object-contain" 
-                />
-          )}
-          {playerBio.loaned && (
-            <div className="absolute top-8 right-8 bg-blue-600 text-white px-5 py-3 rounded-full font-bold text-sm shadow-lg z-10">
-              On Loan from {playerBio.loanFrom}
-            </div>
-          )}
-        </div>
+            {playerBio.captain && (
+              <Image
+                src="/assets/captain-band.png"
+                alt="Captain"
+                width={200}
+                height={100}
+                className="h-20 w-auto object-contain"
+              />
+            )}
+            {playerBio.loaned && (
+              <div className="absolute top-8 right-8 bg-blue-600 text-white px-5 py-3 rounded-full font-bold text-sm shadow-lg z-10">
+                On Loan from {playerBio.loanFrom}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -148,12 +158,16 @@ export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
 
             {playerBio.funFacts && playerBio.funFacts.length > 0 && (
               <div className="mt-12">
-                <h3 className="text-xl font-bold mb-6 text-gray-700">Fun Facts</h3>
+                <h3 className="text-xl font-bold mb-6 text-gray-700">
+                  Fun Facts
+                </h3>
                 <ul className="space-y-4">
                   {playerBio.funFacts.map((fact, i) => (
                     <li key={i} className="flex items-start gap-4">
                       <Star />
-                      <span className="flex-1 leading-relaxed">{fact.fact}</span>
+                      <span className="flex-1 leading-relaxed">
+                        {fact.fact}
+                      </span>
                     </li>
                   ))}
                 </ul>

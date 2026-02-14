@@ -4,7 +4,7 @@ import { Calendar, Award, TrendingUp, Users } from 'lucide-react';
 export default function HistorySection() {
   const milestones = [
     { 
-      year: '2014', 
+      year: '2016', 
       title: 'Foundation Year', 
       description: 'Muranga Seal FC was established with a vision to promote football excellence in Muranga County. A group of passionate football enthusiasts came together to create something special for the community.',
       image: '🏛️',
@@ -52,8 +52,8 @@ export default function HistorySection() {
       <div className="bg-gray-900 text-white py-3 border-b-4">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Calendar className="w-5 h-5" />
-            <span className="text-sm font-serif">Est. 2014</span>
+            
+            <span className="text-sm font-serif">Est. 2016</span>
           </div>
           <div className="text-center">
             <div className="font-serif text-xs uppercase tracking-widest text-primary">Special Edition</div>
@@ -76,7 +76,7 @@ export default function HistorySection() {
             <span className="w-2 h-2 bg-slate-400 rounded-full"></span>
             <span>A Decade of Excellence</span>
             <span className="w-2 h-2 bg-slate-400 rounded-full"></span>
-            <span>2014 - </span>
+            <span>2016 - </span>
           </div>
         </div>
       </div>
@@ -84,7 +84,6 @@ export default function HistorySection() {
       <div className="bg-gray-900 text-white py-4 border-y-2">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3">
-            <Award className="w-6 h-6 text-primary" />
             <h2 className="font-serif text-2xl md:text-3xl font-bold uppercase tracking-wide">
               Our Journey Through Time
             </h2>
@@ -99,10 +98,9 @@ export default function HistorySection() {
               <p className="text-xl md:text-2xl font-serif leading-relaxed text-gray-900 first-letter:text-7xl first-letter:font-bold first-letter:text-primary first-letter:float-left first-letter:mr-3 first-letter:leading-none first-letter:mt-1">
                 From humble beginnings in Muranga County to becoming one of Kenya&apos;s most respected football institutions, 
                 Muranga Seal FC (Mseal) has written a remarkable story of perseverance, excellence, and community spirit. 
-                What started as a dream in 2014 has blossomed into a movement that inspires thousands across the nation.
+                What started as a dream in 2016 has blossomed into a movement that inspires thousands across the nation.
               </p>
               <div className="mt-6 pt-6 border-t-2 border-amber-200 flex items-center gap-4 text-sm text-gray-600 font-serif italic">
-                <Users className="w-5 h-5" />
                 <span>A story of dedication, unity, and unwavering commitment to excellence</span>
               </div>
             </div>
@@ -185,14 +183,14 @@ export default function HistorySection() {
       <div className="bg-gray-900 text-white py-8 border-t-4 border-primary">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="font-serif text-sm text-slate-400 mb-2">
-            © 2014 Muranga Seal Football Club
+            © 2016 Muranga Seal Football Club
           </div>
           <div className="flex items-center justify-center gap-4 text-xs text-slate-500 font-serif">
             <span>Muranga County</span>
             <span>•</span>
             <span>Kenya</span>
             <span>•</span>
-            <span>Est. 2014</span>
+            <span>Est. 2016</span>
           </div>
         </div>
       </div>

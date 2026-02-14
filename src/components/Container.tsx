@@ -5,12 +5,9 @@ import { Footer } from './Home/Footer';
 import PartnershipSection from './Home/PartnershipSection';
 import MembershipBanner from './Home/MembershipBanner';
 import StoreSection from './Home/StoreSection';
-//import LatestNews from './News/LatestNews';
 import MatchContainer from './Match/MatchContainer';
 import HightlightsContainer from './Highlights/HighlightsContainer';
-//import MerchandiseBanner from './Shop/Banner';
-// import VoteMatchBanner from './Potm/Banner';
-//import { HeroBanner } from './Banner';
+import AnniversaryBanner from './Banner/AnniversaryBanner';
 
 export default function Container() {
 
@@ -18,20 +15,15 @@ export default function Container() {
   return (
     <>
         <Header />
-        {/* <MerchandiseBanner /> */}
-        {/* <VoteMatchBanner /> */}
-        
         <main className="relative">
-          {/* <HeroBanner /> */}
+          <AnniversaryBanner variant='strip'/>
           <HeroSection />
-          {/* <LatestNews /> */}
           <HightlightsContainer />
           <MatchContainer />
           
           <StoreSection /> 
           <MembershipBanner />
           <PartnershipSection />
-          
         </main>
         <Footer />
     </>

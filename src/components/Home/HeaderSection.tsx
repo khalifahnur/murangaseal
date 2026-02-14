@@ -25,8 +25,14 @@ const upperLinks = [
 ];
 
 const bottomLinks = [
-  { id: 1, txt: "NEWS", link: "/", sectionId: "latest" },
-  { id: 2, txt: "FIXTURES & RESULTS", link: "/", sectionId: "match" },
+  { id: 1, txt: "NEWS", link: "/", sectionId: "latest", hasSubMenu: true },
+  {
+    id: 2,
+    txt: "FIXTURES & RESULTS",
+    link: "/",
+    sectionId: "match",
+    hasSubMenu: true,
+  },
   {
     id: 3,
     txt: "SQUAD",
@@ -34,56 +40,64 @@ const bottomLinks = [
     sectionId: null,
     hasMegaMenu: true,
   },
-  { id: 4, txt: "SHOP", link: "/", sectionId: "shop" },
-  { id: 5, txt: "CLUB", link: "/club", sectionId: null },
+  { id: 4, txt: "SHOP", link: "/", sectionId: "shop", hasSubMenu: true },
+  { id: 5, txt: "CLUB", link: "/club", sectionId: null, hasSubMenu: true },
 ];
+
+const socialLinks = [
+  { icon: "X", link: "#" }, // Placeholder for X (Twitter) icon
+  { icon: "IG", link: "#" }, // Placeholder for Instagram icon
+  { icon: "YT", link: "#" }, // Placeholder for YouTube icon
+  { icon: "FB", link: "#" }, // Placeholder for Facebook icon
+  { icon: "TT", link: "#" }, // Placeholder for TikTok icon
+  { icon: "SC", link: "#" }, // Placeholder for Snapchat icon
+  { icon: "LI", link: "#" }, // Placeholder for LinkedIn icon
+  { icon: "WA", link: "#" }, // Placeholder for WhatsApp icon
+];
+
+// 2. Main Navigation Data
+// Added 'hasSubMenu' to render the chevron arrow '>' like in the image
+// const bottomLinks = [
+//   { id: 1, txt: "LATEST NEWS", link: "/", sectionId: "latest", hasSubMenu: true },
+//   { id: 2, txt: "TICKETS", link: "/", sectionId: "tickets", hasSubMenu: true },
+//   { id: 3, txt: "MATCHES", link: "/", sectionId: "match", hasSubMenu: true },
+//   { id: 4, txt: "WEST HAM TV", link: "/", sectionId: "tv", hasSubMenu: true },
+//   {
+//     id: 5,
+//     txt: "TEAMS",
+//     link: "/team",
+//     sectionId: null,
+//     hasMegaMenu: true // This triggers the accordion
+//   },
+//   { id: 6, txt: "UP TO 40% OFF KIT", link: "/", sectionId: "shop", highlight: true },
+//   { id: 7, txt: "HOSPITALITY", link: "/club", sectionId: null, hasSubMenu: true },
+//   { id: 8, txt: "THE CLUB", link: "/club", sectionId: null, hasSubMenu: true },
+//   { id: 9, txt: "FANS", link: "/fans", sectionId: null, hasSubMenu: true },
+// ];
 
 const mensTeamMegaMenu = {
   columns: [
     {
-      title: "Mens",
+      title: "Teams",
       items: [
         { name: "Men's First Team", link: "/team" },
+        { name: "Women's First Team", link: "/#" },
         { name: "Youth", link: "/#" },
       ],
     },
-
     {
-      title: "Women's Football",
-      items: [
-        { name: "Women's First Team", link: "/#" },
-        // {
-        //   name: "Women's Team Coaching Staff",
-        //   link: "/team/womens-coaching-staff",
-        // },
-      ],
-    },
-        {
-      title: "Coaching Staff",
-      items: [
-        { name: "Men's Coaching Staff", link: "/team/technical-team" },
-        // {
-        //   name: "Academy Coaching Staff",
-        //   link: "/#",
-        // },
-      ],
+      title: "Staff",
+      items: [{ name: "Men's Coaching Staff", link: "/team/technical-team" }],
     },
   ],
-  // featuredPlayers: [
-  //   {
-  //     name: "Wachira",
-  //     position: "MF",
-  //     image: "/assets/players/soucek.jpg",
-  //     link: "/#",
-  //   },
-  //   {
-  //     name: "Michael",
-  //     position: "FW",
-  //     captain: true,
-  //     image: "/assets/players/bowen.jpg",
-  //     link: "/#",
-  //   },
-  // ],
+  promo: {
+    title: "Mseal Membership",
+    image: "/assets/MsealCard.png",
+    link: "https://murangaseal.co.ke",
+    priceText:
+      "Why Join?\n Become part of the Seal family. Direct support to the team and exclusive community access.",
+    footerText: "Join Now",
+  },
 };
 
 export default function Header() {
@@ -108,7 +122,7 @@ export default function Header() {
 
   const debounce = <T extends unknown[]>(
     func: (...args: T) => void,
-    wait: number
+    wait: number,
   ) => {
     let timeout: NodeJS.Timeout;
     return (...args: T) => {
@@ -239,7 +253,7 @@ export default function Header() {
 
   const handleDesktopLinkClick = (
     e: React.MouseEvent,
-    link: (typeof bottomLinks)[0]
+    link: (typeof bottomLinks)[0],
   ) => {
     e.preventDefault();
 
@@ -258,7 +272,6 @@ export default function Header() {
 
   return (
     <>
-    
       <header className="w-full sticky top-0 z-50 mozillaheadline">
         <div
           className="bg-linear-to-b from-[#0a0c1b] to-black text-white border-t-8 border-primary transition-all duration-500 ease-in-out transform ${
@@ -378,26 +391,33 @@ export default function Header() {
 
       {isMegaMenuOpen && (
         <div
-          className="fixed left-0 right-0 bg-white shadow-2xl border-t-4 border-primary z-40 mozillaheadline"
+          className="fixed left-0 right-0 bg- z-40 mozillaheadline bg-neutral-50"
           style={{ top: isUpperNavVisible ? "128px" : "80px" }}
           onMouseEnter={handleMegaMenuEnter}
           onMouseLeave={handleMegaMenuLeave}
         >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-12 gap-8">
-              <div className="col-span-8 grid grid-cols-3 gap-8">
+          <div className="h-1 bg-primary w-full shadow-md"></div>
+          <div
+            className="absolute inset-0 opacity-5 pointer-events-none"
+            style={{
+              backgroundImage: `url('/assets/bg.jpg')`,
+              backgroundSize: "cover",
+              backgroundRepeat: "repeat",
+            }}
+          />
+
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+              <div className="col-span-1 md:col-span-4 flex flex-col space-y-6">
                 {mensTeamMegaMenu.columns.map((column, index) => (
                   <div key={index}>
-                    <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-4">
-                      {column.title}
-                    </h3>
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                       {column.items.map((menuItem, itemIndex) => (
                         <li key={itemIndex}>
                           <Link
                             href={menuItem.link}
-                            className="text-gray-700 hover:text-primary transition-colors duration-200 text-sm font-medium block py-1"
                             onClick={() => setIsMegaMenuOpen(false)}
+                            className="text-gray-950 hover:text-primary/20 text-base font-medium block transition-all duration-200 hover:translate-x-1"
                           >
                             {menuItem.name}
                           </Link>
@@ -408,71 +428,69 @@ export default function Header() {
                 ))}
               </div>
 
-              {/* <div className="col-span-4 border-l border-gray-200 pl-8">
-                <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-4">
-                  Featured Players
-                </h3>
-                <div className="space-y-4">
-                  {mensTeamMegaMenu.featuredPlayers.map((player, index) => (
-                    <Link
-                      key={index}
-                      href={player.link}
-                      className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
-                      onClick={() => setIsMegaMenuOpen(false)}
-                    >
-                      <div className="w-12 h-12 bg-linear-to-br from-primary to-gray-900 rounded-full flex items-center justify-center text-white font-bold text-xs">
-                        {player.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
+              {mensTeamMegaMenu.promo && (
+                <div className="col-span-1 md:col-span-8 flex justify-end">
+                  <Link
+                    href={mensTeamMegaMenu.promo.link}
+                    className="group block relative w-full max-w-2xl"
+                    onClick={() => setIsMegaMenuOpen(false)}
+                  >
+                    <div className="relative overflow-hidden rounded-md  h-[400px]">
+                      <Image
+                        src={mensTeamMegaMenu.promo.image}
+                        alt="Murang'a Seals Membership Card"
+                        width={600}
+                        height={500}
+                        className="object-fill rounded-2xl"
+                        priority
+                      />
+
+                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent"></div>
+
+                      <div className="absolute bottom-6 left-6 text-white">
+                        <pre className=" text-sm  leading-none uppercase">
+                          {mensTeamMegaMenu.promo.priceText}
+                        </pre>
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                          <span className="font-bold text-gray-900 text-sm group-hover:text-primary transition-colors">
-                            {player.name}
-                          </span>
-                          {player.captain && (
-                            <span className="bg-yellow-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">
-                              Captain
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-gray-600 text-xs">
-                          {player.position}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
+                    </div>
+
+                    <div className="mt-3">
+                      <p className="text-gray-950 text-lg font-bold group-hover:underline decoration-[#d4af37] underline-offset-4">
+                        {mensTeamMegaMenu.promo.footerText}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
-              </div> */}
+              )}
             </div>
           </div>
         </div>
       )}
 
       <div
-        className={`lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 z-40 ${
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-        onClick={() => setIsMobileMenuOpen(false)}
-      />
-
-      <div
-        className={`lg:hidden fixed top-0 right-0 w-80 max-w-[85vw] h-screen bg-white shadow-2xl transition-transform duration-500 ease-in-out z-50 ${
+        className={`lg:hidden fixed inset-0 z-50 transform transition-transform duration-300 ease-in-out bg-gray-950 overflow-hidden mozillaheadline ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-end p-4 border-b border-gray-200">
+        <div className="flex flex-col h-full overflow-y-auto">
+          <div className="flex items-center justify-between p-6">
+            <div className="w-22 h-22 relative">
+              <Image
+                src="/assets/mseal-logo.png"
+                alt="Logo"
+                width={100}
+                height={100}
+                className="object-contain"
+              />
+            </div>
+
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+              className="text-white hover:text-gray-300 transition-colors"
               aria-label="Close menu"
             >
               <svg
-                className="w-5 h-5 text-black"
+                className="w-8 h-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -487,37 +505,48 @@ export default function Header() {
             </button>
           </div>
 
-          <nav className="flex-1 p-4 space-y-3 overflow-y-auto">
+          <nav className="flex-1 px-6 py-4 space-y-4">
             {bottomLinks.map((item) => (
               <div key={item.id}>
                 {item.hasMegaMenu ? (
-                  <div className="space-y-2">
-                    <button
-                      onClick={() => handleLinkClick(item.sectionId, item.link)}
-                      className={`block text-base font-bold w-full text-left py-2 px-3 rounded-lg hover:bg-gray-100 transition-all duration-300 border-l-4 ${
-                        isHomePage && activeSection === item.sectionId
-                          ? "border-primary text-primary"
-                          : "border-transparent text-black hover:border-primary"
-                      } hover:pl-5`}
-                    >
-                      {item.txt}
+                  <div className="group">
+                    <button className="flex items-center justify-between w-full text-left py-1 group">
+                      <span className="text-2xl font-extrabold text-white uppercase tracking-tight leading-none">
+                        {item.txt}
+                      </span>
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </button>
-                    <div className="ml-4 space-y-2 border-l-2 border-gray-200 pl-4">
-                      {mensTeamMegaMenu.columns.map((column, index) => (
+                    <div className="mt-4 ml-2 pl-4 border-l-2 border-white/20 space-y-4">
+                      {mensTeamMegaMenu?.columns.map((column, index) => (
                         <div key={index}>
-                          <h4 className="font-semibold text-gray-700 text-sm mt-3 mb-2">
+                          <h4 className="font-bold text-white/60 text-sm uppercase tracking-wider mb-2">
                             {column.title}
                           </h4>
-                          {column.items.map((menuItem, itemIndex) => (
-                            <Link
-                              key={itemIndex}
-                              href={menuItem.link}
-                              className="block text-sm text-gray-600 py-1 px-3 rounded hover:bg-gray-100 hover:text-primary transition-colors"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              {menuItem.name}
-                            </Link>
-                          ))}
+                          <ul className="space-y-2">
+                            {column.items.map((menuItem, itemIndex) => (
+                              <li key={itemIndex}>
+                                <Link
+                                  href={menuItem.link}
+                                  className="block text-xl font-bold text-white hover:text-[#d4af37] transition-colors"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  {menuItem.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       ))}
                     </div>
@@ -525,41 +554,120 @@ export default function Header() {
                 ) : (
                   <button
                     onClick={() => handleLinkClick(item.sectionId, item.link)}
-                    className={`block text-base font-bold w-full text-left py-2 px-3 rounded-lg hover:bg-gray-100 transition-all duration-300 border-l-4 ${
-                      isHomePage && activeSection === item.sectionId
-                        ? "border-primary bg-blue-50 text-primary"
-                        : "border-transparent text-black hover:border-primary"
-                    } hover:pl-5`}
+                    className="flex items-center justify-between w-full text-left py-1 group"
                   >
-                    {item.txt}
+                    <span className="text-4xl font-extrabold uppercase tracking-tight leading-none text-white">
+                      {item.txt}
+                    </span>
+                    {(item.hasSubMenu || item.sectionId === null) && (
+                      <svg
+                        className="w-5 h-5 text-white/70"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={3}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    )}
                   </button>
                 )}
               </div>
             ))}
           </nav>
 
-          <div className="p-4 border-t border-gray-200">
-            <div className="flex items-center gap-2">
-              <div>
-                <Image
+          <div className="mt-auto px-6 py-8 relative">
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-linear-to-tl from-black/20 to-transparent pointer-events-none"></div>
+
+            <p className="text-xs font-bold text-white uppercase mb-4 text-center tracking-widest">
+              Follow Muranga Seal Football Club
+            </p>
+
+            <div className="flex space-x-4 items-center justify-center">
+              {[
+                {
+                  icon: "https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000",
+                  label: "Facebook",
+                  href: "https://www.facebook.com/murangaseal",
+                  color: "hover:bg-blue-600",
+                },
+                {
+                  icon: "https://img.icons8.com/?size=100&id=118638&format=png&color=000000",
+                  label: "TikTok",
+                  href: "https://www.tiktok.com/@murangaseal?_t=ZM-8zTSB0E1Axk&_r=1",
+                  color: "hover:bg-white",
+                },
+                {
+                  icon: "https://img.icons8.com/?size=100&id=32323&format=png&color=000000",
+                  label: "Instagram",
+                  href: "https://www.instagram.com/murangaseal/",
+                  color: "hover:bg-pink-600",
+                },
+                {
+                  icon: "https://img.icons8.com/?size=100&id=19318&format=png&color=000000",
+                  label: "YouTube",
+                  href: "https://www.youtube.com/@Murangaseal",
+                  color: "hover:bg-red-600",
+                },
+                {
+                  icon: "https://img.icons8.com/?size=100&id=wCo0O5X01IHO&format=png&color=000000",
+                  label: "X",
+                  href: "https://x.com/murangaseal",
+                  color: "hover:bg-white",
+                },
+              ].map((social, index) => {
+                return (
+                  <a
+                    key={index}
+                    href={social.href}
+                    aria-label={social.label}
+                    className={`flex items-center justify-center w-10 h-10 rounded-full bg-white ${social.color} transition-colors duration-300`}
+                    //whileHover={{ scale: 1.1 }}
+                    //whileTap={{ scale: 0.95 }}
+                    target="_blank"
+                  >
+                    <Image
+                      src={social.icon}
+                      alt={social.label}
+                      width={30}
+                      height={30}
+                    />
+                  </a>
+                );
+              })}
+            </div>
+
+            <div className="flex justify-center mt-8 opacity-80">
+              {/* <Image
                   src="/assets/sp-logo.jpg"
-                  width={80}
-                  height={80}
+                  width={60}
+                  height={60}
                   alt="sp Logo"
-                  className="h-8 w-auto transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-black">
-                  In partnership with
-                </p>
-                <p className="text-xs text-gray-600">Official Partner</p>
+                  className="h-6 w-auto grayscale invert brightness-200"
+                /> */}
+
+              <div className="flex items-center gap-2">
+                <div>
+                  <p className="text-xs text-white">Official Partner</p>
+                </div>
+                <div>
+                  <Image
+                    src="/assets/sp-logo.jpg"
+                    width={80}
+                    height={80}
+                    alt="sp Logo"
+                    className="h-8 w-auto transition-transform duration-300 hover:scale-105 grayscale invert brightness-200"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <MembershipBanner /> */}
     </>
   );
 }

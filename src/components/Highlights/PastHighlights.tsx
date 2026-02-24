@@ -167,7 +167,6 @@ export default function PastHighlights({ item, isHovered }: NewsCardProps) {
 
   const videoId = getYouTubeId(item.youtubeUrl);
 
-  // Function to toggle modal and handle body scroll
   const toggleModal = (state: boolean) => {
     setIsModalOpen(state);
     if (typeof window !== "undefined") {
@@ -196,8 +195,8 @@ export default function PastHighlights({ item, isHovered }: NewsCardProps) {
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-black/50 backdrop-blur-sm rounded-full p-2 border border-white/20 shadow-xl group-hover:scale-110 transition-transform">
-                  <Play size={16} fill="white" className="text-white ml-0.5" />
+                <div className="bg-primary backdrop-blur-sm rounded-full p-2 border border-white/20 shadow-xl group-hover:scale-110 transition-transform">
+                  <Play size={16} fill="white" className="text-gray-900 ml-0.5" />
                 </div>
               </div>
 

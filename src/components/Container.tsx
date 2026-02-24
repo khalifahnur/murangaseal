@@ -19,8 +19,7 @@ export default function Container() {
           <AnniversaryBanner variant='strip'/>
           <HeroSection />
           <HightlightsContainer />
-          <MatchContainer />
-          
+          <MatchContainer />  
           <StoreSection /> 
           <MembershipBanner />
           <PartnershipSection />

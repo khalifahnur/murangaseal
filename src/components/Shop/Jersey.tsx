@@ -223,7 +223,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   },
   "kids-home-jersey": {
     id: "kids-home-jersey",
-    name: "25/26 Home Shirt ",
+    name: "kids 25/26 Home Shirt ",
     price: 1500,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",

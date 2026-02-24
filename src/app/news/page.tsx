@@ -1,8 +1,5 @@
-import React from "react";
 import { getPayloadClient } from "@/lib/payloadClient";
 import AllNews from "@/components/News/AllNews";
-import { getPayload } from "payload";
-import config from "@payload-config";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

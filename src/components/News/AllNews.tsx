@@ -47,7 +47,7 @@ export default function AllNews({ news }: any) {
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-gray-200 pb-6">
             <div>
-              <h2 className="text-4xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter leading-none">
+              <h2 className="text-lg md:text-2xl font-black text-gray-900 uppercase tracking-tighter leading-none">
                 All <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-gray-600">News</span>
               </h2>
             </div>

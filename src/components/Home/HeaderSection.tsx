@@ -44,37 +44,6 @@ const bottomLinks = [
   { id: 5, txt: "CLUB", link: "/club", sectionId: null, hasSubMenu: true },
 ];
 
-const socialLinks = [
-  { icon: "X", link: "#" }, // Placeholder for X (Twitter) icon
-  { icon: "IG", link: "#" }, // Placeholder for Instagram icon
-  { icon: "YT", link: "#" }, // Placeholder for YouTube icon
-  { icon: "FB", link: "#" }, // Placeholder for Facebook icon
-  { icon: "TT", link: "#" }, // Placeholder for TikTok icon
-  { icon: "SC", link: "#" }, // Placeholder for Snapchat icon
-  { icon: "LI", link: "#" }, // Placeholder for LinkedIn icon
-  { icon: "WA", link: "#" }, // Placeholder for WhatsApp icon
-];
-
-// 2. Main Navigation Data
-// Added 'hasSubMenu' to render the chevron arrow '>' like in the image
-// const bottomLinks = [
-//   { id: 1, txt: "LATEST NEWS", link: "/", sectionId: "latest", hasSubMenu: true },
-//   { id: 2, txt: "TICKETS", link: "/", sectionId: "tickets", hasSubMenu: true },
-//   { id: 3, txt: "MATCHES", link: "/", sectionId: "match", hasSubMenu: true },
-//   { id: 4, txt: "WEST HAM TV", link: "/", sectionId: "tv", hasSubMenu: true },
-//   {
-//     id: 5,
-//     txt: "TEAMS",
-//     link: "/team",
-//     sectionId: null,
-//     hasMegaMenu: true // This triggers the accordion
-//   },
-//   { id: 6, txt: "UP TO 40% OFF KIT", link: "/", sectionId: "shop", highlight: true },
-//   { id: 7, txt: "HOSPITALITY", link: "/club", sectionId: null, hasSubMenu: true },
-//   { id: 8, txt: "THE CLUB", link: "/club", sectionId: null, hasSubMenu: true },
-//   { id: 9, txt: "FANS", link: "/fans", sectionId: null, hasSubMenu: true },
-// ];
-
 const mensTeamMegaMenu = {
   columns: [
     {
@@ -511,7 +480,7 @@ export default function Header() {
                 {item.hasMegaMenu ? (
                   <div className="group">
                     <button className="flex items-center justify-between w-full text-left py-1 group">
-                      <span className="text-2xl font-extrabold text-white uppercase tracking-tight leading-none">
+                      <span className="text-xl font-extrabold text-white uppercase tracking-tight leading-none">
                         {item.txt}
                       </span>
                       <svg

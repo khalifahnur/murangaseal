@@ -71,7 +71,7 @@ export function Footer() {
                 className="mb-2"
               />
               <p className="text-gray-400 mb-4">
-                The Pride of Muranga - Established 2018. We are more than a football club; we are a community united by
+                The Pride of Muranga - Established 2016. We are more than a football club; we are a community united by
                 passion.
               </p>
             </div>

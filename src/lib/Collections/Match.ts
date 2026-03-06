@@ -20,6 +20,7 @@ const teamLogoUrl = [
   { team: "Muranga Seal", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910321/muranga-seal_trzy7m.png" },
   { team: "APS Bomet", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910299/OIP-1_qngv38.jpg" },
   { team: "Kahawa Pride", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1770226169/kahawa_pride_shjgdl.png" },
+  {team:"FC Dynamo", logoUrl:"https://res.cloudinary.com/dtb4hsasc/image/upload/v1772793178/uftm00053-removebg-preview_evwj8q.png"}
 ]
 
 export const Matches: CollectionConfig = {

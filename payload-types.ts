@@ -191,7 +191,8 @@ export interface Match {
     | 'KCB Fc'
     | 'Muranga Seal'
     | 'APS Bomet'
-    | 'Kahawa Pride';
+    | 'Kahawa Pride'
+    | 'FC Dynamo';
   awayTeam:
     | 'Ulinzi Star'
     | 'Shabana Fc'
@@ -211,7 +212,8 @@ export interface Match {
     | 'KCB Fc'
     | 'Muranga Seal'
     | 'APS Bomet'
-    | 'Kahawa Pride';
+    | 'Kahawa Pride'
+    | 'FC Dynamo';
   /**
    * Select opponent team logo
    */
@@ -236,6 +238,7 @@ export interface Match {
         | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910321/muranga-seal_trzy7m.png'
         | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910299/OIP-1_qngv38.jpg'
         | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1770226169/kahawa_pride_shjgdl.png'
+        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1772793178/uftm00053-removebg-preview_evwj8q.png'
       )
     | null;
   venue: string;

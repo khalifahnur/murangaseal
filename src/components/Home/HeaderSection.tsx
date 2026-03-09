@@ -480,7 +480,7 @@ export default function Header() {
                 {item.hasMegaMenu ? (
                   <div className="group">
                     <button className="flex items-center justify-between w-full text-left py-1 group">
-                      <span className="text-xl font-extrabold text-white uppercase tracking-tight leading-none">
+                      <span className="text-sm md:text-xl font-extrabold text-white uppercase tracking-tight leading-none">
                         {item.txt}
                       </span>
                       <svg

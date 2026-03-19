@@ -7,7 +7,7 @@ import MembershipBanner from './Home/MembershipBanner';
 import StoreSection from './Home/StoreSection';
 import MatchContainer from './Match/MatchContainer';
 import HightlightsContainer from './Highlights/HighlightsContainer';
-import AnniversaryBanner from './Banner/AnniversaryBanner';
+// import AnniversaryBanner from './Banner/AnniversaryBanner';
 
 export default function Container() {
 
@@ -16,7 +16,7 @@ export default function Container() {
     <>
         <Header />
         <main className="relative">
-          <AnniversaryBanner variant='strip'/>
+          {/* <AnniversaryBanner variant='strip'/> */}
           <HeroSection />
           <HightlightsContainer />
           <MatchContainer />  

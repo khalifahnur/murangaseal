@@ -74,6 +74,7 @@ export interface Config {
     'potm-votes': PotmVote;
     'player-of-the-month': PlayerOfTheMonth;
     technical: Technical;
+    women: Woman;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -89,6 +90,7 @@ export interface Config {
     'potm-votes': PotmVotesSelect<false> | PotmVotesSelect<true>;
     'player-of-the-month': PlayerOfTheMonthSelect<false> | PlayerOfTheMonthSelect<true>;
     technical: TechnicalSelect<false> | TechnicalSelect<true>;
+    women: WomenSelect<false> | WomenSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -427,6 +429,45 @@ export interface Technical {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "women".
+ */
+export interface Woman {
+  id: string;
+  slug: string;
+  jerseyNumber: string;
+  name: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  /**
+   * Used to group players on the team page
+   */
+  positionGroup: 'goalkeepers' | 'defenders' | 'midfielders' | 'forwards';
+  position: string;
+  /**
+   * Paste Cloudinary image URL
+   */
+  mugshot: string;
+  nickname?: string | null;
+  height?: number | null;
+  previousClub?: string | null;
+  roleModel?: string | null;
+  /**
+   * Add fun trivia about the player
+   */
+  funFacts?:
+    | {
+        fact: string;
+        id?: string | null;
+      }[]
+    | null;
+  captain?: boolean | null;
+  loaned?: boolean | null;
+  loanFrom?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -476,6 +517,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'technical';
         value: string | Technical;
+      } | null)
+    | ({
+        relationTo: 'women';
+        value: string | Woman;
       } | null)
     | ({
         relationTo: 'users';
@@ -652,6 +697,35 @@ export interface TechnicalSelect<T extends boolean = true> {
         fact?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "women_select".
+ */
+export interface WomenSelect<T extends boolean = true> {
+  slug?: T;
+  jerseyNumber?: T;
+  name?: T;
+  firstName?: T;
+  lastName?: T;
+  positionGroup?: T;
+  position?: T;
+  mugshot?: T;
+  nickname?: T;
+  height?: T;
+  previousClub?: T;
+  roleModel?: T;
+  funFacts?:
+    | T
+    | {
+        fact?: T;
+        id?: T;
+      };
+  captain?: T;
+  loaned?: T;
+  loanFrom?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -50,7 +50,7 @@ const mensTeamMegaMenu = {
       title: "Teams",
       items: [
         { name: "Men's First Team", link: "/team" },
-        { name: "Women's First Team", link: "/#" },
+        { name: "Women's First Team", link: "/team/women" },
         { name: "Youth", link: "/#" },
       ],
     },

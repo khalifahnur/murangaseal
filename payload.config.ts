@@ -9,6 +9,7 @@ import { POTMVotes } from "@/lib/Collections/PotmVotes";
 import { PlayerOfTheMonth } from "@/lib/Collections/Potm";
 import { TechnicalCoach } from "@/lib/Collections/Technical";
 import { Women } from "@/lib/Collections/Women";
+import { WomenFixtures } from "@/lib/Collections/WomenFIxture";
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -94,7 +95,8 @@ export default buildConfig({
     POTMVotes,
     PlayerOfTheMonth,
     TechnicalCoach,
-    Women
+    Women,
+    WomenFixtures
   ],
 
   secret: process.env.PAYLOAD_SECRET || "",

@@ -75,6 +75,7 @@ export interface Config {
     'player-of-the-month': PlayerOfTheMonth;
     technical: Technical;
     women: Woman;
+    wsl: Wsl;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -91,6 +92,7 @@ export interface Config {
     'player-of-the-month': PlayerOfTheMonthSelect<false> | PlayerOfTheMonthSelect<true>;
     technical: TechnicalSelect<false> | TechnicalSelect<true>;
     women: WomenSelect<false> | WomenSelect<true>;
+    wsl: WslSelect<false> | WslSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -468,6 +470,62 @@ export interface Woman {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wsl".
+ */
+export interface Wsl {
+  id: string;
+  /**
+   * Auto-generated match title
+   */
+  matchTitle: string;
+  matchDate: string;
+  category: 'women';
+  homeTeam:
+    | 'Wempa Queens'
+    | 'Muranga Sparks Queens'
+    | 'Desert Scorpions'
+    | 'Uweza Women'
+    | 'Black Panther QUeens'
+    | 'Macmillian Queens'
+    | 'Silver Wind Divas'
+    | 'University Of Embu Queens'
+    | 'Thika Startlets';
+  awayTeam:
+    | 'Wempa Queens'
+    | 'Muranga Sparks Queens'
+    | 'Desert Scorpions'
+    | 'Uweza Women'
+    | 'Black Panther QUeens'
+    | 'Macmillian Queens'
+    | 'Silver Wind Divas'
+    | 'University Of Embu Queens'
+    | 'Thika Startlets';
+  /**
+   * Select opponent team logo
+   */
+  opponentLogo?:
+    | (
+        | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910321/muranga-seal_trzy7m.png'
+        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/muranga_spark_a0gklx.png'
+        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/desert_scorpio_mqnbln.png'
+        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/uweza_soccer_arzkgp.png'
+        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434946/black_panther_blsnoe.png'
+        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg'
+        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434946/ueq_otyazn.png'
+      )
+    | null;
+  venue: string;
+  status?: ('upcoming' | 'live' | 'finished' | 'postponed' | 'cancelled') | null;
+  score?: {
+    homeScore?: number | null;
+    awayScore?: number | null;
+  };
+  competition: 'FKF WDIV.1 ZONE A' | 'Super Cup' | 'Mozzart Bet Cup' | 'Friendly Match';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -521,6 +579,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'women';
         value: string | Woman;
+      } | null)
+    | ({
+        relationTo: 'wsl';
+        value: string | Wsl;
       } | null)
     | ({
         relationTo: 'users';
@@ -726,6 +788,29 @@ export interface WomenSelect<T extends boolean = true> {
   captain?: T;
   loaned?: T;
   loanFrom?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wsl_select".
+ */
+export interface WslSelect<T extends boolean = true> {
+  matchTitle?: T;
+  matchDate?: T;
+  category?: T;
+  homeTeam?: T;
+  awayTeam?: T;
+  opponentLogo?: T;
+  venue?: T;
+  status?: T;
+  score?:
+    | T
+    | {
+        homeScore?: T;
+        awayScore?: T;
+      };
+  competition?: T;
   updatedAt?: T;
   createdAt?: T;
 }

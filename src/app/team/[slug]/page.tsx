@@ -50,9 +50,13 @@ interface Props {
 }
 
 export default async function PlayerPage({ params }: Props) {
-  const { slug } = await params;
+  // const { slug } = await params;
+
+  const resolvedParams = await params;
+  const slug = decodeURIComponent(resolvedParams.slug);
 
   const payload = await getPayload({ config });
+
   const player = await payload.find({
     collection: "players",
     where: { slug: { equals: slug } },
@@ -70,6 +74,7 @@ export default async function PlayerPage({ params }: Props) {
   }
 
   const playerBio: PlayerBio = sanitizePlayer(rawPlayer);
+
 
   return (
     <>

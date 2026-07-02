@@ -2,7 +2,7 @@ export const JERSEYS = [
   {
     id: "home-jersey",
     name: "25/26 Home Shirt ",
-    price: 2000,
+    price: 1500,
     originalPrice: 2000,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",
     rating: 4.9,
@@ -14,7 +14,7 @@ export const JERSEYS = [
   {
     id: "away-jersey",
     name: "25/26 Away Shirt",
-    price: 2000,
+    price: 1500,
     originalPrice: 199,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Away-Front-Kit-for-Web_et0sf4.png",
     rating: 4.8,
@@ -51,7 +51,7 @@ export const JERSEYS = [
   {
     id: "third-jersey-24-25",
     name: "24/25 Third Shirt ",
-    price: 2000,
+    price: 0,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg",
     rating: 4.9,
@@ -164,7 +164,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "home-jersey": {
     id: "home-jersey",
     name: "Mseal 25/26 Home Shirt ",
-    price: 2000,
+    price: 1500,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Front-Kit-for-Web_zxqu5v.png",
     additionalImages: ["https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/home-kit-back_fbhftk.png"],
@@ -194,7 +194,7 @@ export const JERSEYS_DATA: Record<string, any> = {
     "away-jersey": {
     id: "away-jersey",
     name: "Mseal 25/26 Away Shirt",
-    price: 2000,
+    price: 1500,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364825/Away-Front-Kit-for-Web_et0sf4.png",
     additionalImages: [ "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1760364824/Awaykit-Back_jvabwc.png"],
@@ -284,7 +284,7 @@ export const JERSEYS_DATA: Record<string, any> = {
   "third-jersey-24-25": {
     id: "third-jersey-24-25",
     name: "Mseal 24/25 Third Kit ",
-    price: 2000,
+    price: 0,
     originalPrice: 249,
     image: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg",
     // additionalImages: ["https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg"],

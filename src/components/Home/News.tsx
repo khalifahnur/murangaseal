@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 interface NewsItem {
@@ -36,23 +38,33 @@ export default function NewsWidget({ news }: any) {
       className="relative w-full py-12 px-4 md:px-6 lg:px-8 bg-neutral-50 mozillaheadline"
       id="latest"
     >
-      <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage: `url('/assets/bg.jpg')`,
-          backgroundSize: "cover",
-        }}
-      />
+      <div className="absolute inset-0 opacity-5 pointer-events-none overflow-hidden">
+        <Image 
+          src="/assets/bg.jpg" 
+          alt="Background pattern"
+          fill
+          unoptimized 
+          className="object-cover"
+        />
+      </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           <div className="lg:col-span-7 xl:col-span-8">
             <Link href={`/news/${latest.slug}`} className="group block h-full">
-              <div className="relative h-[450px] md:h-[500px] lg:h-[600px] w-full overflow-hidden rounded-xl shadow-lg">
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                  style={{ backgroundImage: `url('${latest.cloudinaryUrl}')` }}
-                />
+              <div className="relative h-[450px] md:h-[500px] lg:h-[600px] w-full overflow-hidden rounded-xl shadow-lg bg-gray-900">
+                {latest.cloudinaryUrl && (
+                  <CldImage
+                    src={latest.cloudinaryUrl}
+                    alt={latest.title}
+                    fill
+                    priority 
+                    sizes="(max-width: 1024px) 100vw, 66vw"
+                    quality="auto:best"
+                    format="auto"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                )}
 
                 <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-90" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
@@ -95,14 +107,23 @@ export default function NewsWidget({ news }: any) {
                     transition-all duration-300 hover:-translate-y-1
                   "
                 >
-                  <div className="flex flex-col lg:flex-row">
-                    <div className="relative h-48 md:h-40 lg:w-1/3 overflow-hidden">
-                      <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                        style={{
-                          backgroundImage: `url('${item.cloudinaryUrl}')`,
-                        }}
-                      />
+                  <div className="flex flex-col lg:flex-row h-full">
+                    <div className="relative h-48 md:h-40 lg:w-1/3 overflow-hidden bg-gray-100">
+                      
+                      {/* Fix: Switched to CldImage for the Sidebar */}
+                      {item.cloudinaryUrl && (
+                        <CldImage
+                          src={item.cloudinaryUrl}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 33vw"
+                          quality="auto"
+                          format="auto"
+                          loading="lazy"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      )}
+
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors lg:hidden" />
                     </div>
                     <div className="p-4 flex flex-col justify-center lg:w-2/3">
@@ -126,20 +147,10 @@ export default function NewsWidget({ news }: any) {
         <div className="mt-6 flex justify-end w-full border-t border-gray-200 pt-6">
           <Link
             href="/news"
-            className="
-      group flex items-center gap-3
-      text-gray-500 font-bold uppercase tracking-widest text-sm
-      hover:text-primary transition-colors duration-300
-    "
+            className="group flex items-center gap-3 text-gray-500 font-bold uppercase tracking-widest text-sm hover:text-primary transition-colors duration-300"
           >
             More News
-            <span
-              className="
-      flex items-center justify-center w-8 h-8 
-      rounded-full bg-gray-100 group-hover:bg-primary group-hover:text-white
-      transition-all duration-300
-    "
-            >
+            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-primary group-hover:text-white transition-all duration-300">
               <ArrowRight className="w-4 h-4" />
             </span>
           </Link>

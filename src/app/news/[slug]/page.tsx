@@ -1,10 +1,10 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
-import Image from "next/image";
 import Header from "@/components/Home/HeaderSection";
 import { Footer } from "@/components/Home/Footer";
 
 import Article from "@/components/News/Article";
+import PartnershipSection from "@/components/Home/PartnershipSection";
 
 interface Props {
   params: Promise<{
@@ -33,6 +33,7 @@ export default async function NewsPage({ params }: Props) {
     <>
       <Header />
         <Article article={article}/>
+        <PartnershipSection />
       <Footer />
     </>
   );

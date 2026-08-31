@@ -48,7 +48,7 @@ export function Footer() {
   return (
 
     
-    <footer className="mozillaheadline relative bg-linear-to-b from-[#0a0c1b] to-black text-white overflow-hidden">
+    <footer className="relative bg-linear-to-b from-[#0a0c1b] to-black text-white overflow-hidden bodyfont">
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] pointer-events-none" />
 
       <div className="h-1 w-full bg-primary"></div>
@@ -134,18 +134,9 @@ export function Footer() {
                 </div>
               </li>
             </ul>
+            <a href="https://maps.app.goo.gl/mitKTfx57SQme1uNA" className="text-primary text-sm font-medium hover:opacity-80 transition-opacity">Get Directions &gt;</a>
 
-            <div className="relative h-32 rounded-lg overflow-hidden border border-gray-800">
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <Link
-                  href="https://maps.app.goo.gl/mitKTfx57SQme1uNA"
-                  target="_blank"
-                  className="px-3 py-1.5 bg-primary text-black text-sm font-medium rounded-full hover:bg-primary/40 transition-colors duration-300"
-                >
-                  Get Directions
-                </Link>
-              </div>
-            </div>
+           
           </motion.div>
 
           <motion.div variants={itemVariants}>
@@ -165,7 +156,6 @@ export function Footer() {
                     href={social.href}
                     aria-label={social.label}
                     className={`flex items-center justify-center w-10 h-10 rounded-full bg-white ${social.color} transition-colors duration-300`}
-                    whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     target="_blank"
                   >
@@ -237,7 +227,6 @@ export function Footer() {
           </motion.div>
         </motion.div>
 
-        {/* Footer bottom */}
         <div className="mt-16 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">

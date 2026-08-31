@@ -52,17 +52,9 @@ export default async function HightlightsContainer() {
   const sidebar = cleanDocs.filter((h) => h.id !== featured.id);
 
   return (
-    <section className="w-full bg-linear-to-b from-[#0a0c1b] to-black py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-lg md:text-3xl font-bold text-white mb-2">
-            Latest Highlights
-          </h2>
-          <div className="w-16 h-1.5 bg-primary rounded-full"></div>
-        </div>
+    <section className="w-full  py-12 px-4">
+      <Highlights featured={featured} sidebar={sidebar} />
 
-        <Highlights featured={featured} sidebar={sidebar} />
-      </div>
       <div className="mt-2 flex justify-end">
         <Link
           href="/highlights"

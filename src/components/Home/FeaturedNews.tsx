@@ -1,13 +1,14 @@
 import { getPayloadClient } from "@/lib/payloadClient";
-import News from "./News";
+import FeaturedNew from "../News/FeaturedNew";
 
-export default async function HeroSection() {
+
+export default async function FeaturedNews() {
   const payload = await getPayloadClient();
 
   const { docs: news } = await payload.find({
     collection: "news",
     sort: "-publishDate",
-    limit: 7,
+    limit: 5,
     depth: 1,
   });
 
@@ -15,7 +16,7 @@ export default async function HeroSection() {
     return null;
   }
 
-  return <News news={news} />;
+  return <FeaturedNew news={news} />;
 }
 
 export const dynamic = 'force-dynamic';

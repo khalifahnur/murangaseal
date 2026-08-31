@@ -98,13 +98,11 @@ export default async function TeamPage() {
   }
 
   return (
-    <div>
+    <>
       <Header />
-      <main>
         <Container data={players} />
         <PartnershipSection />
-      </main>
       <Footer />
-    </div>
+    </>
   );
 }

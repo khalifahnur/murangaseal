@@ -1,8 +1,9 @@
 "use client";
 
+import React, { useRef, useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
-import Image from "next/image";
 
 interface Player {
   id: string;
@@ -39,8 +40,7 @@ interface ContainerProps {
 function normalizePlayer(p: RawPlayer): Player {
   const fullName = p.name.trim();
   const nameParts = fullName.split(" ");
-  const lastNameFromName =
-    nameParts.length > 1 ? nameParts.slice(-1)[0] : fullName;
+  const lastNameFromName = nameParts.length > 1 ? nameParts.slice(-1)[0] : fullName;
   const firstNameFromName = nameParts.length > 1 ? nameParts[0] : "";
 
   return {
@@ -58,121 +58,243 @@ function normalizePlayer(p: RawPlayer): Player {
   };
 }
 
-export default function Container({ data }: ContainerProps) {
-  const playersArray = data || [];
-  const transformed: Player[] = playersArray.map(normalizePlayer);
+const tabs = ['GOALKEEPERS', 'DEFENDERS', 'MIDFIELDERS', 'FORWARDS'];
+const BRAND_RED = '#D4121E';
 
-  const grouped = {
-    goalkeepers: transformed.filter((p) => p.positionGroup === "goalkeepers"),
-    defenders: transformed.filter((p) => p.positionGroup === "defenders"),
-    midfielders: transformed.filter((p) => p.positionGroup === "midfielders"),
-    forwards: transformed.filter((p) => p.positionGroup === "forwards"),
-  };
-
-  const PlayerCard = ({ player }: { player: Player }) => (
+function PlayerCard({ player }: { player: Player }) {
+  return (
     <Link
       href={`/team/${player.firstName.toLowerCase()}-${player.lastName.toLowerCase()}`}
-      className="group relative flex flex-col bg-white rounded-xl shadow-md hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100"
+      className="player-card snap-center flex-none relative flex flex-col overflow-hidden group cursor-pointer"
     >
-      <div className="absolute top-3 right-3 z-20">
-        <div className="bg-white/90 backdrop-blur-sm rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-lg border border-gray-200">
-          <span className="text-lg md:text-xl font-black text-gray-900">
-            {player.number}
-          </span>
+      <div className="relative px-6 transition-transform duration-500 group-hover:-translate-y-2" style={{ zIndex: 10, paddingTop: '2.25rem' }}>
+        <div className="text-white font-bold uppercase player-firstname drop-shadow-md" style={{ letterSpacing: '0.09em' }}>
+          {player.firstName}
+        </div>
+        <div className="text-white font-bold uppercase player-lastname drop-shadow-md" style={{ letterSpacing: '-0.01em' }}>
+          {player.lastName}
+        </div>
+        <div className="text-white font-medium player-number drop-shadow-lg" style={{ letterSpacing: '-0.04em' }}>
+          {player.number}
         </div>
       </div>
-      <div className="relative w-full aspect-[4/5] overflow-hidden bg-linear-to-b from-gray-100 to-gray-300">
+
+      <div
+        className="player-photo absolute bottom-0 left-0 w-full flex items-end justify-center pointer-events-none"
+        style={{ zIndex: 20 }}
+      >
         <CldImage
-          width={800}
-          height={1000}
+          width={600}
+          height={800}
           src={player.image}
           alt={`${player.firstName} ${player.lastName}`}
-          crop="fill"
-          gravity="face"
-          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          quality="auto:good"
+          className="w-full h-full object-cover object-top duration-700"
+          sizes="(max-width: 640px) 85vw, 350px"
+          quality="auto:best"
           format="auto"
-          placeholder="blur"
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
         />
-
-        <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
-
-      <div className="p-4 md:p-5 flex flex-col justify-end flex-1 bg-white relative z-10">
-        <div className="flex flex-wrap items-center gap-2 mb-2 min-h-[24px]">
-          {player.captain && (
-            <Image
-              src="/assets/captain-band.png"
-              alt="Captain"
-              width={80}
-              height={40}
-              className="h-6 w-auto object-contain"
-            />
-          )}
-
-          {player.loaned && player.loanFrom && (
-            <span className="text-[10px] md:text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full border border-gray-200 font-medium">
-              Loan
-            </span>
-          )}
-        </div>
-
-        <h3 className="text-xl md:text-2xl font-black text-gray-900 leading-none mb-1">
-          {player.lastName}
-        </h3>
-        <p className="text-sm md:text-base text-gray-500 font-medium">
-          {player.firstName}
-        </p>
-
-        <div className="w-8 h-1 bg-primary mt-3 mb-2 rounded-full" />
-
-        <p className="text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest">
-          {player.position}
-        </p>
       </div>
     </Link>
   );
+}
 
-  const PositionSection = ({
-    title,
-    players,
-  }: {
-    title: string;
-    players: Player[];
-  }) => {
-    if (players.length === 0) return null;
+export default function MensTeam({ data }: ContainerProps) {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState('DEFENDERS');
+  const playersArray = data || [];
+  const transformed: Player[] = playersArray.map(normalizePlayer);
 
-    return (
-      <section className="py-8 md:py-12 border-b border-gray-100 last:border-0">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="mb-6 md:mb-10">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-tight mb-2">
-              {title}
-            </h2>
-            <div className="h-1.5 w-full max-w-[100px] bg-linear-to-r from-yellow-500 to-black rounded-full" />
-          </div>
+  const filteredPlayers = transformed.filter(
+    (p) => p.positionGroup.toUpperCase() === activeTab
+  );
 
-          <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {players.map((player) => (
-              <PlayerCard key={player.id} player={player} />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
+  // With three copies rendered [clone][real][clone], the "real" copy always
+  // starts at DOM index filteredPlayers.length.
+  const scrollToCard = (index: number, behavior: ScrollBehavior = 'smooth') => {
+    if (scrollContainerRef.current) {
+      const card = scrollContainerRef.current.children[index];
+      if (card) {
+        card.scrollIntoView({ behavior, inline: 'center', block: 'nearest' });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      scrollToCard(filteredPlayers.length, 'smooth');
+    }, 50);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    let settleTimer: ReturnType<typeof setTimeout>;
+
+    const handleScroll = () => {
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {
+        const setWidth = el.scrollWidth / 3;
+        if (!setWidth) return;
+
+        if (el.scrollLeft < setWidth) {
+          const prevBehavior = el.style.scrollBehavior;
+          el.style.scrollBehavior = 'auto';
+          el.scrollLeft += setWidth;
+          el.style.scrollBehavior = prevBehavior;
+        } else if (el.scrollLeft >= setWidth * 2) {
+          const prevBehavior = el.style.scrollBehavior;
+          el.style.scrollBehavior = 'auto';
+          el.scrollLeft -= setWidth;
+          el.style.scrollBehavior = prevBehavior;
+        }
+      }, 150);
+    };
+
+    el.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      el.removeEventListener('scroll', handleScroll);
+      clearTimeout(settleTimer);
+    };
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { current } = scrollContainerRef;
+      const scrollAmount = current.clientWidth > 768 ? 350 : current.clientWidth * 0.82;
+      current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50 mozillaheadline" id="mens-team">
-      <div className="pt-10 md:pt-20 pb-20">
-        <PositionSection title="Goalkeepers" players={grouped.goalkeepers} />
-        <PositionSection title="Defenders" players={grouped.defenders} />
-        <PositionSection title="Midfielders" players={grouped.midfielders} />
-        <PositionSection title="Forwards" players={grouped.forwards} />
+    <main
+      className="relative min-h-screen flex flex-col overflow-hidden mt-10 bg-primary"
+      style={{  paddingBottom: '5rem' }}
+    >
+      <div className="absolute inset-0 pointer-events-none bg-diagonal-dots" style={{ zIndex: 0 }}>
+        <div
+        //   style={{
+        //     position: 'absolute',
+        //     inset: 0,
+        //     clipPath: 'polygon(18% 0%, 42% 0%, 12% 100%, -12% 100%)',
+        //     background: 'rgba(255,255,255,0.05)',
+        //   }}
+        // />
+        // <div
+        //   style={{
+        //     position: 'absolute',
+        //     inset: 0,
+        //     clipPath: 'polygon(62% 0%, 100% 0%, 100% 55%, 40% 100%, 16% 100%)',
+        //     background: 'rgba(0,0,0,0.08)',
+        //   }}
+        // />
+        // <div
+        //   style={{
+        //     position: 'absolute',
+        //     inset: 0,
+        //     backgroundImage: 'radial-gradient(rgba(255,255,255,0.16) 1px, transparent 1.5px)',
+        //     backgroundSize: '9px 9px',
+        //   }}
+        />
       </div>
-    </div>
+
+      <div className="relative flex flex-col items-center px-4" style={{ zIndex: 10, paddingTop: '140px' }}>
+        
+
+        <div className="relative w-full max-w-4xl flex justify-center items-center mt-8 mb-10 md:mt-10 md:mb-12">
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 md:-left-2 z-30 text-white transition-opacity hover:opacity-70 cursor-pointer"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft size={32} strokeWidth={3} />
+          </button>
+
+          <div className="no-scrollbar flex gap-6 md:gap-12 overflow-x-auto whitespace-nowrap px-10 md:px-14">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab;
+              return (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className="text-sm md:text-base font-bold uppercase pb-2 transition-colors cursor-pointer"
+                  style={{
+                    letterSpacing: '0.12em',
+                    color: isActive ? '#ffffff' : 'rgba(255,255,255,0.6)',
+                    borderBottom: isActive ? '2px solid #ffffff' : '2px solid transparent',
+                  }}
+                >
+                  {tab}
+                </button>
+              );
+            })}
+          </div>
+
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 md:-right-2 z-30 text-white transition-opacity hover:opacity-70 cursor-pointer"
+            aria-label="Scroll right"
+          >
+            <ChevronRight size={32} strokeWidth={3} />
+          </button>
+        </div>
+      </div>
+
+      <div className="relative flex-1 w-full" style={{ zIndex: 10 }}>
+        <div
+          ref={scrollContainerRef}
+          className="no-scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth md:justify-center h-full items-center"
+        >
+          {/* Three copies [clone][real][clone] so either chevron can keep
+              advancing past an end and the wrap-around effect above lands
+              back in the real copy without a visible jump. */}
+          {filteredPlayers.map((player) => (
+            <PlayerCard key={`pre-${player.id}`} player={player} />
+          ))}
+          {filteredPlayers.map((player) => (
+            <PlayerCard key={`main-${player.id}`} player={player} />
+          ))}
+          {filteredPlayers.map((player) => (
+            <PlayerCard key={`post-${player.id}`} player={player} />
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .player-card {
+          width: 82vw;
+          min-height: 500px;
+          border-left: 1px solid rgba(255, 255, 255, 0.55);
+        }
+        .player-firstname { font-size: 1rem; margin-bottom: 2px; line-height: 1; }
+        .player-lastname { font-size: 2.25rem; line-height: 0.95; margin-bottom: 12px; }
+        .player-number { font-size: 6.5rem; line-height: 0.72; }
+        .player-photo { height: 55%; }
+
+        @media (min-width: 640px) {
+          .player-card { width: 300px; min-height: 580px; }
+          .player-firstname { font-size: 1.1rem; }
+          .player-lastname { font-size: 1.75rem; }
+          .player-number { font-size: 8.5rem; }
+          .player-photo { height: 58%; }
+        }
+        @media (min-width: 1024px) {
+          .player-card { width: 350px; min-height: 640px; }
+          .player-firstname { font-size: 1.2rem; }
+          .player-lastname { font-size: 3.1rem; }
+          .player-number { font-size: 9rem; }
+          .player-photo { height: 60%; }
+        }
+      `}</style>
+    </main>
   );
 }
 

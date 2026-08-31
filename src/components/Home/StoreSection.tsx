@@ -23,7 +23,7 @@ export default function StoreSection() {
     "THIRD KIT": {
       front:
         "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg",
-      back: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg", // Replace with actual back image URL
+      back: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1758045309/img176_y5fkob.jpg",
     },
   };
 
@@ -53,19 +53,17 @@ export default function StoreSection() {
   };
 
   return (
-    <div className="overflow-hidden mozillaheadline" id="shop">
+    <div className="overflow-hidden bodyfont" id="shop">
       <section className="bg-mono-300 uppercase">
         <div className="relative overflow-hidden">
-          {/* Desktop Background Text */}
           <div className="hidden md:flex justify-center z-0 absolute w-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
             <p className="text-[45vw] 3xl:text-[32vw] text-primary opacity-10 leading-none">
               {backgroundTexts[activeKit]}
             </p>
           </div>
 
-          {/* Mobile Background Text */}
           <div className="flex md:hidden justify-center z-0 absolute w-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
-            <p className="text-[70vw] sm:text-[60vw] text-primary leading-none opacity-10">
+            <p className="text-[70vw] sm:text-[60vw] text-primary leading-none opacity-50">
               {backgroundTexts[activeKit]}
             </p>
           </div>
@@ -86,7 +84,7 @@ export default function StoreSection() {
                   <Image
                     className="absolute top-0 left-0 object-contain w-full h-full lazyautosizes lazyloaded transition-opacity duration-300"
                     alt={`${activeKit}-${currentView}-Shirt`}
-                    height="520"
+                    height="800"
                     width={1000}
                     src={images[activeKit][currentView]}
                   />

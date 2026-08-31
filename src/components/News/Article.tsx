@@ -1,32 +1,56 @@
 "use client"
 
-import React from "react";
-import { RichText } from "@/components/RichText";
-import { CldImage } from "next-cloudinary";
+import { CldImage } from 'next-cloudinary';
+import { RichText } from '../RichText';
 
-// 1. Define the shape of the actual article data
+
+
+
 interface ArticleData {
   title: string;
   slug: string;
   cloudinaryUrl: string;
-  publishDate: string; // JSON serializes dates as strings
-  excerpt?: string | null; // Optional because it's not required in Payload
+  publishDate: string; 
+  excerpt?: string | null; 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  content: any; // Payload RichText returns an object, not a string
+  content: any;
 }
 
-// 2. Define the shape of the component's props
 interface ArticleProps {
   article: ArticleData;
 }
 
-// 3. Now destructuring { article } matches the ArticleProps interface
-export default function Article({ article }: ArticleProps) {
+export default function Article({ article }: ArticleProps) { 
+
   return (
-    <div className="min-h-screen bg-gray-50 mozillheadline">
-      {article.cloudinaryUrl && (
-        <div className="relative w-full h-[40vh] overflow-hidden">
-          <CldImage
+    <main className="pt-[80px] md:pt-[100px] w-full overflow-x-hidden bg-white">
+      <section className="flex flex-col md:flex-row w-full min-h-[600px] lg:min-h-[700px]">
+        <div className="w-full md:w-1/2 bg-primary relative flex flex-col justify-center p-8 md:p-12 lg:p-20 overflow-hidden">
+          <div className="absolute inset-0 bg-pattern-red-dots opacity-90 pointer-events-none" />
+          
+          <div className="relative z-10 flex flex-col items-start h-full pt-10">
+            <div className="text-white font-bold tracking-widest text-xs md:text-sm mb-6 uppercase flex space-x-2">
+              <span className="opacity-70">{new Date(article.publishDate).toLocaleDateString("en-KE", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}</span>
+            </div>
+            
+            <h1 className="text-white text-[40px] md:text-5xl lg:text-7xl font-black leading-[0.95] tracking-tighter uppercase mb-6 drop-shadow-sm">
+              {article.title}
+            </h1>
+            
+            {/* <p className="text-white/95 text-lg md:text-xl font-medium leading-snug mb-16 max-w-[90%]">
+              Brentford Under-18s fell to defeat in their U18 Premier League Cup group D opener as they lost 2-0 to Burnley on the road at Barnfield Training Centre on Tuesday afternoon
+            </p>
+             */}
+            
+          </div>
+        </div>
+        
+        <div className="w-full md:w-1/2 h-[400px] md:h-auto relative">
+            <CldImage
             src={article.cloudinaryUrl}
             alt={article.title}
             fill
@@ -36,44 +60,46 @@ export default function Article({ article }: ArticleProps) {
             loading="lazy"
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/30 to-black/70" />
         </div>
-      )}
-      <div className="h-2 bg-linear-to-r from-black via-gray-700 to-black" />
-      <article className="container mx-auto px-4 max-w-7xl -mt-32 mb-10 relative z-10">
-        <div className="bg-white shadow-2xl p-8 md:p-12">
-          <div className="flex items-center justify-between pb-4 mb-6 border-b-4 border-black">
-            <time className="text-xs font-medium text-gray-600 uppercase tracking-wider">
-              {new Date(article.publishDate).toLocaleDateString("en-KE", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          </div>
+      </section>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight font-serif text-gray-900 border-l-8 border-black pl-6">
-            {article.title}
-          </h1>
-
-          {article.excerpt && (
-            <div className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 font-serif italic border-l-4 border-gray-300 pl-6 py-2">
-              {article.excerpt}
+      <article className="w-full relative bg-white">
+        <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
+          <div className="relative mb-12">
+            <div className="absolute top-1/2 -translate-y-1/2 right-[calc(100%+2rem)] w-[50vw] h-[3px] bg-[#d31120]"></div>
+            
+            <div className="text-[#d31120] text-xs font-black tracking-widest uppercase">
+              WRITTEN BY MSEAL FOOTBALL CLUB
             </div>
-          )}
-
-          <div className="flex items-center gap-2 mb-8">
-            <div className="h-px bg-gray-300 flex-1" />
-            <div className="w-2 h-2 bg-black rotate-45" />
-            <div className="h-px bg-gray-300 flex-1" />
           </div>
           
-          {/* RichText expects the object format from Payload */}
-          <RichText content={article.content} />
-        </div>
+          <p className="text-[22px] md:text-[26px] text-[#d31120] font-medium leading-snug mb-12">
+            {article.title}
+          </p>
 
-        <div className="h-2 bg-linear-to-r from-black via-gray-700 to-black" />
+          <div className="space-y-8 text-gray-700 text-lg md:text-[19px] leading-relaxed font-medium">
+           <RichText content={article.content} />
+          </div>
+        </div>
       </article>
-    </div>
+
+
+      <article className="w-full relative bg-white">
+
+
+
+          <div className="space-y-6 text-gray-700 text-base md:text-lg font-medium">
+          <div className="w-full h-px bg-gray-200 mt-20 mb-12"></div>
+
+          
+
+        </div>
+      </article>
+
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </main>
   );
 }

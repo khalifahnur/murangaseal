@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono,Mozilla_Headline } from "next/font/google";
+import { Geist, Geist_Mono,Mozilla_Headline,Barlow_Condensed } from "next/font/google";
 import "./globals.css";
+import { ReactLenis } from 'lenis/react';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,6 +16,14 @@ const geistMono = Geist_Mono({
 const mozillaHeadline = Mozilla_Headline ({
   variable: '--font-mozilla_headline',
   subsets: ['latin'],
+});
+
+const bodyFont = Barlow_Condensed  ({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 
@@ -93,6 +102,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  
   return (
    <html lang="en">
       <head>
@@ -112,9 +123,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${mozillaHeadline.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${mozillaHeadline.variable} ${bodyFont.variable} antialiased`}
       >
+        <ReactLenis root>
         {children}
+        </ReactLenis>
       </body>
     </html>
   );

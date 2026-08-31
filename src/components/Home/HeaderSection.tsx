@@ -1,642 +1,380 @@
 "use client";
 
-import Image from "next/image";
+import { useState, useEffect } from "react";
+import { Menu, X, ChevronRight } from "lucide-react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import React, { useState, useEffect, useCallback } from "react";
-import MembershipBanner from "./MembershipBannerHeader";
+import Image from "next/image";
 
-const upperLinks = [
+const teamsData = [
   {
-    id: 1,
-    txt: "Membership",
-    link: "https://www.murangaseal.co.ke",
-  },
-  {
-    id: 2,
-    txt: "Tickets",
-    link: "https://tickets.murangaseal.co.ke",
-  },
-  {
-    id: 3,
-    txt: "Shop",
-    link: "https://www.murangaseal.co.ke/shop",
-  },
-];
-
-const bottomLinks = [
-  { id: 1, txt: "NEWS", link: "/", sectionId: "latest", hasSubMenu: true },
-  {
-    id: 2,
-    txt: "FIXTURES & RESULTS",
-    link: "/",
-    sectionId: "match",
-    hasSubMenu: true,
-  },
-  {
-    id: 3,
-    txt: "SQUAD",
+    id: "men",
+    title: "MEN",
+    tag: "FIRST",
+    image: "/players/men-cpt.png",
+    color: "bg-[#d54f1b]",
     link: "/team",
-    sectionId: null,
-    hasMegaMenu: true,
   },
-  { id: 4, txt: "SHOP", link: "/", sectionId: "shop", hasSubMenu: true },
-  { id: 5, txt: "CLUB", link: "/club", sectionId: null, hasSubMenu: true },
+  {
+    id: "b-team",
+    title: "B TEAM",
+    tag: "B TEAM",
+    image: "#",
+    color: "bg-[#b5121b]",
+    link: "/#",
+  },
+  {
+    id: "women",
+    title: "WOMEN",
+    tag: "FIRST",
+    image: "/players/women-cpt.png",
+    color: "bg-[#cc101f]",
+    link: "/team/women",
+  },
 ];
-
-const mensTeamMegaMenu = {
-  columns: [
-    {
-      title: "Teams",
-      items: [
-        { name: "Men's First Team", link: "/team" },
-        { name: "Women's First Team", link: "/team/women" },
-        { name: "Youth", link: "/#" },
-      ],
-    },
-    {
-      title: "Staff",
-      items: [{ name: "Men's Coaching Staff", link: "/team/technical-team" }],
-    },
-  ],
-  promo: {
-    title: "Mseal Membership",
-    image: "/assets/MsealCard.png",
-    link: "https://murangaseal.co.ke",
-    priceText:
-      "Why Join?\n Become part of the Seal family. Direct support to the team and exclusive community access.",
-    footerText: "Join Now",
-  },
-};
 
 export default function Header() {
-  const [isUpperNavVisible, setIsUpperNavVisible] = useState(true);
+  const [isTeamsOpen, setIsTeamsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileTeamsOpen, setMobileTeamsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("latest");
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
+  const [isAtTop, setIsAtTop] = useState(true);
 
-  const isHomePage = pathname === "/";
+  const location = usePathname();
+  const isHomePage = location === "/";
 
-  const handleMegaMenuEnter = () => {
-    setIsMegaMenuOpen(true);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsAtTop(currentScrollY < 50);
 
-  const handleMegaMenuLeave = () => {
-    setIsMegaMenuOpen(false);
-  };
-
-  const debounce = <T extends unknown[]>(
-    func: (...args: T) => void,
-    wait: number,
-  ) => {
-    let timeout: NodeJS.Timeout;
-    return (...args: T) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func(...args), wait);
-    };
-  };
-
-  const handleScroll = useCallback(() => {
-    const currentScrollY = window.scrollY;
-
-    if (Math.abs(currentScrollY - lastScrollY) > 10) {
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        setIsUpperNavVisible(false);
-        setIsMegaMenuOpen(false);
-      } else if (currentScrollY < lastScrollY) {
-        setIsUpperNavVisible(true);
+      if (currentScrollY > 50 && currentScrollY > lastScrollY) {
+        setIsVisible(false);
+        setIsTeamsOpen(false);
+        setIsMobileMenuOpen(false);
+      } else {
+        setIsVisible(true);
       }
 
-      setIsScrolled(currentScrollY > 10);
       setLastScrollY(currentScrollY);
-    }
-
-    if (isHomePage) {
-      updateActiveSection(currentScrollY);
-    }
-  }, [lastScrollY, isHomePage]);
-
-  const updateActiveSection = useCallback((scrollY: number) => {
-    const sections = bottomLinks
-      .filter((link) => link.sectionId !== null)
-      .map((link) => link.sectionId as string);
-    const buffer = 150;
-
-    for (const sectionId of sections) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        const elementTop = rect.top + scrollY;
-        const elementBottom = elementTop + rect.height;
-
-        if (
-          scrollY >= elementTop - buffer &&
-          scrollY < elementBottom - buffer
-        ) {
-          setActiveSection(sectionId);
-          return;
-        }
-      }
-    }
-
-    setActiveSection("");
-  }, []);
-
-  const smoothScrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const navigateToHomeSection = (sectionId: string) => {
-    if (pathname === "/") {
-      smoothScrollToSection(sectionId);
-    } else {
-      router.push("/");
-      setTimeout(() => {
-        const checkElement = () => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            smoothScrollToSection(sectionId);
-          } else {
-            setTimeout(checkElement, 100);
-          }
-        };
-        checkElement();
-      }, 100);
-    }
-  };
-
-  useEffect(() => {
-    const debouncedScroll = debounce(handleScroll, 50);
-    window.addEventListener("scroll", debouncedScroll, { passive: true });
-
-    if (isHomePage) {
-      updateActiveSection(window.scrollY);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", debouncedScroll);
     };
-  }, [handleScroll, updateActiveSection, isHomePage]);
 
-  const handleLinkClick = (sectionId: string | null, link: string) => {
-    setIsMobileMenuOpen(false);
-    setIsMegaMenuOpen(false);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
-    setTimeout(() => {
-      if (sectionId && isHomePage) {
-        smoothScrollToSection(sectionId);
-      } else if (sectionId && !isHomePage) {
-        navigateToHomeSection(sectionId);
-      } else if (link) {
-        router.push(link);
-      }
-    }, 100);
-  };
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMobileMenuOpen]);
-
-  const handleDesktopLinkClick = (
-    e: React.MouseEvent,
-    link: (typeof bottomLinks)[0],
-  ) => {
-    e.preventDefault();
-
-    if (link.hasMegaMenu) {
-      return;
-    }
-
-    if (link.sectionId && isHomePage) {
-      smoothScrollToSection(link.sectionId);
-    } else if (link.sectionId && !isHomePage) {
-      navigateToHomeSection(link.sectionId);
-    } else {
-      router.push(link.link);
-    }
-  };
+  const isTransparent =
+    isHomePage && isAtTop && !isHovered && !isTeamsOpen && !isMobileMenuOpen;
+  const textColor = isTransparent ? "text-white" : "text-gray-900";
 
   return (
-    <>
-      <header className="w-full sticky top-0 z-50 mozillaheadline">
-        <div
-          className="bg-linear-to-b from-[#0a0c1b] to-black text-white border-t-8 border-primary transition-all duration-500 ease-in-out transform ${
- opacity-100 translate-y-0"
-        >
-          <div className="px-4 py-1 flex items-center justify-end">
-            <div className="flex items-center gap-2">
-              {upperLinks.map((itm, idx) => (
-                <React.Fragment key={itm.id}>
-                  <Link
-                    href={itm.link}
-                    className="relative group overflow-hidden px-3 py-1 transition-all duration-300 hover:skew-x-2"
-                    target="_blank"
-                  >
-                    <span className="relative z-10 text-white group-hover:text-primary transition-colors duration-300 text-xs font-medium">
-                      {itm.txt}
-                    </span>
-                    <div className="absolute inset-x-0 bottom-0 h-0 bg-gray-900 group-hover:h-full transition-all duration-300 ease-out"></div>
-                  </Link>
-                  {idx < upperLinks.length - 1 && (
-                    <span className="text-white/60 text-xs">|</span>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
+    <header
+      className="fixed w-full top-0 z-50 transition-transform duration-300 bodyfont"
+    >
+      <div className="flex relative bg-primary text-gray-300 text-[12px] font-medium tracking-wide py-2.5 px-4 md:px-8 justify-between items-center ">
+        <div className="flex space-x-6">
+          {/* <a href="#" className="hover:text-white transition-colors">CONFERENCE & EVENTS</a>
+          <a href="#" className="hover:text-white transition-colors">COMMUNITY SPORTS TRUST</a>
+          <a href="#" className="hover:text-white transition-colors">SAFEGUARDING</a> */}
         </div>
-
-        <div className="bg-white shadow-md transition-all duration-500 ease-in-out">
-          <div className="px-2 md:px-4 py-2 flex items-center justify-between">
-            <Link href="/" className="shrink-0">
-              <div className="h-10 w-15 md:h-16 md:w-32 transition-transform duration-300 hover:scale-105 flex items-center justify-center">
-                <Image
-                  src="/assets/mseal-logo.png"
-                  alt="Muranga Seals"
-                  width={1000}
-                  height={800}
-                  className="md:h-24 md:w-auto transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            </Link>
-
-            <nav className="hidden lg:flex items-center gap-6">
-              {bottomLinks.map((item) => (
-                <div
-                  key={item.id}
-                  className="relative"
-                  onMouseEnter={
-                    item.hasMegaMenu ? handleMegaMenuEnter : undefined
-                  }
-                >
-                  <button
-                    onClick={(e) => handleDesktopLinkClick(e, item)}
-                    className={`relative font-bold py-2 px-1 transition-all duration-300 group text-sm ${
-                      isHomePage && activeSection === item.sectionId
-                        ? "text-primary"
-                        : "text-black hover:text-primary"
-                    } ${
-                      isMegaMenuOpen && item.hasMegaMenu ? "text-primary" : ""
-                    }`}
-                  >
-                    <span className="relative z-10">{item.txt}</span>
-                    <div
-                      className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ease-out ${
-                        (isHomePage && activeSection === item.sectionId) ||
-                        (isMegaMenuOpen && item.hasMegaMenu)
-                          ? "w-full"
-                          : "w-0 group-hover:w-full"
-                      }`}
-                    ></div>
-                  </button>
-                </div>
-              ))}
-            </nav>
-
-            <div className="hidden md:flex items-center gap-3">
-              <div className="flex items-center gap-2">
-                <span className="text-black font-semibold text-xs">
-                  In partnership with
-                </span>
-                <div>
-                  <Image
-                    src="/assets/sp-logo.jpg"
-                    width={80}
-                    height={80}
-                    alt="sp Logo"
-                    className="w-auto transition-transform duration-300 hover:scale-105"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <button
-              className="lg:hidden flex flex-col justify-center items-center w-7 h-7 relative focus:outline-none z-50"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <span
-                className={`w-5 h-0.5 bg-black transition-all duration-300 ${
-                  isMobileMenuOpen ? "rotate-45 translate-y-1" : ""
-                }`}
-              ></span>
-              <span
-                className={`w-5 h-0.5 bg-black transition-all duration-300 mt-1 ${
-                  isMobileMenuOpen ? "opacity-0" : "opacity-100"
-                }`}
-              ></span>
-              <span
-                className={`w-5 h-0.5 bg-black transition-all duration-300 mt-1 ${
-                  isMobileMenuOpen ? "-rotate-45 -translate-y-1" : ""
-                }`}
-              ></span>
-            </button>
-          </div>
+        <div className="flex space-x-4 ml-auto">
+          <a
+            href="https://www.murangaseal.co.ke"
+            className="hover:text-black transition-colors text-[#ffff]"
+          >
+            MEMBERSHIP
+          </a>
+          <span className="text-white">|</span>
+          <a
+            href="https://tickets.murangaseal.co.ke"
+            className="hover:text-black transition-colors text-[#ffff]"
+          >
+            TICKET
+          </a>
+          <span className="text-white">|</span>
+          <a
+            href="/shop"
+            className="hover:text-black transition-colors text-[#fff]"
+          >
+            SHOP
+          </a>
         </div>
-      </header>
-
-      {isMegaMenuOpen && (
-        <div
-          className="fixed left-0 right-0 bg- z-40 mozillaheadline bg-neutral-50"
-          style={{ top: isUpperNavVisible ? "128px" : "80px" }}
-          onMouseEnter={handleMegaMenuEnter}
-          onMouseLeave={handleMegaMenuLeave}
-        >
-          <div className="h-1 bg-primary w-full shadow-md"></div>
-          <div
-            className="absolute inset-0 opacity-5 pointer-events-none"
-            style={{
-              backgroundImage: `url('/assets/bg.jpg')`,
-              backgroundSize: "cover",
-              backgroundRepeat: "repeat",
-            }}
-          />
-
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-              <div className="col-span-1 md:col-span-4 flex flex-col space-y-6">
-                {mensTeamMegaMenu.columns.map((column, index) => (
-                  <div key={index}>
-                    <ul className="space-y-4">
-                      {column.items.map((menuItem, itemIndex) => (
-                        <li key={itemIndex}>
-                          <Link
-                            href={menuItem.link}
-                            onClick={() => setIsMegaMenuOpen(false)}
-                            className="text-gray-950 hover:text-primary/20 text-base font-medium block transition-all duration-200 hover:translate-x-1"
-                          >
-                            {menuItem.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-
-              {mensTeamMegaMenu.promo && (
-                <div className="col-span-1 md:col-span-8 flex justify-end">
-                  <Link
-                    href={mensTeamMegaMenu.promo.link}
-                    className="group block relative w-full max-w-2xl"
-                    onClick={() => setIsMegaMenuOpen(false)}
-                  >
-                    <div className="relative overflow-hidden rounded-md  h-[400px]">
-                      <Image
-                        src={mensTeamMegaMenu.promo.image}
-                        alt="Murang'a Seals Membership Card"
-                        width={600}
-                        height={500}
-                        className="object-fill rounded-2xl"
-                        priority
-                      />
-
-                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent"></div>
-
-                      <div className="absolute bottom-6 left-6 text-white">
-                        <pre className=" text-sm  leading-none uppercase">
-                          {mensTeamMegaMenu.promo.priceText}
-                        </pre>
-                      </div>
-                    </div>
-
-                    <div className="mt-3">
-                      <p className="text-gray-950 text-lg font-bold group-hover:underline decoration-[#d4af37] underline-offset-4">
-                        {mensTeamMegaMenu.promo.footerText}
-                      </p>
-                    </div>
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
 
       <div
-        className={`lg:hidden fixed inset-0 z-50 transform transition-transform duration-300 ease-in-out bg-gray-950 overflow-hidden mozillaheadline ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`relative px-4 md:px-8 h-20 md:h-[120px] md:gap-10 w-full transition-colors duration-300 z-10 flex md:block items-center justify-between ${isTransparent ? "bg-transparent" : "bg-white shadow-md"}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="flex flex-col h-full overflow-y-auto">
-          <div className="flex items-center justify-between p-6">
-            <div className="w-22 h-22 relative">
-              <Image
-                src="/assets/mseal-logo.png"
-                alt="Logo"
-                width={100}
-                height={100}
-                className="object-contain"
-              />
-            </div>
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 md:-top-10 md:translate-y-0 w-16 h-16 md:w-[115px] md:h-[115px] flex items-center justify-center z-999">
+          <Link href="/" onClick={() => setIsTeamsOpen(false)}>
+            <img
+              src="/assets/mseal-logo.png"
+              alt="Brentford FC Logo"
+              className={`w-full h-full object-contain filter transition-all duration-300 ${!isTransparent ? "drop-shadow-none" : "drop-shadow-lg"}`}
+            />
+          </Link>
+        </div>
 
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-white hover:text-gray-300 transition-colors"
-              aria-label="Close menu"
+        <nav className="hidden pt-5 md:flex absolute bottom-0 left-0 w-full justify-center space-x-10 items-end z-20 pointer-events-none">
+          <div className="flex space-x-10 items-end pointer-events-auto">
+            <a
+              href="/news"
+              className={`text-[15px] font-bold tracking-wider ${textColor} hover:text-primary transition-colors pb-6 border-b-4 border-transparent`}
             >
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              LATEST
+            </a>
+            <a
+              href="/highlights"
+              className={`text-[15px] font-bold tracking-wider ${textColor} hover:text-primary transition-colors pb-6 border-b-4 border-transparent`}
+            >
+              VIDEO
+            </a>
+            <a
+              href="/#match"
+              className={`text-[15px] font-bold tracking-wider ${textColor} hover:text-primary transition-colors pb-6 border-b-4 border-transparent`}
+            >
+              FIXTURES & RESULTS
+            </a>
+            <div
+              className={`relative cursor-pointer group flex flex-col justify-end pb-6 border-b-4 ${isTeamsOpen ? "border-primary" : "border-transparent hover:border-primary"}`}
+              onMouseEnter={() => setIsTeamsOpen(true)}
+              onMouseLeave={() => setIsTeamsOpen(false)}
+            >
+              <span
+                className={`text-[15px] font-bold tracking-wider transition-colors ${textColor} ${isTeamsOpen ? "text-primary" : "group-hover:text-primary"}`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <nav className="flex-1 px-6 py-4 space-y-4">
-            {bottomLinks.map((item) => (
-              <div key={item.id}>
-                {item.hasMegaMenu ? (
-                  <div className="group">
-                    <button className="flex items-center justify-between w-full text-left py-1 group">
-                      <span className="text-sm md:text-xl font-extrabold text-white uppercase tracking-tight leading-none">
-                        {item.txt}
-                      </span>
-                      <svg
-                        className="w-6 h-6 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
-                    <div className="mt-4 ml-2 pl-4 border-l-2 border-white/20 space-y-4">
-                      {mensTeamMegaMenu?.columns.map((column, index) => (
-                        <div key={index}>
-                          <h4 className="font-bold text-white/60 text-sm uppercase tracking-wider mb-2">
-                            {column.title}
-                          </h4>
-                          <ul className="space-y-2">
-                            {column.items.map((menuItem, itemIndex) => (
-                              <li key={itemIndex}>
-                                <Link
-                                  href={menuItem.link}
-                                  className="block text-xl font-bold text-white hover:text-[#d4af37] transition-colors"
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                  {menuItem.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => handleLinkClick(item.sectionId, item.link)}
-                    className="flex items-center justify-between w-full text-left py-1 group"
-                  >
-                    <span className="text-4xl font-extrabold uppercase tracking-tight leading-none text-white">
-                      {item.txt}
-                    </span>
-                    {(item.hasSubMenu || item.sectionId === null) && (
-                      <svg
-                        className="w-5 h-5 text-white/70"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={3}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    )}
-                  </button>
-                )}
-              </div>
-            ))}
-          </nav>
-
-          <div className="mt-auto px-6 py-8 relative">
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-linear-to-tl from-black/20 to-transparent pointer-events-none"></div>
-
-            <p className="text-xs font-bold text-white uppercase mb-4 text-center tracking-widest">
-              Follow Muranga Seal Football Club
-            </p>
-
-            <div className="flex space-x-4 items-center justify-center">
-              {[
-                {
-                  icon: "https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000",
-                  label: "Facebook",
-                  href: "https://www.facebook.com/murangaseal",
-                  color: "hover:bg-blue-600",
-                },
-                {
-                  icon: "https://img.icons8.com/?size=100&id=118638&format=png&color=000000",
-                  label: "TikTok",
-                  href: "https://www.tiktok.com/@murangaseal?_t=ZM-8zTSB0E1Axk&_r=1",
-                  color: "hover:bg-white",
-                },
-                {
-                  icon: "https://img.icons8.com/?size=100&id=32323&format=png&color=000000",
-                  label: "Instagram",
-                  href: "https://www.instagram.com/murangaseal/",
-                  color: "hover:bg-pink-600",
-                },
-                {
-                  icon: "https://img.icons8.com/?size=100&id=19318&format=png&color=000000",
-                  label: "YouTube",
-                  href: "https://www.youtube.com/@Murangaseal",
-                  color: "hover:bg-red-600",
-                },
-                {
-                  icon: "https://img.icons8.com/?size=100&id=wCo0O5X01IHO&format=png&color=000000",
-                  label: "X",
-                  href: "https://x.com/murangaseal",
-                  color: "hover:bg-white",
-                },
-              ].map((social, index) => {
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    aria-label={social.label}
-                    className={`flex items-center justify-center w-10 h-10 rounded-full bg-white ${social.color} transition-colors duration-300`}
-                    //whileHover={{ scale: 1.1 }}
-                    //whileTap={{ scale: 0.95 }}
-                    target="_blank"
-                  >
-                    <Image
-                      src={social.icon}
-                      alt={social.label}
-                      width={30}
-                      height={30}
-                    />
-                  </a>
-                );
-              })}
+                TEAMS
+              </span>
             </div>
+            <a
+              href="https://tickets.murangaseal.co.ke"
+              className={`text-[15px] font-bold tracking-wider ${textColor} hover:text-primary transition-colors pb-6 border-b-4 border-transparent`}
+            >
+              TICKETS
+            </a>
 
-            <div className="flex justify-center mt-8 opacity-80">
-              {/* <Image
-                  src="/assets/sp-logo.jpg"
-                  width={60}
-                  height={60}
-                  alt="sp Logo"
-                  className="h-6 w-auto grayscale invert brightness-200"
-                /> */}
+            <Link
+              href="/shop"
+              className={`text-[15px] font-bold tracking-wider ${textColor} hover:text-primary transition-colors pb-6 border-b-4 border-transparent`}
+            >
+              SHOP
+            </Link>
+            <a
+              href="/club"
+              className={`text-[15px] font-bold tracking-wider ${textColor} hover:text-primary transition-colors pb-6 border-b-4 border-transparent`}
+            >
+              CLUB
+            </a>
+          </div>
+        </nav>
 
-              <div className="flex items-center gap-2">
-                <div>
-                  <p className="text-xs text-white">Official Partner</p>
-                </div>
-                <div>
-                  <Image
-                    src="/assets/sp-logo.jpg"
-                    width={80}
-                    height={80}
-                    alt="sp Logo"
-                    className="h-8 w-auto transition-transform duration-300 hover:scale-105 grayscale invert brightness-200"
+        <div
+          className={`absolute right-4 top-1/2 -translate-y-1/2 md:right-8 md:bottom-0 md:top-auto md:translate-y-0 md:pb-5 flex items-end space-x-4 md:space-x-6 transition-colors ${textColor} z-20`}
+        >
+          <button
+            className="md:hidden hover:text-primary transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+          {/* <button className="hidden md:flex flex-col items-center hover:text-[#b5121b] transition-colors">
+            <Menu size={28} strokeWidth={1.5} className="mb-0.5" />
+            <span className="text-[10px] font-bold tracking-widest">MORE</span>
+          </button> */}
+        </div>
+      </div>
+
+      <div
+        className={`hidden md:block absolute top-full left-0 w-full overflow-hidden transition-all duration-300 origin-top z-0 ${isTeamsOpen ? "max-h-[600px] opacity-100 shadow-xl" : "max-h-0 opacity-0"}`}
+        onMouseEnter={() => setIsTeamsOpen(true)}
+        onMouseLeave={() => setIsTeamsOpen(false)}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none bg-diagonal-dots"
+          style={{ zIndex: 0 }}
+        >
+          
+        </div>
+        <div className="w-full flex h-112.5">
+          <div className="flex-1 flex px-8 py-8 space-x-6 ">
+            {teamsData.map((team) => (
+              <Link
+                href={team.link}
+                key={team.id}
+                className="relative flex-1 group overflow-hidden cursor-pointer shadow-2xl block aspect-3/4 md:aspect-3/4 bg-gradient-to-t from-black/10 via-black to-transparent"
+                onClick={() => setIsTeamsOpen(false)}
+              >
+                <div className="absolute inset-0 transition-transform duration-700 ease-out">
+                  <img
+                    src={team.image}
+                    alt={team.title}
+                    className="w-full h-full object-contain"
                   />
                 </div>
-              </div>
-            </div>
+
+                <div className="absolute inset-0  z-10 pointer-events-none" />
+
+                {team.tag && (
+                  <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 text-white text-[11px] font-semibold tracking-[0.4em] uppercase z-20 [writing-mode:vertical-rl] rotate-180">
+                    {team.tag}
+                  </div>
+                )}
+
+                <div className="absolute bottom-8 w-full flex justify-center z-20">
+                  <span className="text-white text-5xl md:text-[64px] font-medium tracking-wide uppercase drop-shadow-lg">
+                    {team.title}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="w-[300px]  p-8 flex flex-col justify-center   z-999">
+            <h3 className="text-white font-bold text-xl mb-6">MORE TEAMS</h3>
+            <ul className="space-y-6">
+              <li>
+                <Link
+                  href="/team/technical-team"
+                  onClick={() => setIsTeamsOpen(false)}
+                  className="text-white hover:black/10 transition-colors text-lg flex items-center justify-between group"
+                >
+                  Coaching Staff{" "}
+                  <ChevronRight
+                    size={16}
+                    className="opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all text-white"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#"
+                  onClick={() => setIsTeamsOpen(false)}
+                  className="text-white hover:black/10 transition-colors text-lg flex items-center justify-between group"
+                >
+                  About Mseal Women{" "}
+                  <ChevronRight
+                    size={16}
+                    className="opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all text-white"
+                  />
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </>
+
+      <div
+  className={`md:hidden absolute top-full left-0 w-full bg-[#111111] overflow-y-auto transition-all duration-300 origin-top z-40 flex flex-col ${isMobileMenuOpen ? "max-h-screen opacity-100 border-t border-white/10 shadow-2xl" : "max-h-0 opacity-0"}`}
+  style={{ height: "calc(100vh - 80px)" }}
+>
+  <div className="flex flex-col p-6 space-y-6 text-white text-lg font-bold tracking-wider">
+    <a href="/news" className="hover:text-primary transition-colors">
+      LATEST
+    </a>
+    <a
+      href="/highlights"
+      className="hover:text-primary transition-colors"
+    >
+      VIDEO
+    </a>
+    <a href="/#match" className="hover:text-primary transition-colors">
+      FIXTURES & RESULTS
+    </a>
+
+    <div className="flex flex-col border-y border-white/10 py-4 my-2">
+      <button
+        className="flex items-center justify-between hover:text-primary text-left transition-colors"
+        onClick={() => setMobileTeamsOpen(!mobileTeamsOpen)}
+      >
+        <span>TEAMS</span>
+        <ChevronRight
+          className={`transition-transform duration-300 ${mobileTeamsOpen ? "rotate-90" : ""}`}
+        />
+      </button>
+      <div
+        className={`flex flex-col overflow-hidden transition-all duration-300 ${mobileTeamsOpen ? "max-h-[500px] mt-4 space-y-4" : "max-h-0"}`}
+      >
+        {teamsData.map((team) => (
+          <Link
+            href={team.link}
+            key={team.id}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
+          >
+            {team.title}
+          </Link>
+        ))}
+        <Link
+          href="/team/technical-team"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
+        >
+          COACHING STAFF
+        </Link>
+        
+        <Link
+          href="/#"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
+        >
+          WOMEN'S TEAM
+        </Link>
+      </div>
+    </div>
+
+    <a
+      href="https://tickets.murangaseal.co.ke/"
+      className="hover:text-primary transition-colors"
+    >
+      TICKETS
+    </a>
+    <a href="/club" className="hover:text-primary transition-colors">
+      CLUB
+    </a>
+    <Link
+      href="/shop"
+      onClick={() => setIsMobileMenuOpen(false)}
+      className="hover:text-primary transition-colors"
+    >
+      SHOP
+    </Link>
+  </div>
+
+  <div className="mt-auto flex flex-col items-center justify-center pb-12 pt-6">
+    <h3 className="text-lg font-bold mb-4 text-primary">Follow Us</h3>
+    <div className="flex space-x-4">
+      {[
+        { icon: 'https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000', label: "Facebook", href: "https://www.facebook.com/murangaseal", color: "hover:bg-blue-600" },
+        { icon: 'https://img.icons8.com/?size=100&id=118638&format=png&color=000000', label: "TikTok", href: "https://www.tiktok.com/@murangaseal?_t=ZM-8zTSB0E1Axk&_r=1", color: "hover:bg-white" },
+        { icon: 'https://img.icons8.com/?size=100&id=32323&format=png&color=000000', label: "Instagram", href: "https://www.instagram.com/murangaseal/", color: "hover:bg-pink-600" },
+        { icon: 'https://img.icons8.com/?size=100&id=19318&format=png&color=000000', label: "YouTube", href: "https://www.youtube.com/@Murangaseal", color: "hover:bg-red-600" },
+        { icon: 'https://img.icons8.com/?size=100&id=wCo0O5X01IHO&format=png&color=000000', label: "X", href: "https://x.com/murangaseal", color: "hover:bg-white" }
+      ].map((social, index) => {
+        return (
+          <a
+            key={index}
+            href={social.href}
+            aria-label={social.label}
+            className={`flex items-center justify-center w-10 h-10 rounded-full bg-white ${social.color} transition-colors duration-300 group`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image 
+              src={social.icon} 
+              alt={social.label} 
+              width={24} 
+              height={24} 
+              className="transition-transform duration-300 group-hover:scale-110"
+            />
+          </a>
+        )
+      })}
+    </div>
+  </div>
+</div>
+    </header>
   );
 }

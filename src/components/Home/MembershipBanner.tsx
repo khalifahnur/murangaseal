@@ -6,23 +6,12 @@ import { ChevronRight } from "lucide-react";
 export default function MembershipBanner() {
   return (
     <section className="w-full py-4 px-4 md:px-6 mozillaheadline">
-      <div className="relative w-full max-w-7xl mx-auto overflow-hidden group">
-        <div className="absolute inset-0 w-full h-full">
-          <Image
-            src="/assets/Team/mseal-team-photo.jpg"
-            alt="Muranga Seals Team"
-            fill
-            className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-linear-to-r from-black via-black/80 to-black/40 md:to-transparent" />
-        </div>
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-6 md:px-10 md:py-8">
+      <div className="relative w-full max-w-7xl mx-auto overflow-hidden group bg-black flex flex-col md:flex-row">
+        <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-center justify-between gap-4 px-6 py-6 md:px-10 md:py-8">
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-1">
               <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-0.5 backdrop-blur-md">
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-primary" />
                 <span className="text-[10px] md:text-xs font-bold text-primary tracking-widest uppercase">
                   Forever MSeal
                 </span>
@@ -34,7 +23,7 @@ export default function MembershipBanner() {
             </div>
 
             <h2 className="text-2xl md:text-4xl font-black text-white italic tracking-tighter leading-tight drop-shadow-md">
-              2025/26{" "}
+              2026/27{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-orange-500">
                 MEMBERSHIP
               </span>
@@ -59,15 +48,15 @@ export default function MembershipBanner() {
               "
               >
                 <div className="skew-x-12 flex items-center gap-2 text-sm md:text-base">
-                  Buy Now{" "}
+                  Join Now{" "}
                   <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                 </div>
               </button>
             </Link>
           </div>
         </div>
-
-        <div className="absolute bottom-0 left-0 h-1.5 w-full bg-linear-to-r from-primary via-yellow-400 to-primary" />
+        
+        <div className="absolute bottom-0 left-0 h-1.5 w-full bg-linear-to-r from-primary via-black to-primary z-20" />
       </div>
     </section>
   );

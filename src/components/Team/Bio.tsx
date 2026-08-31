@@ -1,9 +1,9 @@
 "use client";
 
-import { Star } from "lucide-react";
-import { CldImage } from "next-cloudinary";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import { CldImage } from "next-cloudinary";
+import { Star } from "lucide-react";
 
 interface FunFact {
   fact: string;
@@ -26,156 +26,171 @@ interface PlayerBio {
   funFacts?: FunFact[];
 }
 
-export default function Bio({ playerBio }: { playerBio: PlayerBio }) {
+const BRAND_RED = "#D4121E";
+
+export default function PlayerProfile({ playerBio }: { playerBio: PlayerBio }) {
+  const nameParts = playerBio.name.trim().split(" ");
+  const fallbackFirstName = nameParts.length > 1 ? nameParts[0] : "";
+  const fallbackLastName = nameParts.length > 1 ? nameParts.slice(-1)[0] : playerBio.name;
+
+  const firstName = playerBio.firstName || fallbackFirstName;
+  const lastName = playerBio.lastName || fallbackLastName;
+
   return (
-    <div className="min-h-screen bg-gray-950 text-white mozillaheadline">
-      <div className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            backgroundImage: `url('/assets/bg.jpg')`,
-            backgroundSize: "200px 200px",
-            backgroundRepeat: "repeat",
-          }}
-          aria-hidden="true"
-        />
-
-        <div className="relative mx-auto px-4 py-12 md:py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-h-[400px] lg:max-h-[500px]">
-            <div className="lg:text-left">
-              <div className="text-[180px] sm:text-[250px] lg:text-[320px] font-black italic drop-shadow-2xl opacity-90">
-                {playerBio.jerseyNumber}
-              </div>
-            </div>
-
-            <div className="relative lg:col-span-2 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-md lg:max-w-xl aspect-3/4 rounded-2xl overflow-hidden shadow-2xl">
-                {playerBio.mugshot ? (
-                  <CldImage
-                    width={1200}
-                    height={1600}
-                    src={playerBio.mugshot}
-                    alt={`${playerBio.firstName || ""} ${playerBio.lastName || playerBio.name}`}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    quality="auto:best"
-                    format="auto"
-                    crop="fill"
-                    gravity="face"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                    <span className="text-gray-500 text-2xl">No image</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="absolute -right-8 lg:left-50 top-1/2 -translate-y-1/2 -rotate-90 origin-left hidden md:block">
-                <h1 className="text-3xl lg:text-5xl font-black tracking-tight drop-shadow-2xl whitespace-nowrap ">
-                  {playerBio.name}
-                </h1>
-              </div>
-              <h1 className="absolute -top-15 left-20 text-xl sm:text-5xl font-black text-white tracking-tight drop-shadow-2xl md:hidden">
-                {playerBio.name}
-              </h1>
-            </div>
-          </div>
-
-          <div className=" md:mt-12 lg:mt-0 w-1/2  lg:absolute lg:bottom-0 lg:left-0 lg:right-0 bg-black/40 backdrop-blur-sm border-t border-white/10">
-            <div className="container mx-auto px-4 py-8">
-              <div className="flex flex-wrap justify-center lg:justify-start gap-12 text-center lg:text-left">
-                {playerBio.age && (
-                  <div>
-                    <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">
-                      Age
-                    </p>
-                    <p className="text-xs md:text-3xl font-black mt-1">
-                      {playerBio.age}
-                    </p>
-                  </div>
-                )}
-                {playerBio.height && (
-                  <div>
-                    <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">
-                      Height
-                    </p>
-                    <p className="text-xs md:text-3xl font-black mt-1">
-                      {playerBio.height} cm
-                    </p>
-                  </div>
-                )}
-                <div>
-                  <p className="text-xs md:text-xl uppercase tracking-widest text-gray-400 font-bold">
-                    Position
-                  </p>
-                  <p className="text-xs md:text-3xl font-black mt-1">
-                    {playerBio.position}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 mb-2 min-h-[100px]">
+    <main className="w-full bg-white flex flex-col min-h-screen">
+      <section
+        className="bg-primary relative w-full flex flex-col items-center overflow-hidden pt-[120px] md:pt-[160px]"
+        // style={{ backgroundColor: BRAND_RED }}
+      >
+        <div className="absolute inset-0 pointer-events-none bg-diagonal-dots" style={{ zIndex: 0 }}>
+        </div>
+        <div className="container mx-auto px-4 md:px-8 relative z-10 flex flex-col items-center w-full max-w-6xl">
+          <div className="absolute top-0 right-4 md:right-8 flex flex-col items-end gap-3 z-30">
             {playerBio.captain && (
               <Image
                 src="/assets/captain-band.png"
                 alt="Captain"
-                width={200}
-                height={100}
-                className="h-20 w-auto object-contain"
+                width={80}
+                height={40}
+                className="h-8 w-auto object-contain drop-shadow-md"
               />
             )}
-            {playerBio.loaned && (
-              <div className="absolute top-8 right-8 bg-blue-600 text-white px-5 py-3 rounded-full font-bold text-sm shadow-lg z-10">
-                On Loan from {playerBio.loanFrom}
-              </div>
+            {playerBio.loaned && playerBio.loanFrom && (
+              <span className="bg-blue-600/90 backdrop-blur-sm text-white px-3 py-1 rounded-full font-bold text-xs shadow-lg uppercase tracking-wider">
+                Loan: {playerBio.loanFrom}
+              </span>
             )}
           </div>
-        </div>
-      </div>
 
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto bg-white text-gray-900 rounded-2xl shadow-2xl p-8 lg:p-12">
-          <h2 className="text-xl font-bold mb-8 border-b-4 border-gray-600 pb-4 inline-block">
-            Player Profile
-          </h2>
+          <div className="w-full flex items-center justify-between text-white mb-2 md:mb-6 mt-8 md:mt-0">
+            <span className="text-3xl md:text-[42px] font-normal tracking-widest uppercase">
+              {firstName}
+            </span>
+            <div className="flex-1 h-px bg-white/60 mx-6 md:mx-10 mt-1 md:mt-2"></div>
+            <span className="text-3xl md:text-[42px] font-normal">
+              {playerBio.jerseyNumber}
+            </span>
+          </div>
 
-          <div className="space-y-6 text-lg">
-            {playerBio.previousClub && (
-              <div>
-                <span className="font-bold text-gray-700">Previous Club:</span>{" "}
-                <span>{playerBio.previousClub}</span>
-              </div>
-            )}
+          <div className="relative w-full flex justify-center items-end mt-4 md:mt-10 min-h-[300px] md:min-h-[500px]">
+            <h1
+              className="absolute bottom-0 md:bottom-100 z-0 select-none text-center w-full text-white font-serif tracking-tighter uppercase"
+              style={{ fontSize: "clamp(100px, 12vw, 320px)", lineHeight: "0.8" }}
+            >
+              {lastName}
+            </h1>
 
-            {playerBio.roleModel && (
-              <div>
-                <span className="font-bold text-gray-700">Role Model:</span>{" "}
-                <span>{playerBio.roleModel}</span>
-              </div>
-            )}
-
-            {playerBio.funFacts && playerBio.funFacts.length > 0 && (
-              <div className="mt-12">
-                <h3 className="text-xl font-bold mb-6 text-gray-700">
-                  Fun Facts
-                </h3>
-                <ul className="space-y-4">
-                  {playerBio.funFacts.map((fact, i) => (
-                    <li key={i} className="flex items-start gap-4">
-                      <Star />
-                      <span className="flex-1 leading-relaxed">
-                        {fact.fact}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {/* Player Image */}
+            <div
+              className="relative z-10 w-full max-w-[320px] md:max-w-[500px] flex justify-center"
+              style={{ height: "clamp(350px, 60vw, 650px)" }}
+            >
+              {playerBio.mugshot ? (
+                <CldImage
+                  src={playerBio.mugshot}
+                  alt={`${firstName} ${lastName}`}
+                  fill
+                  className="object-contain object-bottom"
+                  sizes="(max-width: 768px) 320px, 500px"
+                  quality="auto:best"
+                  format="auto"
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full bg-white/10 flex items-center justify-center rounded-t-full backdrop-blur-sm">
+                  <span className="text-white/50 text-xl uppercase tracking-widest font-bold">No Image</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+
+        {/* Bottom subtle fading line */}
+        <div className="absolute bottom-16 md:bottom-24 w-full max-w-6xl h-px bg-white/20 z-0 hidden md:block"></div>
+      </section>
+
+      {/* Stats Bar */}
+      <section className="relative z-20 w-full max-w-5xl mx-auto px-4 -mt-8 md:-mt-12 mb-16 md:mb-24">
+        <div className="bg-[#f4f4f4] shadow-xl flex flex-wrap justify-between items-center py-6 px-4 md:py-10 md:px-12 rounded-sm border-b-4 border-gray-200">
+          
+          {/* AGE */}
+          <div className="w-1/2 md:w-1/4 py-4 md:py-0 flex flex-col items-center justify-center md:border-r border-gray-300">
+            <span className="text-[11px] md:text-sm text-gray-500 font-bold tracking-widest mb-2 md:mb-3 uppercase">
+              Age
+            </span>
+            <span className="text-lg md:text-2xl font-black text-gray-900 uppercase">
+              {playerBio.age || "-"}
+            </span>
+          </div>
+
+          {/* POSITION */}
+          <div className="w-1/2 md:w-1/4 py-4 md:py-0 flex flex-col items-center justify-center md:border-r border-gray-300">
+            <span className="text-[11px] md:text-sm text-gray-500 font-bold tracking-widest mb-2 md:mb-3 uppercase">
+              Position
+            </span>
+            <span className="text-lg md:text-2xl font-black text-gray-900 capitalize">
+              {playerBio.position || "-"}
+            </span>
+          </div>
+
+          {/* HEIGHT */}
+          <div className="w-1/2 md:w-1/4 py-4 md:py-0 flex flex-col items-center justify-center md:border-r border-gray-300">
+            <span className="text-[11px] md:text-sm text-gray-500 font-bold tracking-widest mb-2 md:mb-3 uppercase">
+              Height
+            </span>
+            <span className="text-lg md:text-2xl font-black text-gray-900 lowercase">
+              {playerBio.height ? `${playerBio.height} cm` : "-"}
+            </span>
+          </div>
+
+          {/* PREVIOUS CLUB */}
+          <div className="w-1/2 md:w-1/4 py-4 md:py-0 flex flex-col items-center justify-center text-center">
+            <span className="text-[11px] md:text-sm text-gray-500 font-bold tracking-widest mb-2 md:mb-3 uppercase">
+              Prev. Club
+            </span>
+            <span className="text-sm md:text-lg font-black text-gray-900 uppercase px-2 line-clamp-2">
+              {playerBio.previousClub || "N/A"}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Bio / Fun Facts Section */}
+      <section className="max-w-[900px] mx-auto px-6 pb-32 w-full">
+        <div className="space-y-12">
+          
+          {playerBio.roleModel && (
+            <div className="text-center">
+              <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">
+                Role Model
+              </h3>
+              <p className="text-2xl md:text-[32px] text-[#d31120] font-medium leading-normal">
+                "{playerBio.roleModel}"
+              </p>
+            </div>
+          )}
+
+          {playerBio.funFacts && playerBio.funFacts.length > 0 && (
+            <div className="mt-16 bg-gray-50 rounded-2xl p-8 md:p-12 border border-gray-100">
+              <h3 className="text-xl md:text-2xl font-black text-gray-900 uppercase tracking-tight mb-8 text-center md:text-left flex items-center justify-center md:justify-start gap-3">
+                <span className="w-8 h-1 bg-[#d31120] inline-block rounded-full"></span>
+                Fun Facts
+              </h3>
+              <ul className="space-y-6">
+                {playerBio.funFacts.map((fact, i) => (
+                  <li key={i} className="flex items-start gap-4 group">
+                    <Star className="w-6 h-6 text-gray-300 group-hover:text-yellow-400 transition-colors shrink-0 mt-1" fill="currentColor" />
+                    <span className="flex-1 text-lg md:text-xl text-gray-700 font-medium leading-relaxed">
+                      {fact.fact}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          
+        </div>
+      </section>
+    </main>
   );
 }

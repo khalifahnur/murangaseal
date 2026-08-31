@@ -11,7 +11,7 @@ export function RichText({ content, className = '' }: Props) {
   if (!content) return null
 
   return (
-    <div className={`prose prose-lg max-w-none mozillaheadline text-lg ${className}`}>
+    <div className={`prose prose-lg max-w-none text-lg ${className}`}>
       <RichTextRenderer data={content} />
     </div>
   )

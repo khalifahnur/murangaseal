@@ -1,199 +1,125 @@
 import React from 'react';
-import { Calendar, Award, TrendingUp, Users } from 'lucide-react';
 
-export default function HistorySection() {
-  const milestones = [
-    { 
-      year: '2016', 
-      title: 'Foundation Year', 
-      description: 'Muranga Seal FC was established with a vision to promote football excellence in Muranga County. A group of passionate football enthusiasts came together to create something special for the community.',
-      image: '🏛️',
-      category: 'Foundation'
-    },
-    { 
-      year: '2016', 
-      title: 'First Trophy', 
-      description: 'Won the Muranga County League Championship, marking our arrival on the regional football scene. This historic victory proved that dedication and teamwork can overcome any obstacle.',
-      image: '🏆',
-      category: 'Achievement'
-    },
-    { 
-      year: '2018', 
-      title: 'National Entry', 
-      description: 'Gained promotion to the National Super League, competing at a higher level. Our players showcased exceptional skill and determination, earning recognition across Kenya.',
-      image: '🎯',
-      category: 'Milestone'
-    },
-    { 
-      year: '2020', 
-      title: 'Youth Academy Launch', 
-      description: 'Launched our comprehensive youth development program to nurture local talent and build future stars. Investing in the next generation became our core priority.',
-      image: '⚽',
-      category: 'Development'
-    },
-    { 
-      year: '2023', 
-      title: 'Modern Era Begins', 
-      description: 'Invested in state-of-the-art facilities and professional coaching staff. New training grounds and equipment transformed how we prepare our players for excellence.',
-      image: '🏟️',
-      category: 'Infrastructure'
-    },
-    { 
-      year: '', 
-      title: 'Present Day', 
-      description: 'Competing at the highest level while maintaining our commitment to community development. Today, we stand proud as a beacon of hope and excellence in Kenyan football.',
-      image: '⭐',
-      category: 'Today'
-    },
-  ];
+const milestones = [
+  { 
+    year: '2016', 
+    title: 'Foundation Year', 
+    description: 'Muranga Seal FC was established with a vision to promote football excellence in Muranga County. A group of passionate football enthusiasts came together to create something special for the community.',
+    category: 'Foundation'
+  },
+  { 
+    year: '2016', 
+    title: 'First Trophy', 
+    description: 'Won the Muranga County League Championship, marking our arrival on the regional football scene. This historic victory proved that dedication and teamwork can overcome any obstacle.',
+    category: 'Achievement'
+  },
+  { 
+    year: '2018', 
+    title: 'National Entry', 
+    description: 'Gained promotion to the National Super League, competing at a higher level. Our players showcased exceptional skill and determination, earning recognition across Kenya.',
+    category: 'Milestone'
+  },
+  { 
+    year: '2020', 
+    title: 'Youth Academy Launch', 
+    description: 'Launched our comprehensive youth development program to nurture local talent and build future stars. Investing in the next generation became our core priority.',
+    category: 'Development'
+  },
+  { 
+    year: '2023', 
+    title: 'Modern Era Begins', 
+    description: 'Invested in state-of-the-art facilities and professional coaching staff. New training grounds and equipment transformed how we prepare our players for excellence.',
+    category: 'Infrastructure'
+  },
+  { 
+    year: 'PRESENT', 
+    title: 'Today', 
+    description: 'Competing at the highest level while maintaining our commitment to community development. Today, we stand proud as a beacon of hope and excellence in Kenyan football.',
+    category: 'Present Day'
+  },
+];
 
+export default function ClubHistory() {
   return (
-    <div className="w-full">
-      <div className="bg-gray-900 text-white py-3 border-b-4">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            
-            <span className="text-sm font-serif">Est. 2016</span>
-          </div>
-          <div className="text-center">
-            <div className="font-serif text-xs uppercase tracking-widest text-primary">Special Edition</div>
-          </div>
-          <div className="text-sm font-serif">Mseal</div>
-        </div>
-      </div>
-
-      <div className="bg-white border-b-4 border-gray-900 py-8">
+    <main className="w-full bg-white flex flex-col min-h-screen pt-[100px] md:pt-[140px] bodyfont">
+      <section className="relative w-full flex flex-col justify-center overflow-hidden bg-primary py-24 md:py-32 px-6">
+        <div className="absolute inset-0 bg-diagonal-dots opacity-80 pointer-events-none" />
         
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="font-serif text-sm uppercase tracking-widest mb-2">
-            The Official Chronicle
+        <div className="container mx-auto relative z-10 max-w-6xl">
+          <div className="text-white text-sm md:text-base font-bold tracking-widest uppercase mb-4 md:mb-6">
+            EST. 2016 &bull; MURANGA COUNTY
           </div>
-          <h1 className="font-serif text-6xl md:text-8xl font-black text-gray-900 mb-2" >
-            MURANGA SEAL FC
+          <h1 className="text-white text-6xl md:text-8xl lg:text-[120px] font-black tracking-tighter uppercase leading-[0.9] mb-8">
+            MURANGA<br />SEAL FC
           </h1>
-          <div className="flex items-center justify-center gap-8 text-sm text-gray-600 font-serif">
-            <span>Volume X</span>
-            <span className="w-2 h-2 bg-slate-400 rounded-full"></span>
-            <span>A Decade of Excellence</span>
-            <span className="w-2 h-2 bg-slate-400 rounded-full"></span>
-            <span>2016 - </span>
+          <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-6 text-white/90">
+            <span className="text-lg md:text-xl font-bold tracking-widest uppercase">The Official Chronicle</span>
+            <div className="hidden md:block h-[2px] w-16 bg-white/50"></div>
+            <span className="text-lg md:text-xl font-bold tracking-widest uppercase">A Decade of Excellence</span>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="bg-gray-900 text-white py-4 border-y-2">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3">
-            <h2 className="font-serif text-2xl md:text-3xl font-bold uppercase tracking-wide">
-              Our Journey Through Time
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="bg-white shadow-2xl">
-          <div className="p-8 md:p-12 border-l-4">
-            <div className="max-w-4xl">
-              <p className="text-xl md:text-2xl font-serif leading-relaxed text-gray-900 first-letter:text-7xl first-letter:font-bold first-letter:text-primary first-letter:float-left first-letter:mr-3 first-letter:leading-none first-letter:mt-1">
-                From humble beginnings in Muranga County to becoming one of Kenya&apos;s most respected football institutions, 
-                Muranga Seal FC (Mseal) has written a remarkable story of perseverance, excellence, and community spirit. 
-                What started as a dream in 2016 has blossomed into a movement that inspires thousands across the nation.
+      <section className="w-full py-20 md:py-32 px-6 bg-white border-b border-gray-100">
+        <div className="container mx-auto max-w-5xl md:flex gap-16 items-start">
+           <div className="md:w-1/3 mb-10 md:mb-0">
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter uppercase leading-none">
+                Our Journey<br />Through Time
+              </h2>
+           </div>
+           <div className="md:w-2/3">
+              <p className="text-2xl md:text-3xl text-primary font-medium leading-snug mb-8">
+                From humble beginnings in Muranga County to becoming one of Kenya's most respected football institutions, Muranga Seal FC (Mseal) has written a remarkable story of perseverance, excellence, and community spirit.
               </p>
-              <div className="mt-6 pt-6 border-t-2 border-amber-200 flex items-center gap-4 text-sm text-gray-600 font-serif italic">
-                <span>A story of dedication, unity, and unwavering commitment to excellence</span>
-              </div>
-            </div>
-          </div>
+              <p className="text-lg md:text-xl text-gray-600 font-medium leading-relaxed">
+                What started as a dream in 2016 has blossomed into a movement that inspires thousands across the nation. A story of dedication, unity, and unwavering commitment to excellence.
+              </p>
+           </div>
+        </div>
+      </section>
 
-          <div className="p-8 md:p-12 to-white">
-            <div className="grid gap-12">
-              {milestones.map((milestone, index) => (
-                <article 
-                  key={index}
-                  className={`relative ${index % 2 === 0 ? '' : 'md:ml-auto'} max-w-4xl`}
-                >
-                  <div className="bg-white rounded-lg shadow-xl overflow-hidden border-l-8 border-primary hover:shadow-2xl transition-all duration-300">
-                    <div className="md:flex">
-                      <div className="md:w-48 bg-gray-900 text-white p-8 flex flex-col items-center justify-center text-center relative">
-                        <div className="absolute top-4 right-4 bg-primary text-gray-900 px-3 py-1 rounded-full text-xs font-bold uppercase">
-                          {milestone.category}
-                        </div>
-                        <div className="text-7xl mb-3">{milestone.image}</div>
-                        <div className="text-5xl font-serif font-bold mb-2">{milestone.year}</div>
-                        <div className="w-16 h-1 bg-primary rounded"></div>
-                      </div>
-                      <div className="flex-1 p-8">
-                        <div className="mb-4">
-                          <h3 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-2 leading-tight">
-                            {milestone.title}
-                          </h3>
-                          <div className="w-20 h-1 bg-primary"></div>
-                        </div>
-                        
-                        <p className="font-serif text-lg text-gray-700 leading-relaxed mb-4">
-                          {milestone.description}
-                        </p>
-
-                        <div className="flex items-center gap-2 text-primary">
-                          <div className="w-8 h-0.5 bg-primary"></div>
-                          <TrendingUp className="w-4 h-4" />
-                          <div className="w-8 h-0.5 bg-primary"></div>
-                        </div>
-                      </div>
-                    </div>
+      <section className="w-full py-20 md:py-32 px-6 bg-[#f9f9f9]">
+        <div className="container mx-auto max-w-5xl">
+          <div className="flex flex-col space-y-20 md:space-y-32">
+            {milestones.map((m, idx) => (
+              <div key={idx} className="flex flex-col md:flex-row w-full group">
+                <div className="w-full md:w-1/3 mb-6 md:mb-0 md:pr-12 md:text-right flex flex-col md:items-end justify-start pt-2">
+                  <div className="text-7xl md:text-[90px] font-black text-primary tracking-tighter leading-none mb-3">
+                    {m.year}
                   </div>
-
-                  {index < milestones.length - 1 && (
-                    <div className="hidden md:block absolute left-1/2 -bottom-12 transform -translate-x-1/2 z-10">
-                      <div className="w-1 h-12 bg-linear-to-b from-primary to-transparent"></div>
-                      <div className="w-3 h-3 bg-primary rounded-full absolute -bottom-1 left-1/2 transform -translate-x-1/2 animate-pulse"></div>
-                    </div>
-                  )}
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="p-8 md:p-12 bg-gray-900 text-white">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-block mb-6">
-                <div className="flex items-center gap-4 text-primary">
-                  <div className="w-12 h-0.5 bg-primary"></div>
-                  <Award className="w-8 h-8" />
-                  <div className="w-12 h-0.5 bg-primary"></div>
+                  <div className="text-xs md:text-sm font-bold tracking-widest text-gray-400 uppercase">
+                    {m.category}
+                  </div>
+                </div>
+          
+                <div className="hidden md:block w-[2px] bg-gray-200 group-hover:bg-primary transition-colors duration-500 relative">
+                   <div className="absolute top-8 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#f9f9f9] border-[3px] border-gray-200 group-hover:border-primary rounded-full transition-colors duration-500"></div>
+                </div>
+                <div className="w-full md:w-2/3 md:pl-12 pt-2 md:pt-4">
+                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-gray-900 mb-6 group-hover:text-primary transition-colors duration-300">
+                    {m.title}
+                  </h3>
+                  <p className="text-lg md:text-xl text-gray-700 font-medium leading-relaxed max-w-2xl">
+                    {m.description}
+                  </p>
                 </div>
               </div>
-              
-              <h3 className="font-serif text-3xl md:text-4xl font-bold mb-6">
-                The Journey Continues
-              </h3>
-              
-              <p className="font-serif text-xl text-slate-300 leading-relaxed mb-8">
-                As we look to the future, Muranga Seal FC remains committed to excellence, 
-                community development, and nurturing the next generation of football talent. 
-                Our story is far from over - in fact, the best chapters are yet to be written.
-              </p>
-
-            </div>
+            ))}
           </div>
         </div>
-      </div>
-
-      <div className="bg-gray-900 text-white py-8 border-t-4 border-primary">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="font-serif text-sm text-slate-400 mb-2">
-            © 2016 Muranga Seal Football Club
-          </div>
-          <div className="flex items-center justify-center gap-4 text-xs text-slate-500 font-serif">
-            <span>Muranga County</span>
-            <span>•</span>
-            <span>Kenya</span>
-            <span>•</span>
-            <span>Est. 2016</span>
-          </div>
+      </section>
+      <section className="w-full bg-[#111111] text-white py-24 md:py-32 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-pattern-red-dots opacity-20 pointer-events-none" />
+        <div className="container mx-auto max-w-4xl relative z-10 text-center">
+          <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-primary">
+            The Journey Continues
+          </h3>
+          <p className="text-xl md:text-[22px] text-gray-300 font-medium leading-relaxed mb-12 max-w-3xl mx-auto">
+            As we look to the future, Muranga Seal FC remains committed to excellence, community development, and nurturing the next generation of football talent. Our story is far from over — in fact, the best chapters are yet to be written.
+          </p>
+          <div className="w-24 h-[3px] bg-primary mx-auto"></div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

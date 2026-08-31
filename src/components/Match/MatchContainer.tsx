@@ -92,7 +92,6 @@ export default async function MatchContainer() {
   const menFixtures = menRes.docs;
   const wslFixtures = wslRes.docs;
 
-  // If BOTH teams have absolutely no fixtures, hide the whole section
   if (menFixtures.length === 0 && wslFixtures.length === 0) {
     return null;
   }

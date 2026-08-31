@@ -31,32 +31,19 @@ const sponsors = [
   },
 ];
 
+
 export default function PartnershipSection() {
   return (
-    <section className="mozillaheadline bg-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h1 className="text-lg md:text-3xl font-bold text-black mb-6 tracking-tight">
-            PARTNERSHIPS
-          </h1>
-          <div className="w-16 md:w-32 h-1 bg-primary mx-auto mb-8"></div>
-          {/* <p className="text-gray-900 text-lg max-w-2xl mx-auto">
-            We're proud to partner with industry leaders who share our passion
-            for excellence and innovation.
-          </p> */}
-        </div>
-
-        <div className="space-y-6">
-          <div>
-            <div className="grid grid-cols-3">
-              {sponsors.map((partner) => (
+    <section className="bg-[#FFFF] bg-pattern-red-dots py-20">
+      <div className="container mx-auto px-6 text-center">
+        <h3 className="text-[#1e1e1e] text-[30px] font-bold tracking-widest uppercase mb-12 opacity-80">OFFICIAL PARTNERS</h3>
+        
+        {/* Top Tier Partners (Simulated Logos with Text for now, as images are specific to the club) */}
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 mb-16">
+          {/* <div className="text-white text-4xl md:text-5xl font-black lowercase tracking-tighter">indeed</div>
+          <div className="text-white text-4xl md:text-5xl font-bold tracking-tighter">Gtech</div>
+          <div className="text-white text-3xl md:text-4xl font-bold italic tracking-tighter">Joma</div> */}
+          {sponsors.map((partner) => (
                 <Link
                   href={partner.href}
                   key={partner.image}
@@ -70,9 +57,9 @@ export default function PartnershipSection() {
                   />
                 </Link>
               ))}
-            </div>
-          </div>
         </div>
+        
+        <div className="w-full h-px bg-black/20" />
       </div>
     </section>
   );

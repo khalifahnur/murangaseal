@@ -37,7 +37,7 @@ export default function PlayerProfile({ playerBio }: { playerBio: PlayerBio }) {
   const lastName = playerBio.lastName || fallbackLastName;
 
   return (
-    <main className="w-full bg-white flex flex-col min-h-screen">
+    <main className="w-full bg-white flex flex-col min-h-screen bodyfont">
       <section
         className="bg-primary relative w-full flex flex-col items-center overflow-hidden pt-[120px] md:pt-[160px]"
         // style={{ backgroundColor: BRAND_RED }}

@@ -31,7 +31,7 @@ export default function FeaturedNew({ news }: any) {
   };
 
   return (
-    <section className="bg-[#f0f0f0] bg-pattern pt-32 pb-20 relative z-20">
+    <section className="bg-[#f0f0f0] bg-pattern pt-20 md:pt-32 pb-20 relative z-20">
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex items-center mb-8">
           <div className="w-12 h-[4px] bg-primary mr-4" />

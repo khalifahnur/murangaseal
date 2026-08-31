@@ -173,7 +173,7 @@ export default function MensTeam({ data }: ContainerProps) {
 
   return (
     <main
-      className="relative min-h-screen flex flex-col overflow-hidden mt-10 bg-primary"
+      className="relative min-h-screen flex flex-col overflow-hidden mt-10 bg-primary bodyfont"
       style={{  paddingBottom: '5rem' }}
     >
       <div className="absolute inset-0 pointer-events-none bg-diagonal-dots" style={{ zIndex: 0 }}>

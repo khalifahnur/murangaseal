@@ -62,7 +62,7 @@ export default function TechnicalTeamGrid({ technical }: { technical: any[] }) {
     : technical.slice(1);
 
   return (
-    <main className="relative min-h-screen flex flex-col overflow-hidden mt-10 bg-primary pb-20">
+    <main className="relative min-h-screen flex flex-col overflow-hidden mt-10 bg-primary pb-20 bodyfont">
       <div className="absolute inset-0 pointer-events-none bg-diagonal-dots" style={{ zIndex: 0 }} />
         
         

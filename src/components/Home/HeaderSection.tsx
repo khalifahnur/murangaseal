@@ -45,15 +45,29 @@ export default function Header() {
   const location = usePathname();
   const isHomePage = location === "/";
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isMobileMenuOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
+      if (isMobileMenuOpen) return;
+
       const currentScrollY = window.scrollY;
       setIsAtTop(currentScrollY < 50);
 
       if (currentScrollY > 50 && currentScrollY > lastScrollY) {
         setIsVisible(false);
         setIsTeamsOpen(false);
-        setIsMobileMenuOpen(false);
       } else {
         setIsVisible(true);
       }
@@ -63,7 +77,7 @@ export default function Header() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isMobileMenuOpen]);
 
   const isTransparent =
     isHomePage && isAtTop && !isHovered && !isTeamsOpen && !isMobileMenuOpen;
@@ -71,13 +85,10 @@ export default function Header() {
 
   return (
     <header
-      className="fixed w-full top-0 z-50 transition-transform duration-300 bodyfont"
+      className={`fixed w-full top-0 z-50 transition-transform duration-300 bodyfont ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <div className="flex relative bg-primary text-gray-300 text-[12px] font-medium tracking-wide py-2.5 px-4 md:px-8 justify-between items-center ">
         <div className="flex space-x-6">
-          {/* <a href="#" className="hover:text-white transition-colors">CONFERENCE & EVENTS</a>
-          <a href="#" className="hover:text-white transition-colors">COMMUNITY SPORTS TRUST</a>
-          <a href="#" className="hover:text-white transition-colors">SAFEGUARDING</a> */}
         </div>
         <div className="flex space-x-4 ml-auto">
           <a
@@ -180,10 +191,6 @@ export default function Header() {
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
-          {/* <button className="hidden md:flex flex-col items-center hover:text-[#b5121b] transition-colors">
-            <Menu size={28} strokeWidth={1.5} className="mb-0.5" />
-            <span className="text-[10px] font-bold tracking-widest">MORE</span>
-          </button> */}
         </div>
       </div>
 
@@ -267,114 +274,115 @@ export default function Header() {
       </div>
 
       <div
-  className={`md:hidden absolute top-full left-0 w-full bg-[#111111] overflow-y-auto transition-all duration-300 origin-top z-40 flex flex-col ${isMobileMenuOpen ? "max-h-screen opacity-100 border-t border-white/10 shadow-2xl" : "max-h-0 opacity-0"}`}
-  style={{ height: "calc(100vh - 80px)" }}
->
-  <div className="flex flex-col p-6 space-y-6 text-white text-lg font-bold tracking-wider">
-    <a href="/news" className="hover:text-primary transition-colors">
-      LATEST
-    </a>
-    <a
-      href="/highlights"
-      className="hover:text-primary transition-colors"
-    >
-      VIDEO
-    </a>
-    <a href="/#match" className="hover:text-primary transition-colors">
-      FIXTURES & RESULTS
-    </a>
-
-    <div className="flex flex-col border-y border-white/10 py-4 my-2">
-      <button
-        className="flex items-center justify-between hover:text-primary text-left transition-colors"
-        onClick={() => setMobileTeamsOpen(!mobileTeamsOpen)}
+        className={`md:hidden absolute top-full left-0 w-full bg-[#111111] overflow-y-auto transition-all duration-300 origin-top z-40 flex flex-col ${isMobileMenuOpen ? "max-h-screen opacity-100 border-t border-white/10 shadow-2xl" : "max-h-0 opacity-0"}`}
+        style={{ height: "calc(100vh - 80px)" }}
       >
-        <span>TEAMS</span>
-        <ChevronRight
-          className={`transition-transform duration-300 ${mobileTeamsOpen ? "rotate-90" : ""}`}
-        />
-      </button>
-      <div
-        className={`flex flex-col overflow-hidden transition-all duration-300 ${mobileTeamsOpen ? "max-h-[500px] mt-4 space-y-4" : "max-h-0"}`}
-      >
-        {teamsData.map((team) => (
-          <Link
-            href={team.link}
-            key={team.id}
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
-          >
-            {team.title}
-          </Link>
-        ))}
-        <Link
-          href="/team/technical-team"
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
-        >
-          COACHING STAFF
-        </Link>
-        
-        <Link
-          href="/#"
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
-        >
-          WOMEN'S TEAM
-        </Link>
-      </div>
-    </div>
-
-    <a
-      href="https://tickets.murangaseal.co.ke/"
-      className="hover:text-primary transition-colors"
-    >
-      TICKETS
-    </a>
-    <a href="/club" className="hover:text-primary transition-colors">
-      CLUB
-    </a>
-    <Link
-      href="/shop"
-      onClick={() => setIsMobileMenuOpen(false)}
-      className="hover:text-primary transition-colors"
-    >
-      SHOP
-    </Link>
-  </div>
-
-  <div className="mt-auto flex flex-col items-center justify-center pb-12 pt-6">
-    <h3 className="text-lg font-bold mb-4 text-primary">Follow Us</h3>
-    <div className="flex space-x-4">
-      {[
-        { icon: 'https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000', label: "Facebook", href: "https://www.facebook.com/murangaseal", color: "hover:bg-blue-600" },
-        { icon: 'https://img.icons8.com/?size=100&id=118638&format=png&color=000000', label: "TikTok", href: "https://www.tiktok.com/@murangaseal?_t=ZM-8zTSB0E1Axk&_r=1", color: "hover:bg-white" },
-        { icon: 'https://img.icons8.com/?size=100&id=32323&format=png&color=000000', label: "Instagram", href: "https://www.instagram.com/murangaseal/", color: "hover:bg-pink-600" },
-        { icon: 'https://img.icons8.com/?size=100&id=19318&format=png&color=000000', label: "YouTube", href: "https://www.youtube.com/@Murangaseal", color: "hover:bg-red-600" },
-        { icon: 'https://img.icons8.com/?size=100&id=wCo0O5X01IHO&format=png&color=000000', label: "X", href: "https://x.com/murangaseal", color: "hover:bg-white" }
-      ].map((social, index) => {
-        return (
-          <a
-            key={index}
-            href={social.href}
-            aria-label={social.label}
-            className={`flex items-center justify-center w-10 h-10 rounded-full bg-white ${social.color} transition-colors duration-300 group`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image 
-              src={social.icon} 
-              alt={social.label} 
-              width={24} 
-              height={24} 
-              className="transition-transform duration-300 group-hover:scale-110"
-            />
+        <div className="flex flex-col p-6 space-y-6 text-white text-lg font-bold tracking-wider">
+          <a href="/news" className="hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+            LATEST
           </a>
-        )
-      })}
-    </div>
-  </div>
-</div>
+          <a
+            href="/highlights"
+            className="hover:text-primary transition-colors"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            VIDEO
+          </a>
+          <a href="/#match" className="hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+            FIXTURES & RESULTS
+          </a>
+
+          <div className="flex flex-col border-y border-white/10 py-4 my-2">
+            <button
+              className="flex items-center justify-between hover:text-primary text-left transition-colors"
+              onClick={() => setMobileTeamsOpen(!mobileTeamsOpen)}
+            >
+              <span>TEAMS</span>
+              <ChevronRight
+                className={`transition-transform duration-300 ${mobileTeamsOpen ? "rotate-90" : ""}`}
+              />
+            </button>
+            <div
+              className={`flex flex-col overflow-hidden transition-all duration-300 ${mobileTeamsOpen ? "max-h-[500px] mt-4 space-y-4" : "max-h-0"}`}
+            >
+              {teamsData.map((team) => (
+                <Link
+                  href={team.link}
+                  key={team.id}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
+                >
+                  {team.title}
+                </Link>
+              ))}
+              <Link
+                href="/team/technical-team"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
+              >
+                COACHING STAFF
+              </Link>
+              
+              <Link
+                href="/#"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="pl-4 text-gray-400 hover:text-white transition-colors text-base"
+              >
+                WOMEN'S TEAM
+              </Link>
+            </div>
+          </div>
+
+          <a
+            href="https://tickets.murangaseal.co.ke/"
+            className="hover:text-primary transition-colors"
+          >
+            TICKETS
+          </a>
+          <a href="/club" className="hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+            CLUB
+          </a>
+          <Link
+            href="/shop"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="hover:text-primary transition-colors"
+          >
+            SHOP
+          </Link>
+        </div>
+
+        <div className="mt-auto flex flex-col items-center justify-center pb-12 pt-6">
+          <h3 className="text-lg font-bold mb-4 text-primary">Follow Us</h3>
+          <div className="flex space-x-4">
+            {[
+              { icon: 'https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000', label: "Facebook", href: "https://www.facebook.com/murangaseal", color: "hover:bg-blue-600" },
+              { icon: 'https://img.icons8.com/?size=100&id=118638&format=png&color=000000', label: "TikTok", href: "https://www.tiktok.com/@murangaseal?_t=ZM-8zTSB0E1Axk&_r=1", color: "hover:bg-white" },
+              { icon: 'https://img.icons8.com/?size=100&id=32323&format=png&color=000000', label: "Instagram", href: "https://www.instagram.com/murangaseal/", color: "hover:bg-pink-600" },
+              { icon: 'https://img.icons8.com/?size=100&id=19318&format=png&color=000000', label: "YouTube", href: "https://www.youtube.com/@Murangaseal", color: "hover:bg-red-600" },
+              { icon: 'https://img.icons8.com/?size=100&id=wCo0O5X01IHO&format=png&color=000000', label: "X", href: "https://x.com/murangaseal", color: "hover:bg-white" }
+            ].map((social, index) => {
+              return (
+                <a
+                  key={index}
+                  href={social.href}
+                  aria-label={social.label}
+                  className={`flex items-center justify-center w-10 h-10 rounded-full bg-white ${social.color} transition-colors duration-300 group`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image 
+                    src={social.icon} 
+                    alt={social.label} 
+                    width={24} 
+                    height={24} 
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
+                </a>
+              )
+            })}
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

@@ -23,7 +23,7 @@ interface ArticleProps {
 export default function Article({ article }: ArticleProps) { 
 
   return (
-    <main className="pt-[80px] md:pt-[100px] w-full overflow-x-hidden bg-white">
+    <main className="pt-[80px] md:pt-[100px] w-full overflow-x-hidden bg-white bodyfont">
       <section className="flex flex-col md:flex-row w-full min-h-[600px] lg:min-h-[700px]">
         <div className="w-full md:w-1/2 bg-primary relative flex flex-col justify-center p-8 md:p-12 lg:p-20 overflow-hidden">
           <div className="absolute inset-0 bg-pattern-red-dots opacity-90 pointer-events-none" />
@@ -40,11 +40,6 @@ export default function Article({ article }: ArticleProps) {
             <h1 className="text-white text-[40px] md:text-5xl lg:text-7xl font-black leading-[0.95] tracking-tighter uppercase mb-6 drop-shadow-sm">
               {article.title}
             </h1>
-            
-            {/* <p className="text-white/95 text-lg md:text-xl font-medium leading-snug mb-16 max-w-[90%]">
-              Brentford Under-18s fell to defeat in their U18 Premier League Cup group D opener as they lost 2-0 to Burnley on the road at Barnfield Training Centre on Tuesday afternoon
-            </p>
-             */}
             
           </div>
         </div>
@@ -66,14 +61,14 @@ export default function Article({ article }: ArticleProps) {
       <article className="w-full relative bg-white">
         <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
           <div className="relative mb-12">
-            <div className="absolute top-1/2 -translate-y-1/2 right-[calc(100%+2rem)] w-[50vw] h-[3px] bg-[#d31120]"></div>
+            <div className="absolute top-1/2 -translate-y-1/2 right-[calc(100%+2rem)] w-[50vw] h-[3px] bg-primary"></div>
             
-            <div className="text-[#d31120] text-xs font-black tracking-widest uppercase">
+            <div className="text-primary text-xs font-black tracking-widest uppercase">
               WRITTEN BY MSEAL FOOTBALL CLUB
             </div>
           </div>
           
-          <p className="text-[22px] md:text-[26px] text-[#d31120] font-medium leading-snug mb-12">
+          <p className="text-[22px] md:text-[26px] text-primary font-medium leading-snug mb-12">
             {article.title}
           </p>
 

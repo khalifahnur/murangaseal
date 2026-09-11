@@ -25,6 +25,24 @@ export default buildConfig({
           maxLength: 200,
         },
         {
+          name: "category",
+          type: "select",
+          required: false,
+          defaultValue: "CLUB NEWS",
+          admin: {
+            position: "sidebar",
+            description: "Select a category for this news article.",
+          },
+          options: [
+            { label: "Club News", value: "CLUB NEWS" },
+            { label: "First Team", value: "FIRST TEAM" },
+            { label: "Match Reports", value: "MATCH REPORTS" },
+            { label: "Interview", value: "INTERVIEW" },
+            { label: "Academy", value: "ACADEMY" },
+            { label: "Community", value: "COMMUNITY" },
+          ],
+        },
+        {
           name: "excerpt",
           type: "textarea",
           maxLength: 400,
@@ -88,7 +106,7 @@ export default buildConfig({
         },
       ],
     },
- 
+
     Matches,
     Players,
     Highlights,
@@ -96,22 +114,23 @@ export default buildConfig({
     PlayerOfTheMonth,
     TechnicalCoach,
     Women,
-    WomenFixtures
+    WomenFixtures,
   ],
 
   secret: process.env.PAYLOAD_SECRET || "",
- db: mongooseAdapter({
-  url: process.env.MONGODB_URI || "mongodb://localhost:27017/loca_db",
-  connectOptions: {
-    maxPoolSize: 10,
-    connectTimeoutMS: 60000, 
-    socketTimeoutMS: 90000,  
-    serverSelectionTimeoutMS: 60000, 
-    heartbeatFrequencyMS: 10000,
-    maxIdleTimeMS: 30000,
-    retryWrites: true,
-    retryReads: true,
-  },
-}),
+  db: mongooseAdapter({
+    url: process.env.MONGODB_URI || "mongodb://localhost:27017/loca_db",
+    connectOptions: {
+      maxPoolSize: 100,
+      connectTimeoutMS: 60000,
+      socketTimeoutMS: 90000,
+      serverSelectionTimeoutMS: 60000,
+      heartbeatFrequencyMS: 10000,
+      maxIdleTimeMS: 30000,
+      retryWrites: true,
+      retryReads: true,
+      family: 4,
+    },
+  }),
   sharp,
 });

@@ -36,7 +36,7 @@ export default function JerseyDetail({ params }: PageProps) {
   const images = [jersey.image, ...(jersey.additionalImages || [])];
 
   return (
-    <main className="bg-background text-foreground mozillaheadline">
+    <main className="bg-background text-foreground bodyfont">
       <div className="max-w-7xl  px-4 py-4 text-sm text-muted-foreground flex items-center gap-2">
         <Link
           href="/shop"
@@ -49,7 +49,7 @@ export default function JerseyDetail({ params }: PageProps) {
         <span className="text-foreground">{jersey.name}</span>
       </div>
 
-      <div className="mx-auto px-4 py-12">
+      <div className="mx-auto px-4 py-6">
         <div className="grid md:grid-cols-2 gap-12">
           <div className="flex flex-row gap-4">
             {images.length > 1 && (
@@ -80,8 +80,8 @@ export default function JerseyDetail({ params }: PageProps) {
                 src={images[selectedImage] || "/placeholder.svg"}
                 alt={jersey.name}
                 className="w-full h-full object-cover"
-                width={1000}
-                height={800}
+                width={600}
+                height={400}
               />
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function JerseyDetail({ params }: PageProps) {
                   <p className="text-sm text-muted-foreground uppercase tracking-wide mb-2">
                     {jersey.category}
                   </p>
-                  <h1 className="text-xl md:text-5xl font-bold leading-tight text-balance">
+                  <h1 className="text-lg md:text-xl font-bold leading-tight text-balance">
                     {jersey.name}
                   </h1>
                 </div>
@@ -116,7 +116,7 @@ export default function JerseyDetail({ params }: PageProps) {
 
             <div className="border-t border-b border-border py-6">
               <div className="flex items-end gap-4 mb-4">
-                <div className="text-xl md:text-5xl font-bold">
+                <div className="text-lg md:text-xl font-bold">
                   Ksh.{jersey.price}
                 </div>
                 {/* <div className="text-xl text-muted-foreground line-through">
@@ -134,13 +134,13 @@ export default function JerseyDetail({ params }: PageProps) {
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold mb-3">Size</label>
+                <label className="block text-sm  mb-3">Size</label>
                 <div className="grid grid-cols-6 gap-3">
                   {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`py-3 px-2 border rounded-lg font-semibold transition text-sm ${
+                      className={`py-3 px-2 border rounded-lg  transition text-sm ${
                         selectedSize === size
                           ? "border-accent bg-accent text-accent-foreground"
                           : "border-border hover:border-accent"
@@ -202,43 +202,6 @@ export default function JerseyDetail({ params }: PageProps) {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 mt-16 pt-12 px-4 border-t border-border">
-          <div>
-            <h3 className="font-semibold text-lg mb-2">About {jersey.name}</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              {jersey.description}
-            </p>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold mb-6">Key Features</h3>
-            <ul className="space-y-3">
-              {jersey.features.map((feature: string, index: number) => (
-                <li key={index} className="flex gap-3">
-                  <div className="w-2 h-2 rounded-full bg-accent shrink-0 mt-2" />
-                  <span className="text-muted-foreground">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold mb-6">Specifications</h3>
-            <div className="space-y-4">
-              {jersey.specifications &&
-                Object.entries(jersey.specifications as Record<string, string | number>).map(([key, value]) => (
-                  <div
-                    key={key}
-                    className="flex justify-between gap-4 pb-3 border-b border-border"
-                  >
-                    <span className="text-muted-foreground capitalize">
-                      {key}
-                    </span>
-                    <span className="font-semibold">{value}</span>
-                  </div>
-                ))}
             </div>
           </div>
         </div>

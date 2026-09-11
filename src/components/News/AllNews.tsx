@@ -33,7 +33,7 @@ export default function AllNews({ news }: any) {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Header />
       
-      <section className="relative w-full py-12 md:py-20 px-4 md:px-6 lg:px-8 grow mozillaheadline">
+      <section className="relative w-full py-12 md:py-20 px-4 md:px-6 lg:px-8 grow bodyfont">
         <div
           className="absolute inset-0 opacity-5 pointer-events-none"
           style={{

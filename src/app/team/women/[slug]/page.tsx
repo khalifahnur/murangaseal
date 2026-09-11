@@ -64,7 +64,7 @@ export default async function page({ params }: Props) {
   if (!rawPlayer) {
     return (
       <div className="min-h-screen bg-gray-950 flex items-center justify-center text-white text-2xl">
-        Player not found
+        Bio coming soon
       </div>
     );
   }

@@ -140,6 +140,10 @@ export interface UserAuthOperations {
 export interface News {
   id: string;
   title: string;
+  /**
+   * Select a category for this news article.
+   */
+  category?: ('CLUB NEWS' | 'FIRST TEAM' | 'MATCH REPORTS' | 'INTERVIEW' | 'ACADEMY' | 'COMMUNITY') | null;
   excerpt?: string | null;
   content: {
     root: {
@@ -638,6 +642,7 @@ export interface PayloadMigration {
  */
 export interface NewsSelect<T extends boolean = true> {
   title?: T;
+  category?: T;
   excerpt?: T;
   content?: T;
   slug?: T;

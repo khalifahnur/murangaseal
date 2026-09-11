@@ -29,7 +29,7 @@ const TechnicalBio: FC<TechnicalBioProps> = ({ member }) => {
     : member.name;
 
   return (
-    <section className="py-16 px-6 mozillaheadline">
+    <section className="py-16 px-6 bodyfont">
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-3 gap-10 items-start">
           <div className="md:col-span-1">

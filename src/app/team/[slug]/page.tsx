@@ -3,6 +3,7 @@ import config from "@payload-config";
 import Bio from "@/components/Team/Bio";
 import Header from "@/components/Home/HeaderSection";
 import { Footer } from "@/components/Home/Footer";
+import PartnershipSection from "@/components/Home/PartnershipSection";
 
 interface PlayerBio {
   jerseyNumber: string | number;
@@ -80,6 +81,7 @@ export default async function PlayerPage({ params }: Props) {
     <>
       <Header />
       <Bio playerBio={playerBio} />
+      <PartnershipSection />
       <Footer />
     </>
   );

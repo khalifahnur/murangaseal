@@ -1,12 +1,18 @@
 import React from "react";
-import HistorySection from "./HistorySection";
+import Header from "../Home/HeaderSection";
+import { Footer } from "../Home/Footer";
+import ClubHistory from "./HistorySection";
+import PartnershipSection from "../Home/PartnershipSection";
 
 export default function Container() {
 
 
   return (
-    <div className="w-full bg-gray-50">
-      <HistorySection />
-    </div>
+    <>
+    <Header />
+    <ClubHistory />
+    <PartnershipSection />
+    <Footer />
+    </>
   );
 }

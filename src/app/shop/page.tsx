@@ -1,3 +1,5 @@
+import { Footer } from '@/components/Home/Footer'
+import Header from '@/components/Home/HeaderSection'
 import ProductPage from '@/components/Shop/Container'
 import { Metadata } from 'next'
 import React from 'react'
@@ -21,6 +23,10 @@ export const metadata: Metadata = {
 export default function page() {
   return (
 
+    <>
+    <Header />
     <ProductPage />
+    <Footer />
+    </>
   )
 }

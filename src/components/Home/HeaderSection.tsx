@@ -15,14 +15,14 @@ const teamsData = [
     color: "bg-[#d54f1b]",
     link: "/team",
   },
-  {
-    id: "b-team",
-    title: "B TEAM",
-    tag: "B TEAM",
-    image: "#",
-    color: "bg-[#b5121b]",
-    link: "/#",
-  },
+  // {
+  //   id: "b-team",
+  //   title: "B TEAM",
+  //   tag: "B TEAM",
+  //   image: "#",
+  //   color: "bg-[#b5121b]",
+  //   link: "/#",
+  // },
   {
     id: "women",
     title: "WOMEN",
@@ -45,7 +45,6 @@ export default function Header() {
   const location = usePathname();
   const isHomePage = location === "/";
 
-  // Prevent background scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";

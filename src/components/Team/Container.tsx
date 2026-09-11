@@ -108,8 +108,6 @@ export default function MensTeam({ data }: ContainerProps) {
     (p) => p.positionGroup.toUpperCase() === activeTab
   );
 
-  // With three copies rendered [clone][real][clone], the "real" copy always
-  // starts at DOM index filteredPlayers.length.
   const scrollToCard = (index: number, behavior: ScrollBehavior = 'smooth') => {
     if (scrollContainerRef.current) {
       const card = scrollContainerRef.current.children[index];
@@ -119,9 +117,10 @@ export default function MensTeam({ data }: ContainerProps) {
     }
   };
 
+  // 1. FIX: Changed to 'auto' so tab switching is instant and doesn't visually "bounce"
   useEffect(() => {
     const timer = setTimeout(() => {
-      scrollToCard(filteredPlayers.length, 'smooth');
+      scrollToCard(filteredPlayers.length, 'auto');
     }, 50);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -139,16 +138,13 @@ export default function MensTeam({ data }: ContainerProps) {
         const setWidth = el.scrollWidth / 3;
         if (!setWidth) return;
 
+        // "Teleport" without smooth scrolling to create the infinite loop
         if (el.scrollLeft < setWidth) {
-          const prevBehavior = el.style.scrollBehavior;
           el.style.scrollBehavior = 'auto';
           el.scrollLeft += setWidth;
-          el.style.scrollBehavior = prevBehavior;
         } else if (el.scrollLeft >= setWidth * 2) {
-          const prevBehavior = el.style.scrollBehavior;
           el.style.scrollBehavior = 'auto';
           el.scrollLeft -= setWidth;
-          el.style.scrollBehavior = prevBehavior;
         }
       }, 150);
     };
@@ -164,6 +160,9 @@ export default function MensTeam({ data }: ContainerProps) {
     if (scrollContainerRef.current) {
       const { current } = scrollContainerRef;
       const scrollAmount = current.clientWidth > 768 ? 350 : current.clientWidth * 0.82;
+      
+      // Ensure smooth behavior is applied when manually clicking buttons
+      current.style.scrollBehavior = 'smooth';
       current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -174,38 +173,14 @@ export default function MensTeam({ data }: ContainerProps) {
   return (
     <main
       className="relative min-h-screen flex flex-col overflow-hidden mt-10 bg-primary bodyfont"
-      style={{  paddingBottom: '5rem' }}
+      style={{ paddingBottom: '5rem' }}
     >
-      <div className="absolute inset-0 pointer-events-none bg-diagonal-dots" style={{ zIndex: 0 }}>
-        <div
-        //   style={{
-        //     position: 'absolute',
-        //     inset: 0,
-        //     clipPath: 'polygon(18% 0%, 42% 0%, 12% 100%, -12% 100%)',
-        //     background: 'rgba(255,255,255,0.05)',
-        //   }}
-        // />
-        // <div
-        //   style={{
-        //     position: 'absolute',
-        //     inset: 0,
-        //     clipPath: 'polygon(62% 0%, 100% 0%, 100% 55%, 40% 100%, 16% 100%)',
-        //     background: 'rgba(0,0,0,0.08)',
-        //   }}
-        // />
-        // <div
-        //   style={{
-        //     position: 'absolute',
-        //     inset: 0,
-        //     backgroundImage: 'radial-gradient(rgba(255,255,255,0.16) 1px, transparent 1.5px)',
-        //     backgroundSize: '9px 9px',
-        //   }}
-        />
-      </div>
+      <div className="absolute inset-0 pointer-events-none bg-diagonal-dots" style={{ zIndex: 0 }}></div>
 
       <div className="relative flex flex-col items-center px-4" style={{ zIndex: 10, paddingTop: '140px' }}>
         
-
+        {/* Note: Your buttons here wrap the *tabs*, but clicking them scrolls the *cards*. 
+            If you intended them to wrap the cards, you should move these buttons down to the card container. */}
         <div className="relative w-full max-w-4xl flex justify-center items-center mt-8 mb-10 md:mt-10 md:mb-12">
           <button
             onClick={() => scroll('left')}
@@ -246,21 +221,25 @@ export default function MensTeam({ data }: ContainerProps) {
       </div>
 
       <div className="relative flex-1 w-full" style={{ zIndex: 10 }}>
+        {/* 2. FIX: Removed `md:justify-center` and `scroll-smooth` */}
         <div
           ref={scrollContainerRef}
-          className="no-scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth md:justify-center h-full items-center"
+          className="no-scrollbar flex overflow-x-auto snap-x snap-mandatory h-full items-center"
         >
-          {/* Three copies [clone][real][clone] so either chevron can keep
-              advancing past an end and the wrap-around effect above lands
-              back in the real copy without a visible jump. */}
           {filteredPlayers.map((player) => (
-            <PlayerCard key={`pre-${player.id}`} player={player} />
+            <div key={`pre-${player.id}`} className="snap-center shrink-0">
+               <PlayerCard player={player} />
+            </div>
           ))}
           {filteredPlayers.map((player) => (
-            <PlayerCard key={`main-${player.id}`} player={player} />
+            <div key={`main-${player.id}`} className="snap-center shrink-0">
+               <PlayerCard player={player} />
+            </div>
           ))}
           {filteredPlayers.map((player) => (
-            <PlayerCard key={`post-${player.id}`} player={player} />
+            <div key={`post-${player.id}`} className="snap-center shrink-0">
+               <PlayerCard player={player} />
+            </div>
           ))}
         </div>
       </div>

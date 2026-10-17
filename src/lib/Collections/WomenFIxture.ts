@@ -1,17 +1,20 @@
 import { CollectionConfig } from 'payload'
 
 const teamLogoUrl = [
-{ team: "Wempa Queens", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910321/muranga-seal_trzy7m.png" },
-  { team: "Muranga Sparks Queens", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/muranga_spark_a0gklx.png" },
-  { team: "Desert Scorpions", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/desert_scorpio_mqnbln.png" },
-  { team: "Uweza Women", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/uweza_soccer_arzkgp.png" },
-  { team: "Black Panther QUeens", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434946/black_panther_blsnoe.png" },
-  { team: "Macmillian Queens", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
-  { team: "Silver Wind Divas", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
-  { team: "University Of Embu Queens", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434946/ueq_otyazn.png" },
-  { team: "Thika Startlets", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
-
+{ team: "Muranga lionesses", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910321/muranga-seal_trzy7m.png" },
+  { team: "Gor mahia queens", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910297/Gor-Mahia_xc8n9c.png" },
+  { team: "Sunderland Samba", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/desert_scorpio_mqnbln.png" },
+  { team: "Bandari queens", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910298/Bandari_wcacwy.png" },
+  { team: "AFC leopardess", logoUrl: "https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910308/AFC-Leopards_t6rhsj.png" },
+  { team: "FC 105 Naivasha", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
+  { team: "TUK Ravens", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
+  { team: "Hildana queens", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434946/ueq_otyazn.png" },
+  { team: "Marine queens", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
+  { team: "Gitothua starlets", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
+  { team: "Diani queens", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
+  { team: "MTG united", logoUrl: "https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg" },
 ]
+
 
 export const WomenFixtures: CollectionConfig = {
   slug: 'wsl',

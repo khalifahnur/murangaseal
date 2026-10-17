@@ -201,7 +201,10 @@ export interface Match {
     | 'Muranga Seal'
     | 'APS Bomet'
     | 'Kahawa Pride'
-    | 'FC Dynamo';
+    | 'FC Dynamo'
+    | '3K Fc'
+    | 'Migori Youth'
+    | 'Mombasa United';
   awayTeam:
     | 'Ulinzi Star'
     | 'Shabana Fc'
@@ -222,7 +225,10 @@ export interface Match {
     | 'Muranga Seal'
     | 'APS Bomet'
     | 'Kahawa Pride'
-    | 'FC Dynamo';
+    | 'FC Dynamo'
+    | '3K Fc'
+    | 'Migori Youth'
+    | 'Mombasa United';
   /**
    * Select opponent team logo
    */
@@ -248,6 +254,7 @@ export interface Match {
         | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910299/OIP-1_qngv38.jpg'
         | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1770226169/kahawa_pride_shjgdl.png'
         | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1772793178/uftm00053-removebg-preview_evwj8q.png'
+        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg'
       )
     | null;
   venue: string;
@@ -487,35 +494,41 @@ export interface Wsl {
   matchDate: string;
   category: 'women';
   homeTeam:
-    | 'Wempa Queens'
-    | 'Muranga Sparks Queens'
-    | 'Desert Scorpions'
-    | 'Uweza Women'
-    | 'Black Panther QUeens'
-    | 'Macmillian Queens'
-    | 'Silver Wind Divas'
-    | 'University Of Embu Queens'
-    | 'Thika Startlets';
+    | 'Muranga lionesses'
+    | 'Gor mahia queens'
+    | 'Sunderland Samba'
+    | 'Bandari queens'
+    | 'AFC leopardess'
+    | 'FC 105 Naivasha'
+    | 'TUK Ravens'
+    | 'Hildana queens'
+    | 'Marine queens'
+    | 'Gitothua starlets'
+    | 'Diani queens'
+    | 'MTG united';
   awayTeam:
-    | 'Wempa Queens'
-    | 'Muranga Sparks Queens'
-    | 'Desert Scorpions'
-    | 'Uweza Women'
-    | 'Black Panther QUeens'
-    | 'Macmillian Queens'
-    | 'Silver Wind Divas'
-    | 'University Of Embu Queens'
-    | 'Thika Startlets';
+    | 'Muranga lionesses'
+    | 'Gor mahia queens'
+    | 'Sunderland Samba'
+    | 'Bandari queens'
+    | 'AFC leopardess'
+    | 'FC 105 Naivasha'
+    | 'TUK Ravens'
+    | 'Hildana queens'
+    | 'Marine queens'
+    | 'Gitothua starlets'
+    | 'Diani queens'
+    | 'MTG united';
   /**
    * Select opponent team logo
    */
   opponentLogo?:
     | (
         | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910321/muranga-seal_trzy7m.png'
-        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/muranga_spark_a0gklx.png'
+        | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910297/Gor-Mahia_xc8n9c.png'
         | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/desert_scorpio_mqnbln.png'
-        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434947/uweza_soccer_arzkgp.png'
-        | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434946/black_panther_blsnoe.png'
+        | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910298/Bandari_wcacwy.png'
+        | 'https://res.cloudinary.com/dfuh1q6ic/image/upload/v1759910308/AFC-Leopards_t6rhsj.png'
         | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774435088/placeholder_fadxot.svg'
         | 'https://res.cloudinary.com/dtb4hsasc/image/upload/v1774434946/ueq_otyazn.png'
       )
